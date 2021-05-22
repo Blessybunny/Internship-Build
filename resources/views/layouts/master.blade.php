@@ -16,6 +16,26 @@
             <link rel = "stylesheet" type = "text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
             <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
             <link href = "./assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
+            
+            <!-- Styles -->
+            <style>
+                /*Navigation*/
+                #navigation-main .navbar-brand {
+                    display: flex;
+                    padding: 10px 5px !important;
+                }
+                #navigation-main .logo-text {
+                    font-size: 18px;
+                    padding-left: 5px;
+                }
+                #navigation-main .logo-image {
+                    width: 46px;
+                    height: 46px;
+                    overflow: hidden;
+                    margin-top: -6px;
+                }
+            </style>
+            
         </head>
 
         <body class = "sidebar-collapse">
@@ -24,7 +44,12 @@
                 <div class = "container">
                     <!-- Brand and button -->
                     <div class = "navbar-translate">
-                        <a class = "navbar-brand" href = "{{ url('/') }}">Project E-Commerce</a>
+                        <a class = "navbar-brand" href = "{{ url('/') }}">
+                            <div class = "logo-image">
+                                <img src = "./img/logo.png" class = "img-fluid">
+                            </div>
+                            <div class = "logo-text">OPALESCENCE</div>
+                        </a>
                         <button class = "navbar-toggler" type = "button" data-toggle = "collapse" aria-expanded = "false" aria-label = "Toggle navigation">
                             <span class = "sr-only">Toggle navigation</span>
                             <span class = "navbar-toggler-icon"></span>
@@ -52,36 +77,28 @@
                             </li>
                             <li class = "dropdown nav-item">
                                 <a href = "#" class = "dropdown-toggle nav-link" data-toggle = "dropdown">
-                                    <i class = "material-icons">archive</i> Other
+                                    <i class = "material-icons">share</i> Social
                                 </a>
                                 <div class = "dropdown-menu dropdown-with-icons">
-                                    <a href = "{{ url('/changelog') }}" class = "dropdown-item">Changelog</a>
-                                    <a href = "{{ url('/about') }}" class = "dropdown-item">About</a>
+                                    <a href = "#" class = "dropdown-item">Facebook</a>
+                                    <a href = "#" class = "dropdown-item">Twitter</a>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-  
+            
             <!-- CONTENT -->
             @yield('content');
-            
-            <!-- MIGRATE THESE -->
-            
-            
-            
-            
             
             <!-- FOOTER -->
             <footer class = "footer" data-background-color = "black">
                 <div class = "container">
                     <nav class = "float-left">
                         <ul>
-                            <li><a href = "#">Footlink 1</a></li>
-                            <li><a href = "#">Footlink 2</a></li>
-                            <li><a href = "#">Footlink 3</a></li>
-                            <li><a href = "#">Footlink 4</a></li>
+                            <li><a href = "{{ url('/changelog') }}">Changelog</a></li>
+                            <li><a href = "{{ url('/about') }}">About</a></li>
                         </ul>
                     </nav>
                     <div class = "copyright float-right">

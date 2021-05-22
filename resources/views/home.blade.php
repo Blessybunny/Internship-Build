@@ -2,6 +2,7 @@
 
     <!-- STYLES -->
     <style>
+        /* Carousel */
         #home-carousel {
             max-height: 960px;
             margin: 0;
@@ -30,6 +31,7 @@
             opacity: 0;
             visibility: hidden;
         }
+        
     </style>
 
 @section('content')
