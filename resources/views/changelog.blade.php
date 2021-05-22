@@ -35,6 +35,7 @@
                                                 <li>Implemented <a href = "https://www.creative-tim.com/product/material-kit-pro?partner=114912">Material kit</a> template.</li>
                                                 <li>Added changelog page.</li>
                                                 <li>Added abbout page.</li>
+                                                <li>Added logo and brand name "Opalescence".</li>
                                             </ul>
                                             <ul>
                                                 <h4>May 21</h4>

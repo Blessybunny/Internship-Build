@@ -15,7 +15,7 @@
             <!-- Material kit - https://www.creative-tim.com/product/material-kit-pro?partner=114912 -->
             <link rel = "stylesheet" type = "text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
             <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-            <link href = "./assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
+            <link href = "./assets/css/material-kit.css?v=2.0.7" rel = "stylesheet" />
             
             <!-- Styles -->
             <style>
@@ -34,6 +34,21 @@
                     overflow: hidden;
                     margin-top: -6px;
                 }
+                #navigation-main.navbar-transparent .logo-image {
+                    filter: invert(0);
+                    opacity: 1;
+                }
+                #navigation-main .logo-image {
+                    filter: invert(1);
+                    opacity: .75;
+                }
+                
+                /* Footer */
+                .footer .disclaimer {
+                    margin: auto;
+                    max-width: 720px;
+                }
+                
             </style>
             
         </head>
@@ -95,6 +110,7 @@
             <!-- FOOTER -->
             <footer class = "footer" data-background-color = "black">
                 <div class = "container">
+                    <p class = "disclaimer">This website is for educational purposes only as part of an internship program. It only reflects the front-end side of an e-commerce website and does not endorse any of the products listed.</p>
                     <nav class = "float-left">
                         <ul>
                             <li><a href = "{{ url('/changelog') }}">Changelog</a></li>
