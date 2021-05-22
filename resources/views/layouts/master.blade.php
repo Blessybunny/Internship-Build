@@ -18,7 +18,7 @@
             <link href = "./assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
         </head>
 
-        <body class = "index-page sidebar-collapse">
+        <body class = "sidebar-collapse">
             <!-- NAVIGATION -->
             <nav class = "navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll = "100" id = "sectionsNav">
                 <div class = "container">
@@ -50,10 +50,14 @@
                                     <a href = "#" class = "dropdown-item">Miscellaneous</a>
                                 </div>
                             </li>
-                            <li class = "nav-item">
-                                <a class = "nav-link" href = "{{ url('/changelog') }}">
-                                    <i class = "material-icons">history</i> Changelog
+                            <li class = "dropdown nav-item">
+                                <a href = "#" class = "dropdown-toggle nav-link" data-toggle = "dropdown">
+                                    <i class = "material-icons">archive</i> Other
                                 </a>
+                                <div class = "dropdown-menu dropdown-with-icons">
+                                    <a href = "{{ url('/changelog') }}" class = "dropdown-item">Changelog</a>
+                                    <a href = "{{ url('/about') }}" class = "dropdown-item">About</a>
+                                </div>
                             </li>
                         </ul>
                     </div>

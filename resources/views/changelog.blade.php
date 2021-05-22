@@ -1,22 +1,9 @@
 @extends('/layouts/master')
 
-@section('content')
-
-    <!-- SPLASH HEADER -->
-    <div class = "page-header header-filter clear-filter purple-filter" data-parallax = "true" style = "background-image: url('./img/bg-001.jpg');">
-        <div class = "container">
-            <div class = "row">
-                <div class = "col-md-8 ml-auto mr-auto">
-                    <div class = "brand">
-                        <h1>CHANGELOG</h1>
-                        <h3>A template is used. If you read this, just ignore everything in the body.</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>         
+@section('content')        
 
     <!-- CHANGELOG -->
+    <div class = "page-header header-filter" data-parallax = "true" style = "background-image: url('../assets/img/city-profile.jpg');"></div>
     <div class = "main main-raised">
         <div class = "section section-tabs">
             <div class = "container">
@@ -44,12 +31,12 @@
                                         <div class = "tab-pane active" id = "y-2021">
                                             <ul>
                                                 <h4>May 22</h4>
-                                                <li><a href = "https://www.creative-tim.com/product/material-kit-pro?partner=114912">Material kit</a> template implemented</li>
-                                                <li>Changelog added.</li>
+                                                <li>Implemented <a href = "https://www.creative-tim.com/product/material-kit-pro?partner=114912">Material kit</a> template.</li>
+                                                <li>Added changelog.</li>
                                             </ul>
                                             <ul>
                                                 <h4>May 21</h4>
-                                                <li>Deployment of this website.</li>
+                                                <li>Website deployment.</li>
                                             </ul>
                                         </div>
                                         <div class="tab-pane" id = "y-2022"></div>
