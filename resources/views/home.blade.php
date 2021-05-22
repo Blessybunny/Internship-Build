@@ -105,6 +105,8 @@
                     <li>Add a "shirt", "pants", and "miscellaneous" pages.</li>
                     <li>Add a "featured" card for trending clothes to this landing page.</li>
                     <li>Steal ideas from other existing fashion sites?</li>
+                    <li>Wallpapers should be 16:9 horizontal.</li>
+                    <li>Items should be 16:9 vertical.</li>
                 </ul>
             </div>
         </div>
