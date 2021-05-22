@@ -88,6 +88,20 @@
 
     <!-- MAIN CONTENT -->
     <div class = "main main-raised">
+        <!-- Span 1 -->
+        <div class = "section section-basic">
+            <div class = "container">
+                <h1>To-do List</h1>
+                <ul>
+                    <li>Improvise carousel word content.</li>
+                    <li>Add a pseudo newsletter update box at the bottom of this landing page.</li>
+                    <li>Add a "shirt", "pants", and "miscellaneous" pages.</li>
+                    <li>Add a "featured" card for trending clothes to this landing page.</li>
+                    <li>Steal ideas from other existing fashion sites?</li>
+                    <li>Off-page landing redirect to UC Cordilleras' FB page (and possibly Twitter too).</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 @endsection
