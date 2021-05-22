@@ -73,6 +73,7 @@
             width: 100%;
         }
         
+        
     </style>
     <!-- CAROUSEL -->
     <div id = "home-carousel" class = "carousel">
@@ -121,10 +122,16 @@
         <!-- News cards -->
         <div class = "news-container container">
             <div class = "row">
+                <div class = "col-md-12">
+                    <h3 class = "header-3">Latest News</h3>
+                    <hr/>
+                </div>
+            </div>
+            <div class = "row">
                 <div class = "news-card col-sm-6 col-md-12 col-lg-12 col-xl-3">
                     <div class = "inner">
                         <img src = "./img/bg-1.jpg"/>
-                        <h4>Sample news card 1 →</h4>
+                        <h4>Future Fashion →</h4>
                         <h6>May 22, 2021</h6>
                         <p>What's the future for fashion, now that quarantine has taken over the world?</p>
                     </div>
@@ -132,7 +139,7 @@
                 <div class = "news-card col-sm-6 col-md-4 col-lg-4 col-xl-3">
                     <div class = "inner">
                         <img src = "./img/bg-2.jpg"/>
-                        <h4>Sample news card 2 →</h4>
+                        <h4>Prideful Fashion 2 →</h4>
                         <h6>May 22, 2021</h6>
                         <p>Find ways to still show off your fashion tastes during lockdowns.</p>
                     </div>
@@ -140,7 +147,7 @@
                 <div class = "news-card col-sm-6 col-md-4 col-lg-4 col-xl-3">
                     <div class = "inner">
                         <img src = "./img/bg-3.jpg"/>
-                        <h4>Sample news card 3 →</h4>
+                        <h4>Discount Fashion →</h4>
                         <h6>May 22, 2021</h6>
                         <p>Shopping malls might offer discounts and bonuses on products.</p>
                     </div>
@@ -148,13 +155,15 @@
                 <div class = "news-card col-sm-6 col-md-4 col-lg-4 col-xl-3">
                     <div class = "inner">
                         <img src = "./img/bg-4.jpg"/>
-                        <h4>Sample news card 3 →</h4>
+                        <h4>Quarantinsanity →</h4>
                         <h6>May 22, 2021</h6>
                         <p>Fashion topics aside, how well are you handling yourslef?</p>
                     </div>
                 </div>
             </div>
         </div>
+        
+        
         <!-- Span 1 -->
         <div class = "section section-basic">
             <div class = "container">
