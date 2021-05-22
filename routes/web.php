@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 //NAVIGATION
     Route::get('/', function () {return view('home');});
     Route::get('/home', function () {return redirect('/');});
+
+//FOOTER
     Route::get('/changelog', function () {return view('changelog');});
     Route::get('/about', function () {return view('about');});
-    Route::get('/about0us', function () {return redirect('about');});
+    Route::get('/about-us', function () {return redirect('about');});
 

@@ -17,9 +17,20 @@
             <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
             <link href = "./assets/css/material-kit.css?v=2.0.7" rel = "stylesheet" />
             
-            <!-- Styles -->
+        </head>
+
+        <body class = "sidebar-collapse">
+            <!-- STYLES -->
             <style>
-                /*Navigation*/
+                /* General */
+                ::selection{
+                    background-color: transparent;
+                }
+                body {
+                    cursor: default;
+                }
+                
+                /* Navigation */
                 #navigation-main .navbar-brand {
                     display: flex;
                     padding: 10px 5px !important;
@@ -51,9 +62,6 @@
                 
             </style>
             
-        </head>
-
-        <body class = "sidebar-collapse">
             <!-- NAVIGATION -->
             <nav class = "navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll = "100" id = "navigation-main">
                 <div class = "container">
@@ -95,8 +103,8 @@
                                     <i class = "material-icons">share</i> Social
                                 </a>
                                 <div class = "dropdown-menu dropdown-with-icons">
-                                    <a href = "#" class = "dropdown-item">Facebook</a>
-                                    <a href = "#" class = "dropdown-item">Twitter</a>
+                                    <a href = "https://www.facebook.com/UCjaguars/" target = "_blank" class = "dropdown-item">Facebook</a>
+                                    <a href = "https://twitter.com/UCJaguars" target = "_blank" class = "dropdown-item">Twitter</a>
                                 </div>
                             </li>
                         </ul>

@@ -1,5 +1,7 @@
 @extends('/layouts/master')
 
+@section('content')
+
     <!-- STYLES -->
     <style>
         /* Carousel */
@@ -8,6 +10,9 @@
             margin: 0;
             padding: 0;
             transform: translateY(-30px);
+        }
+        #home-carousel .carousel-indicators li{
+            border-radius: 0;
         }
         #home-carousel .card {
             border-radius: 0;
@@ -19,7 +24,7 @@
             max-height: 720px;
         }
         #home-carousel .carousel-item::after {
-            background-image: linear-gradient(rgba(0, 0, 0, .75), transparent, rgba(0, 0, 0, .5));
+            background-image: linear-gradient(rgba(0, 0, 0, .75), rgba(0, 0, 0, .25), rgba(0, 0, 0, .75));
             content: "";
             left: 0;
             height: 100%;
@@ -31,11 +36,20 @@
             opacity: 0;
             visibility: hidden;
         }
+        #home-carousel .carousel-caption {
+            padding-bottom: 7.5%;
+        }
+        #home-carousel .carousel-caption h1 {
+            font-size: 250%;
+            font-weight: 600;
+            text-shadow: 0 5px 5px #000000;
+            text-transform: uppercase;
+        }
+        #home-carousel .carousel-caption h4 {
+            text-shadow: 0 5px 5px #000000;
+        }
         
     </style>
-
-@section('content')
-
     <!-- CAROUSEL -->
     <div id = "home-carousel" class = "container-fluid">
         <div class = "card card-raised card-carousel">
@@ -49,28 +63,21 @@
                     <div class = "carousel-item active" style = "background-image: url('./img/bg-1.jpg')">
                         <img class = "d-block w-100" src = "./img/bg-1.jpg" alt = "First slide">
                         <div class = "carousel-caption d-none d-md-block">
-                            <h4>
-                                <i class = "material-icons">location_on</i>
-                                Yellowstone National Park, United States
-                            </h4>
+                            <h1>Welcome to Opalescence</h1>
+                            <h4>Home to your casual fashion needs.</h4>
+                            <button class = "btn btn-primary btn-lg">START CRAVING</button>
                         </div>
                     </div>
                     <div class = "carousel-item" style = "background-image: url('./img/bg-2.jpg')">
                         <img class = "d-block w-100" src = "./img/bg-2.jpg" alt = "Second slide">
                         <div class = "carousel-caption d-none d-md-block">
-                            <h4>
-                                <i class = "material-icons">location_on</i>
-                                Somewhere Beyond, United States
-                            </h4>
+                            <h4>"Style is a way to say who you are without having to speak."</h4>
                         </div>
                     </div>
                     <div class = "carousel-item" style = "background-image: url('./img/bg-3.jpg')">
                         <img class = "d-block w-100" src = "./img/bg-3.jpg" alt = "Third slide">
                         <div class = "carousel-caption d-none d-md-block">
-                            <h4>
-                                <i class = "material-icons">location_on</i>
-                                Yellowstone National Park, United States
-                            </h4>
+                            <h4>"Clothes mean nothing until someone lives in them."</h4>
                         </div>
                     </div>
                 </div>
@@ -98,7 +105,6 @@
                     <li>Add a "shirt", "pants", and "miscellaneous" pages.</li>
                     <li>Add a "featured" card for trending clothes to this landing page.</li>
                     <li>Steal ideas from other existing fashion sites?</li>
-                    <li>Off-page landing redirect to UC Cordilleras' FB page (and possibly Twitter too).</li>
                 </ul>
             </div>
         </div>
