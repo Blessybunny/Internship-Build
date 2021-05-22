@@ -9,6 +9,7 @@
             <div class = "container">
                 <div id = "nav-tabs">
                     <h3>Changelog</h3>
+                    <p>Minor changes are not recorded.</p>
                     <div class = "row">
                         <div class = "col-md-12">
                             <div class = "card card-nav-tabs card-plain">
