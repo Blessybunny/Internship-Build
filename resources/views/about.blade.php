@@ -35,15 +35,15 @@
                             <div class = "col-md-5 ml-auto mr-auto">
                                 <div class = "profile">
                                     <div class="avatar">
-                                        <img src = "./img/logo.png" alt = "Circle Image" class = "img-raised rounded-circle img-fluid">
+                                        <img src = "./img/portrait-2.jpg" alt = "Circle Image" class = "img-raised rounded-circle img-fluid">
                                     </div>
                                     <div class = "name">
                                         <h3 class = "title">Danica Sang-it</h3>
-                                        <h6>(pending title)</h6>
+                                        <h6>The Over</h6>
                                         <a href = "https://www.facebook.com/danica.sangit" target = "_blank" class = "btn btn-just-icon btn-link btn-facebook"><i class = "fa fa-facebook"></i></a>
                                     </div>
                                     <div class = "description text-center">
-                                        <p>(any description works, just to fill this sentence!)</p>
+                                        <p>"Every trial will turn into blessing, every failure will turn into a lesson."</p>
                                     </div>
                                 </div>
                             </div>
@@ -55,4 +55,5 @@
                 </div>
           </div>
     </div>
+
 @endsection

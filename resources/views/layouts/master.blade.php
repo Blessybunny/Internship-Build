@@ -8,7 +8,7 @@
             <meta content = 'width=device-width, initial-scale=1.0, shrink-to-fit=no' name = 'viewport' />
             
             <link rel = "apple-touch-icon" sizes = "76x76" href = "./assets/img/apple-icon.png">
-            <link rel = "icon" type="image/png" href = "./assets/img/favicon.png">
+            <link rel = "icon" type = "image/png" href = "./img/logo.png">
 
             <title>Project E-Commerce</title>
             
@@ -119,13 +119,15 @@
             <footer class = "footer" data-background-color = "black">
                 <div class = "container">
                     <p class = "disclaimer">This website is for educational purposes only as part of an internship program. It only reflects the front-end side of an e-commerce website and does not endorse any of the products listed.</p>
-                    <nav class = "float-left">
+                    <nav>
                         <ul>
+                            Quick Links |
+                            <li><a href = "{{ url('/') }}">Home</a></li>
                             <li><a href = "{{ url('/changelog') }}">Changelog</a></li>
                             <li><a href = "{{ url('/about') }}">About</a></li>
                         </ul>
                     </nav>
-                    <div class = "copyright float-right">
+                    <div class = "copyright">
                         &copy;
                         <script>document.write(new Date().getFullYear())</script>
                     </div>
