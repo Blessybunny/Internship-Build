@@ -16,7 +16,7 @@
                                     </div>
                                     <div class = "name">
                                         <h3 class = "title">Mark Joseph Alamag</h3>
-                                        <h6>Web Designer &amp; Vector Artist</h6>
+                                        <h6>Website Designer</h6>
                                         <a href = "https://www.facebook.com/markjoseph.alamag.33/" target = "_blank" class = "btn btn-just-icon btn-link btn-facebook"><i class = "fa fa-facebook"></i></a>
                                         <a href = "https://www.reddit.com/user/Blessybunny" target = "_blank" class = "btn btn-just-icon btn-link btn-reddit"><i class = "fa fa-reddit"></i></a>
                                     </div>

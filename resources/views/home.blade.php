@@ -7,9 +7,7 @@
         /* Carousel */
         #home-carousel {
             max-height: 960px;
-            margin: 0;
-            padding: 0;
-            transform: translateY(-30px);
+            margin-top: -30px;
         }
         #home-carousel .carousel-indicators li{
             border-radius: 0;
@@ -49,52 +47,114 @@
             text-shadow: 0 5px 5px #000000;
         }
         
+        /*News cards*/
+        .news-container{
+            padding: 30px;
+        }
+        .news-container .news-card{
+            display: inline-flex;
+        }
+        .news-container .news-card .inner{
+            box-shadow: 0 0 10px rgba(0, 0, 0, .25);
+            overflow: hidden;
+        }
+        
+        .news-container h4 {
+            font-weight: bold;
+            padding: 0 15px;
+        }
+        .news-container h6 {
+            padding: 0 15px;
+        }
+        .news-container p {
+            padding: 0 15px;
+        }
+        .news-container img {
+            width: 100%;
+        }
+        
     </style>
     <!-- CAROUSEL -->
-    <div id = "home-carousel" class = "container-fluid">
-        <div class = "card card-raised card-carousel">
-            <div id = "carouselExampleIndicators" class="carousel slide" data-ride = "carousel" data-interval = "5000">
-                <ol class = "carousel-indicators">
-                    <li data-target = "#carouselExampleIndicators" data-slide-to = "0" class = "active"></li>
-                    <li data-target = "#carouselExampleIndicators" data-slide-to = "1"></li>
-                    <li data-target = "#carouselExampleIndicators" data-slide-to = "2"></li>
-                </ol>
-                <div class = "carousel-inner">
-                    <div class = "carousel-item active" style = "background-image: url('./img/bg-1.jpg')">
-                        <img class = "d-block w-100" src = "./img/bg-1.jpg" alt = "First slide">
-                        <div class = "carousel-caption d-none d-md-block">
-                            <h1>Welcome to Opalescence</h1>
-                            <h4>Home to your casual fashion needs.</h4>
-                            <button class = "btn btn-primary btn-lg">START CRAVING</button>
-                        </div>
-                    </div>
-                    <div class = "carousel-item" style = "background-image: url('./img/bg-2.jpg')">
-                        <img class = "d-block w-100" src = "./img/bg-2.jpg" alt = "Second slide">
-                        <div class = "carousel-caption d-none d-md-block">
-                            <h4>"Style is a way to say who you are without having to speak."</h4>
-                        </div>
-                    </div>
-                    <div class = "carousel-item" style = "background-image: url('./img/bg-3.jpg')">
-                        <img class = "d-block w-100" src = "./img/bg-3.jpg" alt = "Third slide">
-                        <div class = "carousel-caption d-none d-md-block">
-                            <h4>"Clothes mean nothing until someone lives in them."</h4>
-                        </div>
+    <div id = "home-carousel" class = "carousel">
+        <div id = "carouselExampleIndicators" class = "carousel slide" data-ride = "carousel" data-interval = "5000">
+            <ol class = "carousel-indicators">
+                <li data-target = "#carouselExampleIndicators" data-slide-to = "0" class = "active"></li>
+                <li data-target = "#carouselExampleIndicators" data-slide-to = "1"></li>
+                <li data-target = "#carouselExampleIndicators" data-slide-to = "2"></li>
+            </ol>
+            <div class = "carousel-inner">
+                <div class = "carousel-item active" style = "background-image: url('./img/bg-1.jpg')">
+                    <img class = "d-block w-100" src = "./img/bg-1.jpg" alt = "First slide">
+                    <div class = "carousel-caption d-none d-md-block">
+                        <h1>Welcome to Opalescence</h1>
+                        <h4>Home to your casual fashion needs.</h4>
+                        <button class = "btn btn-primary btn-lg">START CRAVING</button>
                     </div>
                 </div>
-                <a class = "carousel-control-prev" href = "#carouselExampleIndicators" role = "button" data-slide = "prev">
-                    <i class = "material-icons">keyboard_arrow_left</i>
-                    <span class = "sr-only">Previous</span>
-                </a>
-                <a class = "carousel-control-next" href = "#carouselExampleIndicators" role = "button" data-slide = "next">
-                    <i class = "material-icons">keyboard_arrow_right</i>
-                    <span class = "sr-only">Next</span>
-                </a>
+                <div class = "carousel-item" style = "background-image: url('./img/bg-2.jpg')">
+                    <img class = "d-block w-100" src = "./img/bg-2.jpg" alt = "Second slide">
+                    <div class = "carousel-caption d-none d-md-block">
+                        <h4>"Style is a way to say who you are without having to speak."</h4>
+                    </div>
+                </div>
+                <div class = "carousel-item" style = "background-image: url('./img/bg-3.jpg')">
+                    <img class = "d-block w-100" src = "./img/bg-3.jpg" alt = "Third slide">
+                    <div class = "carousel-caption d-none d-md-block">
+                        <h4>"Clothes mean nothing until someone lives in them."</h4>
+                    </div>
+                </div>
             </div>
+            <a class = "carousel-control-prev" href = "#carouselExampleIndicators" role = "button" data-slide = "prev">
+                <i class = "material-icons">keyboard_arrow_left</i>
+                <span class = "sr-only">Previous</span>
+            </a>
+            <a class = "carousel-control-next" href = "#carouselExampleIndicators" role = "button" data-slide = "next">
+                <i class = "material-icons">keyboard_arrow_right</i>
+                <span class = "sr-only">Next</span>
+            </a>
         </div>
-    </div>         
+    </div>
 
     <!-- MAIN CONTENT -->
-    <div class = "main main-raised">
+    <div class = "main">
+        
+        <!-- News cards -->
+        <div class = "news-container container">
+            <div class = "row">
+                <div class = "news-card col-sm-6 col-md-12 col-lg-12 col-xl-3">
+                    <div class = "inner">
+                        <img src = "./img/bg-1.jpg"/>
+                        <h4>Sample news card 1 →</h4>
+                        <h6>May 22, 2021</h6>
+                        <p>What's the future for fashion, now that quarantine has taken over the world?</p>
+                    </div>
+                </div>
+                <div class = "news-card col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                    <div class = "inner">
+                        <img src = "./img/bg-2.jpg"/>
+                        <h4>Sample news card 2 →</h4>
+                        <h6>May 22, 2021</h6>
+                        <p>Find ways to still show off your fashion tastes during lockdowns.</p>
+                    </div>
+                </div>
+                <div class = "news-card col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                    <div class = "inner">
+                        <img src = "./img/bg-3.jpg"/>
+                        <h4>Sample news card 3 →</h4>
+                        <h6>May 22, 2021</h6>
+                        <p>Shopping malls might offer discounts and bonuses on products.</p>
+                    </div>
+                </div>
+                <div class = "news-card col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                    <div class = "inner">
+                        <img src = "./img/bg-4.jpg"/>
+                        <h4>Sample news card 3 →</h4>
+                        <h6>May 22, 2021</h6>
+                        <p>Fashion topics aside, how well are you handling yourslef?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Span 1 -->
         <div class = "section section-basic">
             <div class = "container">

@@ -135,7 +135,7 @@
             </footer>
 
         </body>
-
+        
         <!-- Material kit - https://www.creative-tim.com/product/material-kit-pro?partner=114912 -->
         <script src = "./assets/js/core/jquery.min.js" type = "text/javascript"></script>
         <script src = "./assets/js/core/popper.min.js" type = "text/javascript"></script>
