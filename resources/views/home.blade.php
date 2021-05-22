@@ -1,24 +1,73 @@
 @extends('/layouts/master')
 
+    <!-- STYLES -->
+    <style>
+        #home-carousel {
+            margin: 0;
+            padding: 0;
+            transform: translateY(-30px);
+        }
+        #home-carousel .card {
+            border-radius: 0;
+        }
+    </style>
+
 @section('content')
 
-    <!-- SPLASH HEADER -->
-    <div class = "page-header header-filter clear-filter purple-filter" data-parallax = "true" style = "background-image: url('./img/bg-001.jpg');">
-        <div class = "container">
-            <div class = "row">
-                <div class = "col-md-8 ml-auto mr-auto">
-                    <div class = "brand">
-                        <h1>Project E-Commerce</h1>
-                        <h3>A template is used. If you read this, just ignore everything in the body.</h3>
+    <!-- CAROUSEL -->
+    <div id = "home-carousel" class = "container-fluid">
+        <div class = "card card-raised card-carousel">
+            <div id = "carouselExampleIndicators" class="carousel slide" data-ride = "carousel" data-interval = "5000">
+                <ol class = "carousel-indicators">
+                    <li data-target = "#carouselExampleIndicators" data-slide-to = "0" class="active"></li>
+                    <li data-target = "#carouselExampleIndicators" data-slide-to = "1"></li>
+                    <li data-target = "#carouselExampleIndicators" data-slide-to = "2"></li>
+                </ol>
+                <div class = "carousel-inner">
+                    <div class = "carousel-item active">
+                        <img class = "d-block w-100" src = "./assets/img/bg2.jpg" alt = "First slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h4>
+                                <i class = "material-icons">location_on</i>
+                                Yellowstone National Park, United States
+                            </h4>
+                        </div>
+                    </div>
+                    <div class = "carousel-item">
+                        <img class = "d-block w-100" src = "./assets/img/bg3.jpg" alt = "Second slide">
+                        <div class = "carousel-caption d-none d-md-block">
+                            <h4>
+                                <i class = "material-icons">location_on</i>
+                                Somewhere Beyond, United States
+                            </h4>
+                        </div>
+                    </div>
+                    <div class = "carousel-item">
+                        <img class = "d-block w-100" src = "./assets/img/bg.jpg" alt = "Third slide">
+                        <div class = "carousel-caption d-none d-md-block">
+                            <h4>
+                                <i class = "material-icons">location_on</i>
+                                Yellowstone National Park, United States
+                            </h4>
+                        </div>
                     </div>
                 </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <i class="material-icons">keyboard_arrow_left</i>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <i class="material-icons">keyboard_arrow_right</i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
             </div>
-        </div>
+            <!-- End Carousel Card -->
+
     </div>         
 
             <!-- MAIN CONTENT -->
             <div class = "main main-raised">
-                
                 <!-- Span 1 -->
                 <div class = "section section-basic">
                     <div class = "container">

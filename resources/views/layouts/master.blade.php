@@ -20,7 +20,7 @@
 
         <body class = "sidebar-collapse">
             <!-- NAVIGATION -->
-            <nav class = "navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll = "100" id = "sectionsNav">
+            <nav class = "navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll = "100" id = "navigation-main">
                 <div class = "container">
                     <!-- Brand and button -->
                     <div class = "navbar-translate">

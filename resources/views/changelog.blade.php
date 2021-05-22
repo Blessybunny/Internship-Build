@@ -5,7 +5,7 @@
     <!-- CHANGELOG -->
     <div class = "page-header header-filter" data-parallax = "true" style = "background-image: url('../assets/img/city-profile.jpg');"></div>
     <div class = "main main-raised">
-        <div class = "section section-tabs">
+        <div class = "section">
             <div class = "container">
                 <div id = "nav-tabs">
                     <h3>Changelog</h3>
@@ -32,7 +32,8 @@
                                             <ul>
                                                 <h4>May 22</h4>
                                                 <li>Implemented <a href = "https://www.creative-tim.com/product/material-kit-pro?partner=114912">Material kit</a> template.</li>
-                                                <li>Added changelog.</li>
+                                                <li>Added changelog page.</li>
+                                                <li>Added abbout page.</li>
                                             </ul>
                                             <ul>
                                                 <h4>May 21</h4>
