@@ -31,6 +31,10 @@
                                     <div class = "tab-content">
                                         <div class = "tab-pane active" id = "y-2021">
                                             <ul>
+                                                <h4>May 23</h4>
+                                                <li>Rebranded to "Naduma".</li>
+                                            </ul>
+                                            <ul>
                                                 <h4>May 22</h4>
                                                 <li>Implemented <a href = "https://www.creative-tim.com/product/material-kit-pro?partner=114912">Material kit</a> template.</li>
                                                 <li>Added changelog page.</li>

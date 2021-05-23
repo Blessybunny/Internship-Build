@@ -123,12 +123,12 @@
         <div class = "clothing-line-container container">
             <div class = "row">
                 <div class = "col-md-12">
-                    <h3 class = "header-3">Latest Apparels</h3>
+                    <h3>Latest Apparels</h3>
                     <hr/>
                 </div>
             </div>
             <div class = "row">
-                <div class = "news-card col-sm-3 col-md-6 col-lg-6 col-xl-3">
+                <div class = "news-card col-sm-3 col-md-6 col-lg-3 col-xl-3">
                     <div class = "inner">
                         <div id = "clothingLineCarousel1Indicator" class = "carousel slide" data-ride = "carousel" data-interval = "3000">
                             <ol class = "carousel-indicators">
@@ -162,7 +162,12 @@
                         </div>
                     </div>
                 </div>
-                <div class = "news-card col-sm-3 col-md-6 col-lg-6 col-xl-3">
+                <div class = "news-card col-sm-3 col-md-6 col-lg-3 col-xl-3">
+                    <h4>Igorotak T-shirt Line Set 1</h4>
+                    <h6>May 22, 2021</h6>
+                    <hr/>
+                </div>
+                <div class = "news-card col-sm-3 col-md-6 col-lg-3 col-xl-3">
                     <div class = "inner">
                         <div id = "clothingLineCarousel2Indicator" class = "carousel slide" data-ride = "carousel" data-interval = "3000">
                             <ol class = "carousel-indicators">
@@ -196,6 +201,11 @@
                         </div>
                     </div>
                 </div>
+                <div class = "news-card col-sm-3 col-md-6 col-lg-3 col-xl-3">
+                    <h4>Igorotak T-shirt Line Set 2</h4>
+                    <h6>May 22, 2021</h6>
+                    <hr/>
+                </div>
             </div>
         </div>
         
@@ -203,7 +213,7 @@
         <div class = "news-container container">
             <div class = "row">
                 <div class = "col-md-12">
-                    <h3 class = "header-3">Latest News</h3>
+                    <h3>Latest News</h3>
                     <hr/>
                 </div>
             </div>
@@ -248,6 +258,8 @@
             <div class = "container">
                 <h1>To-do List</h1>
                 <ul>
+                    <li>Change the color accent from purple to the range of red and yellow.</li>
+                    <li>Also add ethnic textile backgrounds.</li>
                     <li>Improvise carousel word content.</li>
                     <li>Add a pseudo newsletter update box at the bottom of this landing page.</li>
                     <li>Add a "shirt", "pants", and "miscellaneous" pages.</li>
