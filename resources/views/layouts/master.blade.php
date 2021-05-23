@@ -29,6 +29,14 @@
                 body {
                     cursor: default;
                 }
+                h6{
+                    margin-top: -5px !important;
+                }
+                
+                /* Grid systems*/
+                [class*="col-"] {
+                    padding-bottom: 30px;
+                }
                 
                 /* Navigation */
                 #navigation-main .navbar-brand {
@@ -52,6 +60,21 @@
                 #navigation-main .logo-image {
                     filter: invert(1);
                     opacity: .75;
+                }
+                
+                /* Carousel */
+                .carousel-indicators li{
+                    border-radius: 0 !important;
+                }
+                
+                /* Buttons */
+                .btn.btn-primary {
+                    background-color: orangered !important;
+                    border-color: orangered !important;
+                    box-shadow: 0 2px 2px 0 rgb(255 69 0 / 14%), 0 3px 1px -2px rgb(255 69 0 / 20%), 0 1px 5px 0 rgb(255 69 0 / 12%) !important;
+                }
+                .btn.btn-primary:hover {
+                    box-shadow: 0 14px 26px -12px rgb(255 69 0 / 42%), 0 4px 23px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(255 69 0 / 20%) !important;
                 }
                 
                 /* Footer */

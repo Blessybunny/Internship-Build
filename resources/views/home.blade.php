@@ -9,9 +9,6 @@
             max-height: 960px;
             margin-top: -30px;
         }
-        #home-carousel .carousel-indicators li{
-            border-radius: 0;
-        }
         #home-carousel .card {
             border-radius: 0;
         }
@@ -54,20 +51,21 @@
         .news-container .news-card{
             display: inline-flex;
         }
-        .news-container .news-card .inner{
+        .news-container .news-card a{
             box-shadow: 0 0 10px rgba(0, 0, 0, .25);
+            color: #000;
             overflow: hidden;
         }
         
         .news-container h4 {
             font-weight: bold;
-            padding: 0 15px;
+            padding: 0 20px;
         }
         .news-container h6 {
-            padding: 0 15px;
+            padding: 0 20px;
         }
         .news-container p {
-            padding: 0 15px;
+            padding: 0 20px 5px 20px;
         }
         .news-container img {
             width: 100%;
@@ -84,16 +82,16 @@
                 <li data-target = "#homeCarouselIndicators" data-slide-to = "2"></li>
             </ol>
             <div class = "carousel-inner">
-                <div class = "carousel-item active" style = "background-image: url('./img/bg-1.jpg')">
-                    <img class = "d-block w-100" src = "./img/bg-1.jpg">
+                <div class = "carousel-item active" style = "background-image: url('./img/bg-7.jpg')">
+                    <img class = "d-block w-100" src = "./img/bg-7.jpg">
                     <div class = "carousel-caption d-none d-md-block">
-                        <h1>Welcome to Opalescence</h1>
+                        <h1>Welcome to NADUMA</h1>
                         <h4>Home to your casual fashion needs.</h4>
                         <button class = "btn btn-primary btn-lg">START CRAVING</button>
                     </div>
                 </div>
-                <div class = "carousel-item" style = "background-image: url('./img/bg-2.jpg')">
-                    <img class = "d-block w-100" src = "./img/bg-2.jpg">
+                <div class = "carousel-item" style = "background-image: url('./img/bg-6.jpg')">
+                    <img class = "d-block w-100" src = "./img/bg-6.jpg">
                     <div class = "carousel-caption d-none d-md-block">
                         <h4>"Style is a way to say who you are without having to speak."</h4>
                     </div>
@@ -128,7 +126,7 @@
                 </div>
             </div>
             <div class = "row">
-                <div class = "news-card col-sm-3 col-md-6 col-lg-3 col-xl-3">
+                <div class = "news-card col-sm-6 col-md-6 col-lg-3 col-xl-3">
                     <div class = "inner">
                         <div id = "clothingLineCarousel1Indicator" class = "carousel slide" data-ride = "carousel" data-interval = "3000">
                             <ol class = "carousel-indicators">
@@ -162,12 +160,13 @@
                         </div>
                     </div>
                 </div>
-                <div class = "news-card col-sm-3 col-md-6 col-lg-3 col-xl-3">
+                <div class = "news-card col-sm-6 col-md-6 col-lg-3 col-xl-3">
                     <h4>Igorotak T-shirt Line Set 1</h4>
                     <h6>May 22, 2021</h6>
-                    <hr/>
+                    <p>A new set of ethnic themed shirts has arrived. Check it out now!</p>
+                    <button class = "btn btn-primary btn-lg">Vew Set</button>
                 </div>
-                <div class = "news-card col-sm-3 col-md-6 col-lg-3 col-xl-3">
+                <div class = "news-card col-sm-6 col-md-6 col-lg-3 col-xl-3">
                     <div class = "inner">
                         <div id = "clothingLineCarousel2Indicator" class = "carousel slide" data-ride = "carousel" data-interval = "3000">
                             <ol class = "carousel-indicators">
@@ -201,10 +200,11 @@
                         </div>
                     </div>
                 </div>
-                <div class = "news-card col-sm-3 col-md-6 col-lg-3 col-xl-3">
+                <div class = "news-card col-sm-6 col-md-6 col-lg-3 col-xl-3">
                     <h4>Igorotak T-shirt Line Set 2</h4>
                     <h6>May 22, 2021</h6>
-                    <hr/>
+                    <p>A new set of ethnic themed shirts has arrived. Check it out now!</p>
+                    <button class = "btn btn-primary btn-lg">Vew Set</button>
                 </div>
             </div>
         </div>
@@ -219,55 +219,64 @@
             </div>
             <div class = "row">
                 <div class = "news-card col-sm-6 col-md-12 col-lg-12 col-xl-3">
-                    <div class = "inner">
+                    <a href = "#">
                         <img src = "./img/bg-1.jpg"/>
                         <h4>Future Fashion →</h4>
                         <h6>May 22, 2021</h6>
                         <p>What's the future for fashion, now that quarantine has taken over the world?</p>
-                    </div>
+                    </a>
                 </div>
                 <div class = "news-card col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                    <div class = "inner">
+                    <a href = "#">
                         <img src = "./img/bg-2.jpg"/>
                         <h4>Prideful Fashion →</h4>
                         <h6>May 22, 2021</h6>
                         <p>Find ways to still show off your fashion tastes during lockdowns.</p>
-                    </div>
+                    </a>
                 </div>
                 <div class = "news-card col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                    <div class = "inner">
+                    <a href = "#">
                         <img src = "./img/bg-3.jpg"/>
                         <h4>Discount Fashion →</h4>
                         <h6>May 22, 2021</h6>
                         <p>Shopping malls might offer discounts and bonuses on products.</p>
-                    </div>
+                    </a>
                 </div>
                 <div class = "news-card col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                    <div class = "inner">
+                    <a href = "#">
                         <img src = "./img/bg-4.jpg"/>
                         <h4>Quarantinsanity →</h4>
                         <h6>May 22, 2021</h6>
                         <p>Fashion topics aside, how well are you handling yourslef?</p>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
         
-        <!-- Span 1 -->
-        <div class = "section section-basic">
-            <div class = "container">
-                <h1>To-do List</h1>
-                <ul>
-                    <li>Change the color accent from purple to the range of red and yellow.</li>
-                    <li>Also add ethnic textile backgrounds.</li>
-                    <li>Improvise carousel word content.</li>
-                    <li>Add a pseudo newsletter update box at the bottom of this landing page.</li>
-                    <li>Add a "shirt", "pants", and "miscellaneous" pages.</li>
-                    <li>Add a "featured" card for trending clothes to this landing page.</li>
-                    <li>Steal ideas from other existing fashion sites?</li>
-                    <li>Wallpapers should be 16:9 horizontal.</li>
-                    <li>Items should be  5:7 vertical.</li>
-                </ul>
+        <!-- Dev Notes -->
+        <div class = "news-container container">
+            <div class = "row">
+                <div class = "col-md-6">
+                    <h3>To-do List</h3>
+                    <hr/>
+                    
+                    <ul>
+                        <li>Improvise carousel word content.</li>
+                        <li>Add a pseudo newsletter update box at the bottom of this landing page.</li>
+                        <li>Add a "shirt", "pants", and "miscellaneous" pages.</li>
+                        <li>Add a "featured" card for trending clothes to this landing page.</li>
+                        <li>Steal ideas from other existing fashion sites?</li>
+                    </ul>
+                </div>
+                <div class = "col-md-6">
+                    <h3>Keep Consistency</h3>
+                    <hr/>
+                    <ul>
+                        <li>Wallpapers should be 16:9 horizontal.</li>
+                        <li>Items should be  5:7 vertical.</li>
+                        <li>Color accents with ranges of red and yellow.</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
