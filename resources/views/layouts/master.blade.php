@@ -23,13 +23,16 @@
             <!-- STYLES -->
             <style>
                 /* General */
-                ::selection{
+                ::selection {
                     background-color: transparent;
                 }
                 body {
                     cursor: default;
                 }
-                h6{
+                a:hover {
+                    color: orangered;
+                }
+                h6 {
                     margin-top: -5px !important;
                 }
                 
@@ -48,26 +51,45 @@
                     padding-left: 5px;
                 }
                 #navigation-main .logo-image {
-                    width: 46px;
+                    filter: invert(1);
                     height: 46px;
-                    overflow: hidden;
                     margin-top: -6px;
+                    opacity: .75;
+                    overflow: hidden;
+                    width: 46px;
+                }
+                #navigation-main .nav-link {
+                    border-radius: 0;
+                }
+                #navigation-main .dropdown-menu {
+                    border-radius: 0;
+                    height: auto;
+                    overflow: hidden;
+                }
+                #navigation-main .dropdown-menu a {
+                    border-radius: 0;
+                }
+                #navigation-main .dropdown-menu a:hover {
+                    background-color: orangered !important;
+                    box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(255 69 0 / 40%);
+                }
+                #navigation-main .dropdown-menu a:focus {
+                    background-color: orangered !important;
                 }
                 #navigation-main.navbar-transparent .logo-image {
                     filter: invert(0);
                     opacity: 1;
                 }
-                #navigation-main .logo-image {
-                    filter: invert(1);
-                    opacity: .75;
-                }
                 
                 /* Carousel */
-                .carousel-indicators li{
+                .carousel-indicators li {
                     border-radius: 0 !important;
                 }
                 
-                /* Buttons */
+                /* Forms */
+                .btn {
+                    border-radius: 0 !important;
+                }
                 .btn.btn-primary {
                     background-color: orangered !important;
                     border-color: orangered !important;
@@ -75,6 +97,9 @@
                 }
                 .btn.btn-primary:hover {
                     box-shadow: 0 14px 26px -12px rgb(255 69 0 / 42%), 0 4px 23px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(255 69 0 / 20%) !important;
+                }
+                input.form-control {
+                    background-image: linear-gradient(to top, orangered 2px, rgba(255, 69, 0, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
                 }
                 
                 /* Footer */
@@ -94,7 +119,7 @@
                             <div class = "logo-image">
                                 <img src = "./img/logo.png" class = "img-fluid">
                             </div>
-                            <div class = "logo-text">NADUMA</div>
+                            <div class = "logo-text">NADUMA.STORE</div>
                         </a>
                         <button class = "navbar-toggler" type = "button" data-toggle = "collapse" aria-expanded = "false" aria-label = "Toggle navigation">
                             <span class = "sr-only">Toggle navigation</span>
@@ -116,9 +141,8 @@
                                     <i class = "material-icons">apps</i> Apparel
                                 </a>
                                 <div class = "dropdown-menu dropdown-with-icons">
-                                    <a href = "#" class = "dropdown-item">Shirt</a>
-                                    <a href = "#" class = "dropdown-item">Pants</a>
-                                    <a href = "#" class = "dropdown-item">Miscellaneous</a>
+                                    <a href = "{{ url('/shirts') }}" class = "dropdown-item">Shirts</a>
+                                    <a href = "{{ url('/miscellaneous') }}" class = "dropdown-item">Miscellaneous</a>
                                 </div>
                             </li>
                             <li class = "dropdown nav-item">
@@ -152,7 +176,7 @@
                     </nav>
                     <div class = "copyright">
                         &copy;
-                        <script>document.write(new Date().getFullYear())</script>
+                        <script>document.write(new Date().getFullYear())</script>, Naduma Store
                     </div>
                 </div>
             </footer>

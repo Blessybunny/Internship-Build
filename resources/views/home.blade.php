@@ -44,33 +44,38 @@
             text-shadow: 0 5px 5px #000000;
         }
         
-        /*News cards*/
-        .news-container{
-            padding: 30px;
-        }
-        .news-container .news-card{
+        /* Link cards */
+        .link-card{
             display: inline-flex;
         }
-        .news-container .news-card a{
-            box-shadow: 0 0 10px rgba(0, 0, 0, .25);
+        .link-card a{
+            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
             color: #000;
             overflow: hidden;
+            width: 100%;
+        }
+        .link-card a:hover{
+            filter: brightness(.9);
         }
         
-        .news-container h4 {
+        .link-card h4 {
             font-weight: bold;
             padding: 0 20px;
         }
-        .news-container h6 {
+        .link-card h6 {
             padding: 0 20px;
         }
-        .news-container p {
+        .link-card p {
             padding: 0 20px 5px 20px;
         }
-        .news-container img {
+        .link-card img {
             width: 100%;
         }
         
+        /* Newsletter */
+        .newsletter-container img {
+            width: 100%;
+        }
         
     </style>
     <!-- CAROUSEL -->
@@ -120,91 +125,43 @@
         <!-- New clothing lines -->
         <div class = "clothing-line-container container">
             <div class = "row">
-                <div class = "col-md-12">
+                <div class = "col">
                     <h3>Latest Apparels</h3>
                     <hr/>
                 </div>
             </div>
             <div class = "row">
-                <div class = "news-card col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                    <div class = "inner">
-                        <div id = "clothingLineCarousel1Indicator" class = "carousel slide" data-ride = "carousel" data-interval = "3000">
-                            <ol class = "carousel-indicators">
-                                <li data-target = "#clothingLineCarousel1Indicator" data-slide-to = "0" class = "active"></li>
-                                <li data-target = "#clothingLineCarousel1Indicator" data-slide-to = "1"></li>
-                                <li data-target = "#clothingLineCarousel1Indicator" data-slide-to = "2"></li>
-                                <li data-target = "#clothingLineCarousel1Indicator" data-slide-to = "3"></li>
-                            </ol>
-                            <div class = "carousel-inner">
-                                <div class = "carousel-item active">
-                                    <img class = "d-block w-100" src = "./img/cloth-1.jpg">
-                                </div>
-                                <div class = "carousel-item">
-                                    <img class = "d-block w-100" src = "./img/cloth-2.jpg">
-                                </div>
-                                <div class = "carousel-item">
-                                    <img class = "d-block w-100" src = "./img/cloth-3.jpg">
-                                </div>
-                                <div class = "carousel-item">
-                                    <img class = "d-block w-100" src = "./img/cloth-4.jpg">
-                                </div>
-                            </div>
-                            <a class = "carousel-control-prev" href = "#clothingLineCarousel1Indicator" role = "button" data-slide = "prev">
-                                <i class = "material-icons">keyboard_arrow_left</i>
-                                <span class = "sr-only">Previous</span>
-                            </a>
-                            <a class = "carousel-control-next" href = "#clothingLineCarousel1Indicator" role = "button" data-slide = "next">
-                                <i class = "material-icons">keyboard_arrow_right</i>
-                                <span class = "sr-only">Next</span>
-                            </a>
-                        </div>
-                    </div>
+                <div class = "link-card col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/shirts') }}">
+                        <img src = "./img/cloth-1.jpg"/>
+                        <h4>Igorotak Shirts Set 1 →</h4>
+                        <h6>May 23, 2021</h6>
+                        <p>A new set of Igorotak shirts has arrived. Check it here out now!</p>
+                    </a>
                 </div>
-                <div class = "news-card col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                    <h4>Igorotak T-shirt Line Set 1</h4>
-                    <h6>May 22, 2021</h6>
-                    <p>A new set of ethnic themed shirts has arrived. Check it out now!</p>
-                    <button class = "btn btn-primary btn-lg">Vew Set</button>
+                <div class = "link-card col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/shirts') }}">
+                        <img src = "./img/cloth-5.jpg"/>
+                        <h4>Igorotak Shirts Set 2 →</h4>
+                        <h6>May 23, 2021</h6>
+                        <p>A new set of Igorotak shirts has arrived. Check it here out now!</p>
+                    </a>
                 </div>
-                <div class = "news-card col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                    <div class = "inner">
-                        <div id = "clothingLineCarousel2Indicator" class = "carousel slide" data-ride = "carousel" data-interval = "3000">
-                            <ol class = "carousel-indicators">
-                                <li data-target = "#clothingLineCarousel2Indicator" data-slide-to = "0" class = "active"></li>
-                                <li data-target = "#clothingLineCarousel2Indicator" data-slide-to = "1"></li>
-                                <li data-target = "#clothingLineCarousel2Indicator" data-slide-to = "2"></li>
-                                <li data-target = "#clothingLineCarousel2Indicator" data-slide-to = "3"></li>
-                            </ol>
-                            <div class = "carousel-inner">
-                                <div class = "carousel-item active">
-                                    <img class = "d-block w-100" src = "./img/cloth-5.jpg">
-                                </div>
-                                <div class = "carousel-item">
-                                    <img class = "d-block w-100" src = "./img/cloth-6.jpg">
-                                </div>
-                                <div class = "carousel-item">
-                                    <img class = "d-block w-100" src = "./img/cloth-7.jpg">
-                                </div>
-                                <div class = "carousel-item">
-                                    <img class = "d-block w-100" src = "./img/cloth-8.jpg">
-                                </div>
-                            </div>
-                            <a class = "carousel-control-prev" href = "#clothingLineCarousel2Indicator" role = "button" data-slide = "prev">
-                                <i class = "material-icons">keyboard_arrow_left</i>
-                                <span class = "sr-only">Previous</span>
-                            </a>
-                            <a class = "carousel-control-next" href = "#clothingLineCarousel2Indicator" role = "button" data-slide = "next">
-                                <i class = "material-icons">keyboard_arrow_right</i>
-                                <span class = "sr-only">Next</span>
-                            </a>
-                        </div>
-                    </div>
+                <div class = "link-card col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/miscellaneous') }}">
+                        <img src = "./img/cloth-9.jpg"/>
+                        <h4>Sagada Themed Face Mask →</h4>
+                        <h6>May 25, 2021</h6>
+                        <p>Check out this Sagada weaving cloth manufactured face mask!</p>
+                    </a>
                 </div>
-                <div class = "news-card col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                    <h4>Igorotak T-shirt Line Set 2</h4>
-                    <h6>May 22, 2021</h6>
-                    <p>A new set of ethnic themed shirts has arrived. Check it out now!</p>
-                    <button class = "btn btn-primary btn-lg">Vew Set</button>
+                <div class = "link-card col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/miscellaneous') }}">
+                        <img src = "./img/cloth-10.jpg"/>
+                        <h4>Cordillera Themed Face Mask →</h4>
+                        <h6>May 25, 2021</h6>
+                        <p>Check out this Cordillera themed face mask!</p>
+                    </a>
                 </div>
             </div>
         </div>
@@ -212,13 +169,13 @@
         <!-- News cards -->
         <div class = "news-container container">
             <div class = "row">
-                <div class = "col-md-12">
+                <div class = "col">
                     <h3>Latest News</h3>
                     <hr/>
                 </div>
             </div>
             <div class = "row">
-                <div class = "news-card col-sm-6 col-md-12 col-lg-12 col-xl-3">
+                <div class = "link-card col-6 col-sm-6 col-md-12 col-lg-12 col-xl-3">
                     <a href = "#">
                         <img src = "./img/bg-1.jpg"/>
                         <h4>Future Fashion →</h4>
@@ -226,7 +183,7 @@
                         <p>What's the future for fashion, now that quarantine has taken over the world?</p>
                     </a>
                 </div>
-                <div class = "news-card col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                <div class = "link-card col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                     <a href = "#">
                         <img src = "./img/bg-2.jpg"/>
                         <h4>Prideful Fashion →</h4>
@@ -234,7 +191,7 @@
                         <p>Find ways to still show off your fashion tastes during lockdowns.</p>
                     </a>
                 </div>
-                <div class = "news-card col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                <div class = "link-card col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                     <a href = "#">
                         <img src = "./img/bg-3.jpg"/>
                         <h4>Discount Fashion →</h4>
@@ -242,7 +199,7 @@
                         <p>Shopping malls might offer discounts and bonuses on products.</p>
                     </a>
                 </div>
-                <div class = "news-card col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                <div class = "link-card col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                     <a href = "#">
                         <img src = "./img/bg-4.jpg"/>
                         <h4>Quarantinsanity →</h4>
@@ -253,32 +210,47 @@
             </div>
         </div>
         
-        <!-- Dev Notes -->
-        <div class = "news-container container">
+        <!-- Our Story -->
+        <div class = "newsletter-container container">
             <div class = "row">
-                <div class = "col-md-6">
-                    <h3>To-do List</h3>
+                <div class = "col">
+                    <h3>Our Story</h3>
                     <hr/>
-                    
-                    <ul>
-                        <li>Improvise carousel word content.</li>
-                        <li>Add a pseudo newsletter update box at the bottom of this landing page.</li>
-                        <li>Add a "shirt", "pants", and "miscellaneous" pages.</li>
-                        <li>Add a "featured" card for trending clothes to this landing page.</li>
-                        <li>Steal ideas from other existing fashion sites?</li>
-                    </ul>
                 </div>
-                <div class = "col-md-6">
-                    <h3>Keep Consistency</h3>
-                    <hr/>
-                    <ul>
-                        <li>Wallpapers should be 16:9 horizontal.</li>
-                        <li>Items should be  5:7 vertical.</li>
-                        <li>Color accents with ranges of red and yellow.</li>
-                    </ul>
+            </div>
+            <div class = "row">
+                <div class = "col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <img src = "./img/misc-1.jpg"/>
+                </div>
+                <div class = "col-sm-12 col-md-6 col-lg-6 col-xl-8">
+                    <p>We create high quality garments that share and preserve the Cordilleran culture.</p>
+                    <p>By incorporating native textiles and designs into our creations, our products are meticulously crafted to capture, depict, encapsulate and present the rich culture and traditions of the Northern Philippines Highlands.</p>
+                    <p>Each piece is a story of our heritage - <b>a heritage worth wearing proudly.</b></p>
                 </div>
             </div>
         </div>
+        
+        <!-- Newsletter -->
+        <div class = "newsletter-container container">
+            <div class = "row">
+                <div class = "col">
+                    <h3>Newsletter Updates</h3>
+                    <hr/>
+                </div>
+            </div>
+            <div class = "row">
+                <div class = "col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <form>
+                        <div class = "form-group">
+                            <input type = "email" class = "form-control" id = "exampleInputEmail1" aria-describedby = "emailHelp" placeholder = "Email address">
+                            <small id = "emailHelp" class = "form-text text-muted">We'll keep your email private and safe.</small>
+                        </div>
+                        <button type = "submit" class = "btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
     </div>
 
 @endsection
