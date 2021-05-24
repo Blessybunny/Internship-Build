@@ -32,7 +32,16 @@
             visibility: hidden;
         }
         #home-carousel .carousel-caption {
-            padding-bottom: 7.5%;
+            align-items: center;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
         }
         #home-carousel .carousel-caption h1 {
             font-size: 250%;
@@ -40,8 +49,11 @@
             text-shadow: 0 5px 5px #000000;
             text-transform: uppercase;
         }
-        #home-carousel .carousel-caption h4 {
-            text-shadow: 0 5px 5px #000000;
+        #home-carousel .carousel-control-prev {
+            z-index: 2;
+        }
+        #home-carousel .carousel-control-next {
+            z-index: 2;
         }
         
         /* Link cards */
@@ -84,28 +96,17 @@
             <ol class = "carousel-indicators">
                 <li data-target = "#homeCarouselIndicators" data-slide-to = "0" class = "active"></li>
                 <li data-target = "#homeCarouselIndicators" data-slide-to = "1"></li>
-                <li data-target = "#homeCarouselIndicators" data-slide-to = "2"></li>
             </ol>
             <div class = "carousel-inner">
+                    <div class = "carousel-caption">
+                        <h1>Welcome to NADUMA</h1>
+                        <a href = "{{ url('/shirts') }}"><button class = "btn btn-primary btn-lg">See what's in store</button></a>
+                    </div>
                 <div class = "carousel-item active" style = "background-image: url('./img/bg-7.jpg')">
                     <img class = "d-block w-100" src = "./img/bg-7.jpg">
-                    <div class = "carousel-caption d-none d-md-block">
-                        <h1>Welcome to NADUMA</h1>
-                        <h4>Home to your casual fashion needs.</h4>
-                        <button class = "btn btn-primary btn-lg">START CRAVING</button>
-                    </div>
                 </div>
                 <div class = "carousel-item" style = "background-image: url('./img/bg-6.jpg')">
                     <img class = "d-block w-100" src = "./img/bg-6.jpg">
-                    <div class = "carousel-caption d-none d-md-block">
-                        <h4>"Style is a way to say who you are without having to speak."</h4>
-                    </div>
-                </div>
-                <div class = "carousel-item" style = "background-image: url('./img/bg-3.jpg')">
-                    <img class = "d-block w-100" src = "./img/bg-3.jpg">
-                    <div class = "carousel-caption d-none d-md-block">
-                        <h4>"Clothes mean nothing until someone lives in them."</h4>
-                    </div>
                 </div>
             </div>
             <a class = "carousel-control-prev" href = "#homeCarouselIndicators" role = "button" data-slide = "prev">

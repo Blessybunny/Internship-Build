@@ -16,10 +16,6 @@
                             <h3>To-do List</h3>
                             <hr/>
                             <ul>
-                                <li>Improvise carousel word content.</li>
-                                <li>Add a pseudo newsletter update box at the bottom of this landing page.</li>
-                                <li>Add a "shirt", "pants", and "miscellaneous" pages.</li>
-                                <li>Add a "featured" card for trending clothes to this landing page.</li>
                                 <li>Steal ideas from other existing fashion sites?</li>
                             </ul>
                         </div>
@@ -64,14 +60,18 @@
                                         <div class = "tab-content">
                                             <div class = "tab-pane active" id = "y-2021">
                                                 <ul>
+                                                    <h4>May 24</h4>
+                                                    <li>Added "shirt" and "miscellaneous" pages.</li>
+                                                </ul>
+                                                <ul>
                                                     <h4>May 23</h4>
                                                     <li>Rebranded to "Naduma".</li>
                                                 </ul>
                                                 <ul>
                                                     <h4>May 22</h4>
                                                     <li>Implemented <a href = "https://www.creative-tim.com/product/material-kit-pro?partner=114912">Material kit</a> template.</li>
-                                                    <li>Added changelog page.</li>
-                                                    <li>Added about page.</li>
+                                                    <li>Added "changelog" page.</li>
+                                                    <li>Added "about" page.</li>
                                                     <li>Added logo and brand name "Opalescence".</li>
                                                 </ul>
                                                 <ul>
