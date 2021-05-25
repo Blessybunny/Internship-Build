@@ -86,7 +86,7 @@
                     border-radius: 0 !important;
                 }
                 
-                /* Forms */
+                /* Forms and doodads and whatnot */
                 .btn {
                     border-radius: 0 !important;
                 }
@@ -100,6 +100,15 @@
                 }
                 input.form-control {
                     background-image: linear-gradient(to top, orangered 2px, rgba(255, 69, 0, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
+                }
+                .card-header {
+                    border-radius: 0 !important;
+                }
+                .card-header .nav-link {
+                    border-radius: 0 !important;
+                }
+                .card-header-primary {
+                    background: linear-gradient(60deg, rgb(255 69 0), rgb(225 39 0)) !important;
                 }
                 
                 /* Footer */

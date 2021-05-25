@@ -5,36 +5,10 @@
     <!-- CHANGELOG -->
     <div class = "profile-page">
         
-        <div class = "page-header header-filter" data-parallax = "true" style = "background-image: url('./img/bg-1.jpg');"></div>
-        <div class = "main main-raised">
-
-            <!-- Dev Notes -->
+        <div class = "page-header header-filter" data-parallax = "true" style = "background-image: url('./img/bg-8.jpg');"></div>
+        <div class = "main">
             <div class = "section">
-                <div class = "news-container container">
-                    <div class = "row">
-                        <div class = "col-md-6">
-                            <h3>To-do List</h3>
-                            <hr/>
-                            <ul>
-                                <li>Steal ideas from other existing fashion sites?</li>
-                            </ul>
-                        </div>
-                        <div class = "col-md-6">
-                            <h3>Keep Consistency</h3>
-                            <hr/>
-                            <ul>
-                                <li>Wallpapers should be 16:9 horizontal.</li>
-                                <li>Items should be  5:7 vertical.</li>
-                                <li>Color accents with ranges of red and yellow.</li>
-                                <li>Eliminate border radiuses from default.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Changelog -->
-            <div class = "section">
+                <!-- Changelog -->
                 <div class = "container">
                     <div id = "nav-tabs">
                         <h3>Changelog</h3>
@@ -84,6 +58,29 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dev Notes -->
+                <div class = "container">
+                    <div class = "row">
+                        <div class = "col-md-6">
+                            <h3>To-do List</h3>
+                            <hr/>
+                            <ul>
+                                <li>Steal ideas from other existing fashion sites?</li>
+                            </ul>
+                        </div>
+                        <div class = "col-md-6">
+                            <h3>Keep Consistency</h3>
+                            <hr/>
+                            <ul>
+                                <li>Wallpapers should be 16:9 horizontal.</li>
+                                <li>Items should be  5:7 vertical.</li>
+                                <li>Color accents with ranges of red and yellow.</li>
+                                <li>Eliminate border radiuses from default.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

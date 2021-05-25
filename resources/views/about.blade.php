@@ -4,8 +4,8 @@
 
     <!-- ABOUT -->
     <div class = "profile-page">
-        <div class = "page-header header-filter" data-parallax = "true" style = "background-image: url('./img/bg-4.jpg');"></div>
-            <div class = "main main-raised">
+        <div class = "page-header header-filter" data-parallax = "true" style = "background-image: url('./img/bg-8.jpg');"></div>
+            <div class = "main">
                 <div class = "profile-content">
                     <div class = "container">
                         <div class = "row">

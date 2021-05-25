@@ -227,6 +227,8 @@
                     <p>We create high quality garments that share and preserve the Cordilleran culture.</p>
                     <p>By incorporating native textiles and designs into our creations, our products are meticulously crafted to capture, depict, encapsulate and present the rich culture and traditions of the Northern Philippines Highlands.</p>
                     <p>Each piece is a story of our heritage - <b>a heritage worth wearing proudly.</b></p>
+                    <p>Naduma offers daily wear with ethnic designs or hand woven native cloth accents for everyone.</p>
+                    <p>Aside from shirts, Naduma has also been making products such as bags, hats and jackets. As of now, a variety of quality made face masks are also available.</p>
                 </div>
             </div>
         </div>
