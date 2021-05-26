@@ -101,6 +101,7 @@
                 input.form-control {
                     background-image: linear-gradient(to top, orangered 2px, rgba(255, 69, 0, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
                 }
+                
                 .card-header {
                     border-radius: 0 !important;
                 }
@@ -109,6 +110,35 @@
                 }
                 .card-header-primary {
                     background: linear-gradient(60deg, rgb(255 69 0), rgb(225 39 0)) !important;
+                    box-shadow: 0 5px 20px 0px rgb(0 0 0 / 20%), 0 13px 24px -11px rgb(255 69 0 / 60%) !important;
+                }
+                
+                /* Link cards */
+                .link-card{
+                    display: inline-flex;
+                }
+                .link-card a{
+                    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+                    color: #000;
+                    overflow: hidden;
+                    width: 100%;
+                }
+                .link-card a:hover{
+                    filter: brightness(.9);
+                }
+
+                .link-card h4 {
+                    font-weight: bold;
+                    padding: 0 20px;
+                }
+                .link-card h6 {
+                    padding: 0 20px;
+                }
+                .link-card p {
+                    padding: 0 20px 5px 20px;
+                }
+                .link-card img {
+                    width: 100%;
                 }
                 
                 /* Footer */

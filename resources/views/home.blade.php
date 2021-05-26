@@ -56,40 +56,13 @@
             z-index: 2;
         }
         
-        /* Link cards */
-        .link-card{
-            display: inline-flex;
-        }
-        .link-card a{
-            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-            color: #000;
-            overflow: hidden;
-            width: 100%;
-        }
-        .link-card a:hover{
-            filter: brightness(.9);
-        }
-        
-        .link-card h4 {
-            font-weight: bold;
-            padding: 0 20px;
-        }
-        .link-card h6 {
-            padding: 0 20px;
-        }
-        .link-card p {
-            padding: 0 20px 5px 20px;
-        }
-        .link-card img {
-            width: 100%;
-        }
-        
         /* Newsletter */
         .newsletter-container img {
             width: 100%;
         }
         
     </style>
+
     <!-- CAROUSEL -->
     <div id = "home-carousel">
         <div id = "homeCarouselIndicators" class = "carousel slide" data-ride = "carousel" data-interval = "5000">

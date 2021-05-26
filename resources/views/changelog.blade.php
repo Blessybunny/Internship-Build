@@ -63,27 +63,17 @@
                 </div>
                 
                 <!-- Dev Notes -->
-                <div class = "container">
-                    <div class = "row">
-                        <div class = "col-md-6">
-                            <h3>To-do List</h3>
-                            <hr/>
-                            <ul>
-                                <li>Steal ideas from other existing fashion sites?</li>
-                            </ul>
-                        </div>
-                        <div class = "col-md-6">
-                            <h3>Keep Consistency</h3>
-                            <hr/>
-                            <ul>
-                                <li>Wallpapers should be 16:9 horizontal.</li>
-                                <li>Items should be  5:7 vertical.</li>
-                                <li>Color accents with ranges of red and yellow.</li>
-                                <li>Eliminate border radiuses from default.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <script>
+                    /*
+                        To-do List:
+                            - Steal ideas from other existing fashion sites?
+                        Keep Consistency:
+                            - Wallpapers should be 16:9 horizontal.
+                            - Items should be  5:7 vertical.
+                            - Color accents with ranges of red and yellow.
+                            - Eliminate border radiuses from default.
+                    */
+                </script>
             </div>
 
         </div>
