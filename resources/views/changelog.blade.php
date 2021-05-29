@@ -79,7 +79,7 @@
                     <div class = "tab-pane" id = "y-2022">
                         <div class = "container">
                             <div class = "row">
-                                <div class = "col-xl-12">Looks like there's nothing here yet.</div>
+                                <div class = "col-xl-12"><a href = "{{ url('/about') }}">> Looks like there's nothing here yet.</a></div>
                             </div>
                         </div>
                     </div>
