@@ -46,6 +46,8 @@
                                         <h4>May 30</h4>
                                         <li>Added custom script for apparels. I'm tired.</li>
                                         <li>Image optimization.</li>
+                                        <li>Added <a href = "{{ url('/apparels') }}">"apparels" page</a>.</li>
+                                        <li>Removed "shirt" and "miscellaneous" pages.</li>
                                     </ul>
                                     <ul>
                                         <h4>May 29</h4>
@@ -62,8 +64,8 @@
                                     <ul>
                                         <h4>May 22</h4>
                                         <li>Implemented <a href = "https://www.creative-tim.com/product/material-kit-pro?partner=114912">Material kit</a> template.</li>
-                                        <li>Added "changelog" page.</li>
-                                        <li>Added "about" page.</li>
+                                        <li>Added <a href = "{{ url('/changelog') }}">"changelog" page</a>.</li>
+                                        <li>Added <a href = "{{ url('/about') }}">"about" page</a>.</li>
                                         <li>Added logo and brand name "Opalescence".</li>
                                     </ul>
                                     <ul>
@@ -79,7 +81,7 @@
                     <div class = "tab-pane" id = "y-2022">
                         <div class = "container">
                             <div class = "row">
-                                <div class = "col-xl-12"><a href = "{{ url('/about') }}">> Looks like there's nothing here yet.</a></div>
+                                <div class = "col-xl-12">Looks like there's nothing here yet.</div>
                             </div>
                         </div>
                     </div>
