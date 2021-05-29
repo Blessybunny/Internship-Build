@@ -16,6 +16,10 @@
             <link rel = "stylesheet" type = "text/css" href = "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
             <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
             <link href = "./assets/css/material-kit.css?v=2.0.7" rel = "stylesheet" />
+            <script src = "./assets/js/core/jquery.min.js" type = "text/javascript"></script>
+            
+            <!-- Apparel data -->
+            <script src = "./js/apparels.js" type = "text/javascript"></script>
             
         </head>
 
@@ -36,7 +40,7 @@
                     text-align: center;
                 }
                 h6 {
-                    margin-top: -5px !important;
+                    margin-top: -10px !important;
                 }
                 
                 /* Grid systems*/
@@ -129,6 +133,22 @@
                     width: 100%;
                 }
                 
+                /* Filter navigation */
+                .filter.navbar {
+                    box-shadow: none;
+                    margin: 0;
+                    padding: 0;
+                }
+                .filter.navbar a {
+                    border-radius: 0 !important;
+                }
+                .filter.navbar .navbar-nav {
+                    flex-direction: row;
+                }
+                .filter.navbar .active {
+                    background-color: #EEEEEE;
+                }
+                
                 /* Footer */
                 .footer .disclaimer {
                     margin: auto;
@@ -165,14 +185,10 @@
                                     <i class = "material-icons">home</i> Home
                                 </a>
                             </li>
-                            <li class = "dropdown nav-item">
-                                <a href = "#" class = "dropdown-toggle nav-link" data-toggle = "dropdown">
-                                    <i class = "material-icons">apps</i> Apparel
+                            <li class = "nav-item">
+                                <a class = "nav-link" href = "{{ url('/apparels') }}">
+                                    <i class = "material-icons">apps</i> Apparels
                                 </a>
-                                <div class = "dropdown-menu dropdown-with-icons">
-                                    <a href = "{{ url('/apparels') }}" class = "dropdown-item">Shirt</a>
-                                    <a href = "{{ url('/apparels') }}" class = "dropdown-item">Miscellaneous</a>
-                                </div>
                             </li>
                             <li class = "nav-item">
                                 <a class = "nav-link" href = "{{ url('/') }}">
@@ -208,7 +224,6 @@
         </body>
         
         <!-- Material kit - https://www.creative-tim.com/product/material-kit-pro?partner=114912 -->
-        <script src = "./assets/js/core/jquery.min.js" type = "text/javascript"></script>
         <script src = "./assets/js/core/popper.min.js" type = "text/javascript"></script>
         <script src = "./assets/js/core/bootstrap-material-design.min.js" type = "text/javascript"></script>
         <script src = "./assets/js/plugins/moment.min.js"></script>

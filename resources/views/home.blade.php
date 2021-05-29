@@ -79,35 +79,25 @@
             </div>
             <div class = "row">
                 <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/apparels') }}">
-                        <img src = "./img/shirts-igorotak/shirt-1.jpg"/>
-                        <h4>Igorotak Shirts Set 1</h4>
-                        <h6>May 23, 2021</h6>
-                    </a>
+                    <a class = "link-latest" href = "{{ url('/apparels') }}"></a>
                 </div>
                 <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/apparels') }}">
-                        <img src = "./img/shirts-igorotak/shirt-5.jpg"/>
-                        <h4>Igorotak Shirts Set 2</h4>
-                        <h6>May 23, 2021</h6>
-                    </a>
+                    <a class = "link-latest" href = "{{ url('/apparels') }}"></a>
                 </div>
                 <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/apparels') }}">
-                        <img src = "./img/misc/misc-1.jpg"/>
-                        <h4>Sagada Themed Face Mask</h4>
-                        <h6>May 25, 2021</h6>
-                    </a>
+                    <a class = "link-latest" href = "{{ url('/apparels') }}"></a>
                 </div>
                 <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/apparels') }}">
-                        <img src = "./img/misc/misc-2.jpg"/>
-                        <h4>Cordillera Themed Face Mask</h4>
-                        <h6>May 25, 2021</h6>
-                    </a>
+                    <a class = "link-latest" href = "{{ url('/apparels') }}"></a>
                 </div>
             </div>
         </div>
+        <script>
+            apparel.modOffLink(8, document.getElementsByClassName(`link-latest`)[0]);
+            apparel.modOffLink(9, document.getElementsByClassName(`link-latest`)[1]);
+            apparel.modOffLink(10, document.getElementsByClassName(`link-latest`)[2]);
+            apparel.modOffLink(11, document.getElementsByClassName(`link-latest`)[3]);
+        </script>
         
         <!-- Featured apparels -->
         <div class = "container">
@@ -119,63 +109,41 @@
             </div>
             <div class = "row">
                 <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/apparels') }}">
-                        <img src = "./img/shirts-igorotak/shirt-1.jpg"/>
-                        <h4>Igo Tribal 3 Ladies V-neck</h4>
-                        <h6>From PHP 460</h6>
-                    </a>
+                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
                 </div>
                 <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/apparels') }}">
-                        <img src = "./img/shirts-igorotak/shirt-2.jpg"/>
-                        <h4>Igorotak Beads Shirt</h4>
-                        <h6>From PHP 480</h6>
-                    </a>
+                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
                 </div>
                 <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/apparels') }}">
-                        <img src = "./img/shirts-igorotak/shirt-3.jpg"/>
-                        <h4>Igorotak Splash Shirt</h4>
-                        <h6>From PHP 450</h6>
-                    </a>
+                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
                 </div>
                 <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/apparels') }}">
-                        <img src = "./img/shirts-igorotak/shirt-4.jpg"/>
-                        <h4>Igorotak Beads Django Shirt</h4>
-                        <h6>From PHP 480</h6>
-                    </a>
+                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
                 </div>
                 <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/apparels') }}">
-                        <img src = "./img/shirts-igorotak/shirt-5.jpg"/>
-                        <h4>Igorotak Tangkil Shirt</h4>
-                        <h6>From PHP 480</h6>
-                    </a>
+                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
                 </div>
                 <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/apparels') }}">
-                        <img src = "./img/shirts-igorotak/shirt-6.jpg"/>
-                        <h4>Igorotak Seal Django Shirt</h4>
-                        <h6>From PHP 450</h6>
-                    </a>
+                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
                 </div>
                 <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/apparels') }}">
-                        <img src = "./img/shirts-igorotak/shirt-7.jpg"/>
-                        <h4>Pattong Ladies V-neck</h4>
-                        <h6>From PHP 460</h6>
-                    </a>
+                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
                 </div>
                 <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/apparels') }}">
-                        <img src = "./img/shirts-igorotak/shirt-8.jpg"/>
-                        <h4>Sangi Ladies V-neck</h4>
-                        <h6>From PHP 460</h6>
-                    </a>
+                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
                 </div>
             </div>
         </div>
+        <script>
+            apparel.modOffLink(0, document.getElementsByClassName(`link-featured`)[0]);
+            apparel.modOffLink(1, document.getElementsByClassName(`link-featured`)[1]);
+            apparel.modOffLink(2, document.getElementsByClassName(`link-featured`)[2]);
+            apparel.modOffLink(3, document.getElementsByClassName(`link-featured`)[3]);
+            apparel.modOffLink(4, document.getElementsByClassName(`link-featured`)[4]);
+            apparel.modOffLink(5, document.getElementsByClassName(`link-featured`)[5]);
+            apparel.modOffLink(6, document.getElementsByClassName(`link-featured`)[6]);
+            apparel.modOffLink(7, document.getElementsByClassName(`link-featured`)[7]);
+        </script>
         
         <!-- Our story -->
         <div class = "newsletter container">
