@@ -34,6 +34,10 @@
                                         <div class = "tab-content">
                                             <div class = "tab-pane active" id = "y-2021">
                                                 <ul>
+                                                    <h4>May 29</h4>
+                                                    <li>Revamped layout.</li>
+                                                </ul>
+                                                <ul>
                                                     <h4>May 26</h4>
                                                     <li>Image (jpeg) optimization.</li>
                                                 </ul>

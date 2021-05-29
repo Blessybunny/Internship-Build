@@ -16,9 +16,8 @@ use Illuminate\Support\Facades\Route;
 //NAVIGATION
     Route::get('/', function () {return view('home');});
     Route::get('/home', function () {return redirect('/');});
-    Route::get('/shirts', function () {return view('./apparel/shirts');});
-    Route::get('/t-shirts', function () {return redirect('/shirts');});
-    Route::get('/miscellaneous', function () {return view('./apparel/miscellaneous');});
+    Route::get('/apparels', function () {return view('/apparels');});
+    Route::get('/apparel', function () {return redirect('/apparels');});
 
 //FOOTER
     Route::get('/changelog', function () {return view('changelog');});

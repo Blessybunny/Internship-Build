@@ -13,7 +13,7 @@
             <title>Project E-Commerce</title>
             
             <!-- Material kit - https://www.creative-tim.com/product/material-kit-pro?partner=114912 -->
-            <link rel = "stylesheet" type = "text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+            <link rel = "stylesheet" type = "text/css" href = "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
             <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
             <link href = "./assets/css/material-kit.css?v=2.0.7" rel = "stylesheet" />
             
@@ -32,42 +32,35 @@
                 a:hover {
                     color: orangered;
                 }
+                h3 {
+                    text-align: center;
+                }
                 h6 {
                     margin-top: -5px !important;
                 }
                 
                 /* Grid systems*/
                 [class*="col-"] {
-                    padding-bottom: 30px;
+                    padding-bottom: 15px;
                 }
                 
                 /* Navigation */
-                #navigation-main .navbar-brand {
-                    display: flex;
-                    padding: 10px 5px !important;
+                #navigation-main {
+                    border-bottom: 1px solid #DDDDDD;
+                    box-shadow: none;
                 }
-                #navigation-main .logo-text {
-                    font-size: 18px;
-                    padding-left: 5px;
-                }
-                #navigation-main .logo-image {
-                    filter: invert(1);
-                    height: 46px;
-                    margin-top: -6px;
-                    opacity: .75;
-                    overflow: hidden;
-                    width: 46px;
-                }
-                #navigation-main .nav-link {
+                #navigation-main a{
                     border-radius: 0;
+                }
+                
+                #navigation-main .logo-text {
+                    padding-left: 0.9375rem;
+                    padding-right: 0.9375rem;
                 }
                 #navigation-main .dropdown-menu {
                     border-radius: 0;
                     height: auto;
                     overflow: hidden;
-                }
-                #navigation-main .dropdown-menu a {
-                    border-radius: 0;
                 }
                 #navigation-main .dropdown-menu a:hover {
                     background-color: orangered !important;
@@ -76,17 +69,8 @@
                 #navigation-main .dropdown-menu a:focus {
                     background-color: orangered !important;
                 }
-                #navigation-main.navbar-transparent .logo-image {
-                    filter: invert(0);
-                    opacity: 1;
-                }
                 
-                /* Carousel */
-                .carousel-indicators li {
-                    border-radius: 0 !important;
-                }
-                
-                /* Forms and doodads and whatnot */
+                /* Forms, doodads, and whatnot */
                 .btn {
                     border-radius: 0 !important;
                 }
@@ -118,26 +102,30 @@
                     display: inline-flex;
                 }
                 .link-card a{
-                    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
                     color: #000;
                     overflow: hidden;
                     width: 100%;
                 }
                 .link-card a:hover{
-                    filter: brightness(.9);
+                    filter: contrast(.75);
+                }
+                .link-card a:hover h4{
+                    text-decoration: underline;
                 }
 
                 .link-card h4 {
+                    font-size: 16px;
                     font-weight: bold;
                     padding: 0 20px;
+                    text-align: center;
                 }
                 .link-card h6 {
                     padding: 0 20px;
-                }
-                .link-card p {
-                    padding: 0 20px 5px 20px;
+                    text-align: center;
                 }
                 .link-card img {
+                    display: block;
+                    margin: auto;
                     width: 100%;
                 }
                 
@@ -147,17 +135,19 @@
                     max-width: 720px;
                 }
                 
+                /* JUNK YARD */
+                /* Carousel */
+                .carousel-indicators li {
+                    border-radius: 0 !important;
+                }
             </style>
             
             <!-- NAVIGATION -->
-            <nav class = "navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll = "100" id = "navigation-main">
+            <nav class = "navbar fixed-top navbar-expand-lg" id = "navigation-main">
                 <div class = "container">
                     <!-- Brand and button -->
                     <div class = "navbar-translate">
                         <a class = "navbar-brand" href = "{{ url('/') }}">
-                            <div class = "logo-image">
-                                <img src = "./img/logo.png" class = "img-fluid">
-                            </div>
                             <div class = "logo-text">NADUMA.STORE</div>
                         </a>
                         <button class = "navbar-toggler" type = "button" data-toggle = "collapse" aria-expanded = "false" aria-label = "Toggle navigation">
@@ -180,18 +170,14 @@
                                     <i class = "material-icons">apps</i> Apparel
                                 </a>
                                 <div class = "dropdown-menu dropdown-with-icons">
-                                    <a href = "{{ url('/shirts') }}" class = "dropdown-item">Shirts</a>
-                                    <a href = "{{ url('/miscellaneous') }}" class = "dropdown-item">Miscellaneous</a>
+                                    <a href = "{{ url('/apparels') }}" class = "dropdown-item">Shirt</a>
+                                    <a href = "{{ url('/apparels') }}" class = "dropdown-item">Miscellaneous</a>
                                 </div>
                             </li>
-                            <li class = "dropdown nav-item">
-                                <a href = "#" class = "dropdown-toggle nav-link" data-toggle = "dropdown">
-                                    <i class = "material-icons">share</i> Social
+                            <li class = "nav-item">
+                                <a class = "nav-link" href = "{{ url('/') }}">
+                                    <i class = "material-icons">shopping_cart</i> Cart
                                 </a>
-                                <div class = "dropdown-menu dropdown-with-icons">
-                                    <a href = "https://www.facebook.com/UCjaguars/" target = "_blank" class = "dropdown-item">Facebook</a>
-                                    <a href = "https://twitter.com/UCJaguars" target = "_blank" class = "dropdown-item">Twitter</a>
-                                </div>
                             </li>
                         </ul>
                     </div>
@@ -210,7 +196,6 @@
                             Quick Links |
                             <li><a href = "{{ url('/') }}">Home</a></li>
                             <li><a href = "{{ url('/changelog') }}">Changelog</a></li>
-                            <li><a href = "{{ url('/about') }}">About</a></li>
                         </ul>
                     </nav>
                     <div class = "copyright">

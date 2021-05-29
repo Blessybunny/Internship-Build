@@ -4,91 +4,64 @@
 
     <!-- STYLES -->
     <style>
-        /* Carousel */
-        #home-carousel {
-            max-height: 960px;
-            margin-top: -30px;
+        /* Banner */
+        #banner {
+            min-height: 480px;
+            padding: 20%;
         }
-        #home-carousel .card {
-            border-radius: 0;
-        }
-        #home-carousel .carousel-item {
+        #banner .wallpaper {
+            background-image: url("./img/bg-9.jpg");
             background-position: center top;
             background-size: cover;
-            min-height: 480px;
-            max-height: 720px;
-        }
-        #home-carousel .carousel-item::after {
-            background-image: linear-gradient(rgba(0, 0, 0, .75), rgba(0, 0, 0, .25), rgba(0, 0, 0, .75));
-            content: "";
-            left: 0;
+            filter: brightness(.75) contrast(.75);
             height: 100%;
+            left: 0;
             position: absolute;
             top: 0;
             width: 100%;
+            z-index: -10;
         }
-        #home-carousel .d-block {
-            opacity: 0;
-            visibility: hidden;
-        }
-        #home-carousel .carousel-caption {
+        #banner .content {
+            background-color: rgba(0, 0, 0, .5);
             align-items: center;
-            bottom: 0;
             display: flex;
             flex-direction: column;
+            height: 100%;
             justify-content: center;
             left: 0;
             position: absolute;
-            right: 0;
             top: 0;
-            z-index: 1;
+            width: 100%;
         }
-        #home-carousel .carousel-caption h1 {
-            font-size: 250%;
+        #banner .content h1 {
+            color: #FFF;
+            font-family: Segoe UI;
+            font-size: 46px;
             font-weight: 600;
-            text-shadow: 0 5px 5px #000000;
+            text-align: center;
             text-transform: uppercase;
-        }
-        #home-carousel .carousel-control-prev {
-            z-index: 2;
-        }
-        #home-carousel .carousel-control-next {
-            z-index: 2;
         }
         
         /* Newsletter */
-        .newsletter-container img {
+        .newsletter.container img {
             width: 100%;
+        }
+        .newsletter.container .justified {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
     </style>
 
-    <!-- CAROUSEL -->
-    <div id = "home-carousel">
-        <div id = "homeCarouselIndicators" class = "carousel slide" data-ride = "carousel" data-interval = "5000">
-            <ol class = "carousel-indicators">
-                <li data-target = "#homeCarouselIndicators" data-slide-to = "0" class = "active"></li>
-                <li data-target = "#homeCarouselIndicators" data-slide-to = "1"></li>
-            </ol>
-            <div class = "carousel-inner">
-                    <div class = "carousel-caption">
-                        <h1>Welcome to NADUMA</h1>
-                        <a href = "{{ url('/shirts') }}"><button class = "btn btn-primary btn-lg">See what's in store</button></a>
-                    </div>
-                <div class = "carousel-item active" style = "background-image: url('./img/bg-7.jpg')">
-                    <img class = "d-block w-100" src = "./img/bg-7.jpg">
-                </div>
-                <div class = "carousel-item" style = "background-image: url('./img/bg-6.jpg')">
-                    <img class = "d-block w-100" src = "./img/bg-6.jpg">
-                </div>
-            </div>
-            <a class = "carousel-control-prev" href = "#homeCarouselIndicators" role = "button" data-slide = "prev">
-                <i class = "material-icons">keyboard_arrow_left</i>
-                <span class = "sr-only">Previous</span>
-            </a>
-            <a class = "carousel-control-next" href = "#homeCarouselIndicators" role = "button" data-slide = "next">
-                <i class = "material-icons">keyboard_arrow_right</i>
-                <span class = "sr-only">Next</span>
+    <!-- BANNER -->
+    <div id = "banner" class = "main">
+        <div class = "wallpaper"></div>
+        <div class = "content">
+            <h1>Welcome to NADUMA</h1>
+            <br/>
+            <a href = "{{ url('/apparels') }}">
+                <button class = "btn btn-primary btn-lg">See what's in store</button>
             </a>
         </div>
     </div>
@@ -96,8 +69,8 @@
     <!-- MAIN CONTENT -->
     <div class = "main">
         
-        <!-- New clothing lines -->
-        <div class = "clothing-line-container container">
+        <!-- Latest apparels -->
+        <div class = "container">
             <div class = "row">
                 <div class = "col">
                     <h3>Latest Apparels</h3>
@@ -105,87 +78,107 @@
                 </div>
             </div>
             <div class = "row">
-                <div class = "link-card col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/shirts') }}">
-                        <img src = "./img/cloth-1.jpg"/>
-                        <h4>Igorotak Shirts Set 1 →</h4>
+                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/apparels') }}">
+                        <img src = "./img/shirts-igorotak/shirt-1.jpg"/>
+                        <h4>Igorotak Shirts Set 1</h4>
                         <h6>May 23, 2021</h6>
-                        <p>A new set of Igorotak shirts has arrived. Check it here out now!</p>
                     </a>
                 </div>
-                <div class = "link-card col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/shirts') }}">
-                        <img src = "./img/cloth-5.jpg"/>
-                        <h4>Igorotak Shirts Set 2 →</h4>
+                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/apparels') }}">
+                        <img src = "./img/shirts-igorotak/shirt-5.jpg"/>
+                        <h4>Igorotak Shirts Set 2</h4>
                         <h6>May 23, 2021</h6>
-                        <p>A new set of Igorotak shirts has arrived. Check it here out now!</p>
                     </a>
                 </div>
-                <div class = "link-card col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/miscellaneous') }}">
-                        <img src = "./img/cloth-9.jpg"/>
-                        <h4>Sagada Themed Face Mask →</h4>
+                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/apparels') }}">
+                        <img src = "./img/misc/misc-1.jpg"/>
+                        <h4>Sagada Themed Face Mask</h4>
                         <h6>May 25, 2021</h6>
-                        <p>Check out this Sagada weaving cloth manufactured face mask!</p>
                     </a>
                 </div>
-                <div class = "link-card col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                    <a href = "{{ url('/miscellaneous') }}">
-                        <img src = "./img/cloth-10.jpg"/>
-                        <h4>Cordillera Themed Face Mask →</h4>
+                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/apparels') }}">
+                        <img src = "./img/misc/misc-2.jpg"/>
+                        <h4>Cordillera Themed Face Mask</h4>
                         <h6>May 25, 2021</h6>
-                        <p>Check out this Cordillera themed face mask!</p>
                     </a>
                 </div>
             </div>
         </div>
         
-        <!-- News cards -->
-        <div class = "news-container container">
+        <!-- Featured apparels -->
+        <div class = "container">
             <div class = "row">
                 <div class = "col">
-                    <h3>Latest News</h3>
+                    <h3>Featured Apparels</h3>
                     <hr/>
                 </div>
             </div>
             <div class = "row">
-                <div class = "link-card col-6 col-sm-6 col-md-12 col-lg-12 col-xl-3">
-                    <a href = "#">
-                        <img src = "./img/bg-1.jpg"/>
-                        <h4>Future Fashion →</h4>
-                        <h6>May 22, 2021</h6>
-                        <p>What's the future for fashion, now that quarantine has taken over the world?</p>
+                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/apparels') }}">
+                        <img src = "./img/shirts-igorotak/shirt-1.jpg"/>
+                        <h4>Igo Tribal 3 Ladies V-neck</h4>
+                        <h6>From PHP 460</h6>
                     </a>
                 </div>
-                <div class = "link-card col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                    <a href = "#">
-                        <img src = "./img/bg-2.jpg"/>
-                        <h4>Prideful Fashion →</h4>
-                        <h6>May 22, 2021</h6>
-                        <p>Find ways to still show off your fashion tastes during lockdowns.</p>
+                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/apparels') }}">
+                        <img src = "./img/shirts-igorotak/shirt-2.jpg"/>
+                        <h4>Igorotak Beads Shirt</h4>
+                        <h6>From PHP 480</h6>
                     </a>
                 </div>
-                <div class = "link-card col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                    <a href = "#">
-                        <img src = "./img/bg-3.jpg"/>
-                        <h4>Discount Fashion →</h4>
-                        <h6>May 22, 2021</h6>
-                        <p>Shopping malls might offer discounts and bonuses on products.</p>
+                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/apparels') }}">
+                        <img src = "./img/shirts-igorotak/shirt-3.jpg"/>
+                        <h4>Igorotak Splash Shirt</h4>
+                        <h6>From PHP 450</h6>
                     </a>
                 </div>
-                <div class = "link-card col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                    <a href = "#">
-                        <img src = "./img/bg-4.jpg"/>
-                        <h4>Quarantinsanity →</h4>
-                        <h6>May 22, 2021</h6>
-                        <p>Fashion topics aside, how well are you handling yourslef?</p>
+                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/apparels') }}">
+                        <img src = "./img/shirts-igorotak/shirt-4.jpg"/>
+                        <h4>Igorotak Beads Django Shirt</h4>
+                        <h6>From PHP 480</h6>
+                    </a>
+                </div>
+                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/apparels') }}">
+                        <img src = "./img/shirts-igorotak/shirt-5.jpg"/>
+                        <h4>Igorotak Tangkil Shirt</h4>
+                        <h6>From PHP 480</h6>
+                    </a>
+                </div>
+                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/apparels') }}">
+                        <img src = "./img/shirts-igorotak/shirt-6.jpg"/>
+                        <h4>Igorotak Seal Django Shirt</h4>
+                        <h6>From PHP 450</h6>
+                    </a>
+                </div>
+                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/apparels') }}">
+                        <img src = "./img/shirts-igorotak/shirt-7.jpg"/>
+                        <h4>Pattong Ladies V-neck</h4>
+                        <h6>From PHP 460</h6>
+                    </a>
+                </div>
+                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                    <a href = "{{ url('/apparels') }}">
+                        <img src = "./img/shirts-igorotak/shirt-8.jpg"/>
+                        <h4>Sangi Ladies V-neck</h4>
+                        <h6>From PHP 460</h6>
                     </a>
                 </div>
             </div>
         </div>
         
-        <!-- Our Story -->
-        <div class = "newsletter-container container">
+        <!-- Our story -->
+        <div class = "newsletter container">
             <div class = "row">
                 <div class = "col">
                     <h3>Our Story</h3>
@@ -193,15 +186,13 @@
                 </div>
             </div>
             <div class = "row">
-                <div class = "col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <div class = "justified col-sm-12 col-md-12 col-lg-6 col-xl-4">
                     <img src = "./img/misc-1.jpg"/>
                 </div>
-                <div class = "col-sm-12 col-md-6 col-lg-6 col-xl-8">
+                <div class = "justified col-sm-12 col-md-12 col-lg-6 col-xl-8">
                     <p>We create high quality garments that share and preserve the Cordilleran culture.</p>
                     <p>By incorporating native textiles and designs into our creations, our products are meticulously crafted to capture, depict, encapsulate and present the rich culture and traditions of the Northern Philippines Highlands.</p>
                     <p>Each piece is a story of our heritage - <b>a heritage worth wearing proudly.</b></p>
-                    <p>Naduma offers daily wear with ethnic designs or hand woven native cloth accents for everyone.</p>
-                    <p>Aside from shirts, Naduma has also been making products such as bags, hats and jackets. As of now, a variety of quality made face masks are also available.</p>
                 </div>
             </div>
         </div>
