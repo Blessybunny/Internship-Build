@@ -62,7 +62,7 @@
                                 @foreach ($apparel_data as $apparel)
                                     @if($apparel['category'] == 'igorotak-shirt')
                                         <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                            <a class = "link-igorotak-shirts" href = "{{ url('/apparels') }}">
+                                            <a href = "{{ url('/apparels') }}">
                                                 <img src = "{{ $apparel['imgUrl'] }}"/>
                                                 <h4>{{ $apparel['name'] }}</h4>
                                                 <h6>From PHP {{ $apparel['price'] }}</h6>
@@ -84,34 +84,19 @@
                                 </div>
                             </div>
                             <div class = "row">
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-ladies" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-ladies" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-ladies" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-ladies" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-ladies" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-ladies" href = "{{ url('/apparels') }}"></a>
-                                </div>
+                                @foreach ($apparel_data as $apparel)
+                                    @if($apparel['category'] == 'ladies')
+                                        <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
+                                            <a href = "{{ url('/apparels') }}">
+                                                <img src = "{{ $apparel['imgUrl'] }}"/>
+                                                <h4>{{ $apparel['name'] }}</h4>
+                                                <h6>From PHP {{ $apparel['price'] }}</h6>
+                                            </a>
+                                        </div>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
-                        <script>
-                            apparel.modPageLink(12, document.getElementsByClassName(`link-ladies`)[0]);
-                            apparel.modPageLink(13, document.getElementsByClassName(`link-ladies`)[1]);
-                            apparel.modPageLink(14, document.getElementsByClassName(`link-ladies`)[2]);
-                            apparel.modPageLink(15, document.getElementsByClassName(`link-ladies`)[3]);
-                            apparel.modPageLink(16, document.getElementsByClassName(`link-ladies`)[4]);
-                            apparel.modPageLink(17, document.getElementsByClassName(`link-ladies`)[5]);
-                        </script>
                     </div>
                     
                     <!-- Accessories -->
@@ -124,22 +109,19 @@
                                 </div>
                             </div>
                             <div class = "row">
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-accessories" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-accessories" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-accessories" href = "{{ url('/apparels') }}"></a>
-                                </div>
+                                @foreach ($apparel_data as $apparel)
+                                    @if($apparel['category'] == 'accessory')
+                                        <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
+                                            <a href = "{{ url('/apparels') }}">
+                                                <img src = "{{ $apparel['imgUrl'] }}"/>
+                                                <h4>{{ $apparel['name'] }}</h4>
+                                                <h6>From PHP {{ $apparel['price'] }}</h6>
+                                            </a>
+                                        </div>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
-                        <script>
-                            apparel.modPageLink(18, document.getElementsByClassName(`link-accessories`)[0]);
-                            apparel.modPageLink(19, document.getElementsByClassName(`link-accessories`)[1]);
-                            apparel.modPageLink(20, document.getElementsByClassName(`link-accessories`)[2]);
-                        </script>
                     </div>
                     
                     <!-- Other prints -->
@@ -152,38 +134,19 @@
                                 </div>
                             </div>
                             <div class = "row">
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-other-prints" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-other-prints" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-other-prints" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-other-prints" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-other-prints" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-other-prints" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-other-prints" href = "{{ url('/apparels') }}"></a>
-                                </div>
+                                @foreach ($apparel_data as $apparel)
+                                    @if($apparel['category'] == 'other')
+                                        <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
+                                            <a href = "{{ url('/apparels') }}">
+                                                <img src = "{{ $apparel['imgUrl'] }}"/>
+                                                <h4>{{ $apparel['name'] }}</h4>
+                                                <h6>From PHP {{ $apparel['price'] }}</h6>
+                                            </a>
+                                        </div>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
-                        <script>
-                            apparel.modPageLink(21, document.getElementsByClassName(`link-other-prints`)[0]);
-                            apparel.modPageLink(22, document.getElementsByClassName(`link-other-prints`)[1]);
-                            apparel.modPageLink(23, document.getElementsByClassName(`link-other-prints`)[2]);
-                            apparel.modPageLink(24, document.getElementsByClassName(`link-other-prints`)[3]);
-                            apparel.modPageLink(25, document.getElementsByClassName(`link-other-prints`)[4]);
-                            apparel.modPageLink(26, document.getElementsByClassName(`link-other-prints`)[5]);
-                            apparel.modPageLink(27, document.getElementsByClassName(`link-other-prints`)[6]);
-                        </script>
                     </div>
                 </div>
                 

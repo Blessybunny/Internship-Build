@@ -16,10 +16,6 @@
             <link rel = "stylesheet" type = "text/css" href = "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
             <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
             <link href = "./assets/css/material-kit.css?v=2.0.7" rel = "stylesheet" />
-            <script src = "./assets/js/core/jquery.min.js" type = "text/javascript"></script>
-            
-            <!-- Apparel data -->
-            <script src = "./js/apparels.js" type = "text/javascript"></script>
             
         </head>
 
@@ -224,6 +220,7 @@
         </body>
         
         <!-- Material kit - https://www.creative-tim.com/product/material-kit-pro?partner=114912 -->
+        <script src = "./assets/js/core/jquery.min.js" type = "text/javascript"></script>
         <script src = "./assets/js/core/popper.min.js" type = "text/javascript"></script>
         <script src = "./assets/js/core/bootstrap-material-design.min.js" type = "text/javascript"></script>
         <script src = "./assets/js/plugins/moment.min.js"></script>

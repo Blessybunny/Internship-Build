@@ -77,26 +77,17 @@
                 </div>
             </div>
             <div class = "row">
-                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a class = "link-latest" href = "{{ url('/apparels') }}"></a>
-                </div>
-                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a class = "link-latest" href = "{{ url('/apparels') }}"></a>
-                </div>
-                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a class = "link-latest" href = "{{ url('/apparels') }}"></a>
-                </div>
-                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a class = "link-latest" href = "{{ url('/apparels') }}"></a>
-                </div>
+                @for ($i = 12; $i >= 9; $i--)
+                    <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                        <a href = "{{ url('/apparels') }}">
+                            <img src = "{{ $apparel_data[$i]['imgUrl'] }}"/>
+                            <h4>{{ $apparel_data[$i]['name'] }}</h4>
+                            <h6>From PHP {{ $apparel_data[$i]['price'] }}</h6>
+                        </a>
+                    </div>
+                @endfor
             </div>
         </div>
-        <script>
-            apparel.modOffLink(8, document.getElementsByClassName(`link-latest`)[0]);
-            apparel.modOffLink(9, document.getElementsByClassName(`link-latest`)[1]);
-            apparel.modOffLink(10, document.getElementsByClassName(`link-latest`)[2]);
-            apparel.modOffLink(11, document.getElementsByClassName(`link-latest`)[3]);
-        </script>
         
         <!-- Featured apparels -->
         <div class = "container">
@@ -107,42 +98,17 @@
                 </div>
             </div>
             <div class = "row">
-                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
-                </div>
-                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
-                </div>
-                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
-                </div>
-                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
-                </div>
-                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
-                </div>
-                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
-                </div>
-                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
-                </div>
-                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                    <a class = "link-featured" href = "{{ url('/apparels') }}"></a>
-                </div>
+                @for ($i = 8; $i >= 1; $i--)
+                    <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                        <a href = "{{ url('/apparels') }}">
+                            <img src = "{{ $apparel_data[$i]['imgUrl'] }}"/>
+                            <h4>{{ $apparel_data[$i]['name'] }}</h4>
+                            <h6>From PHP {{ $apparel_data[$i]['price'] }}</h6>
+                        </a>
+                    </div>
+                @endfor
             </div>
         </div>
-        <script>
-            apparel.modOffLink(0, document.getElementsByClassName(`link-featured`)[0]);
-            apparel.modOffLink(1, document.getElementsByClassName(`link-featured`)[1]);
-            apparel.modOffLink(2, document.getElementsByClassName(`link-featured`)[2]);
-            apparel.modOffLink(3, document.getElementsByClassName(`link-featured`)[3]);
-            apparel.modOffLink(4, document.getElementsByClassName(`link-featured`)[4]);
-            apparel.modOffLink(5, document.getElementsByClassName(`link-featured`)[5]);
-            apparel.modOffLink(6, document.getElementsByClassName(`link-featured`)[6]);
-            apparel.modOffLink(7, document.getElementsByClassName(`link-featured`)[7]);
-        </script>
         
         <!-- Our story -->
         <div class = "newsletter container">
