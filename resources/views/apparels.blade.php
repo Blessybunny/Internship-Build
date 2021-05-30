@@ -59,58 +59,19 @@
                                 </div>
                             </div>
                             <div class = "row">
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-igorotak-shirts" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-igorotak-shirts" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-igorotak-shirts" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-igorotak-shirts" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-igorotak-shirts" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-igorotak-shirts" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-igorotak-shirts" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-igorotak-shirts" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-igorotak-shirts" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-igorotak-shirts" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-igorotak-shirts" href = "{{ url('/apparels') }}"></a>
-                                </div>
-                                <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                    <a class = "link-igorotak-shirts" href = "{{ url('/apparels') }}"></a>
-                                </div>
+                                @foreach ($apparel_data as $apparel)
+                                    @if($apparel['category'] == 'igorotak-shirt')
+                                        <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
+                                            <a class = "link-igorotak-shirts" href = "{{ url('/apparels') }}">
+                                                <img src = "{{ $apparel['imgUrl'] }}"/>
+                                                <h4>{{ $apparel['name'] }}</h4>
+                                                <h6>From PHP {{ $apparel['price'] }}</h6>
+                                            </a>
+                                        </div>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
-                        <script>
-                            apparel.modPageLink(0, document.getElementsByClassName(`link-igorotak-shirts`)[0]);
-                            apparel.modPageLink(1, document.getElementsByClassName(`link-igorotak-shirts`)[1]);
-                            apparel.modPageLink(2, document.getElementsByClassName(`link-igorotak-shirts`)[2]);
-                            apparel.modPageLink(3, document.getElementsByClassName(`link-igorotak-shirts`)[3]);
-                            apparel.modPageLink(4, document.getElementsByClassName(`link-igorotak-shirts`)[4]);
-                            apparel.modPageLink(5, document.getElementsByClassName(`link-igorotak-shirts`)[5]);
-                            apparel.modPageLink(6, document.getElementsByClassName(`link-igorotak-shirts`)[6]);
-                            apparel.modPageLink(7, document.getElementsByClassName(`link-igorotak-shirts`)[7]);
-                            apparel.modPageLink(8, document.getElementsByClassName(`link-igorotak-shirts`)[8]);
-                            apparel.modPageLink(9, document.getElementsByClassName(`link-igorotak-shirts`)[9]);
-                            apparel.modPageLink(10, document.getElementsByClassName(`link-igorotak-shirts`)[10]);
-                            apparel.modPageLink(11, document.getElementsByClassName(`link-igorotak-shirts`)[11]);
-                        </script>
                     </div>
                     
                     <!-- Ladies -->

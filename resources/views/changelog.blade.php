@@ -44,7 +44,7 @@
                                 <div class = "col-xl-12">
                                     <ul>
                                         <h4>May 30</h4>
-                                        <li>Added custom script for apparels. I'm tired.</li>
+                                        <li>Added a pseudo database for apparels. I'm so tired.</li>
                                         <li>Image optimization.</li>
                                         <li>Added <a href = "{{ url('/apparels') }}">"apparels" page</a>.</li>
                                         <li>Removed "shirt" and "miscellaneous" pages.</li>
@@ -65,7 +65,7 @@
                                         <h4>May 22</h4>
                                         <li>Implemented <a href = "https://www.creative-tim.com/product/material-kit-pro?partner=114912">Material kit</a> template.</li>
                                         <li>Added <a href = "{{ url('/changelog') }}">"changelog" page</a>.</li>
-                                        <li>Added <a href = "{{ url('/about') }}">"about" page</a>.</li>
+                                        <li>Added a secluded <a href = "{{ url('/about') }}">"about" page</a>.</li>
                                         <li>Added logo and brand name "Opalescence".</li>
                                     </ul>
                                     <ul>

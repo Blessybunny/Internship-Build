@@ -68,7 +68,6 @@
 
     <!-- MAIN CONTENT -->
     <div class = "main">
-        
         <!-- Latest apparels -->
         <div class = "container">
             <div class = "row">

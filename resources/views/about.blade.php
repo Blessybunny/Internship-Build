@@ -6,6 +6,7 @@
     <script>
         window.alert(`If you somehow managed to find this page, I only gave myself the credit because I am confident to say that I WORKED ON THIS WEBSITE ALONE.`)
     </script>
+
     <div class = "profile-page">
         <div class = "page-header header-filter" data-parallax = "true" style = "background-image: url('./img/bg-8.jpg');"></div>
             <div class = "main">
