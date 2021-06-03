@@ -189,7 +189,7 @@ class ApparelsController extends Controller {
         $apparel_data = $this->apparel_data;
         //return
         $apparels = Apparel::all();
-        dd($apparels);
+        //dd($apparels);
         return view('/home', compact('apparels', 'apparel_data'));
     }
     public function view_apparels () {

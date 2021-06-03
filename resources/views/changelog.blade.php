@@ -94,7 +94,7 @@
                                 </ul>
                                 <ul>
                                     <h4>To Do</h4>
-                                    <li>Migrate and seed to heroku after countless debugging...</li>
+                                    <li>Migrate and seed to Heroku after countless debugging...</li>
                                 </ul>
                             </div>
                         </div>
