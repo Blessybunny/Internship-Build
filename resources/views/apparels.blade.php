@@ -56,13 +56,13 @@
                             </div>
                         </div>
                         <div class = "row">
-                            @foreach ($apparel_data as $apparel)
-                                @if($apparel['category'] == 'igorotak-shirt')
+                            @foreach ($apparels as $apparel)
+                                @if ($apparel->category_id == 1)
                                     <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                        <a href = "{{ url('/apparels') }}">
-                                            <img src = "{{ $apparel['imgUrl'] }}"/>
-                                            <h4>{{ $apparel['name'] }}</h4>
-                                            <h6>From PHP {{ $apparel['price'] }}</h6>
+                                        <a href = "{{ url('/apparels/view', ['id' => $apparel->id]) }}">
+                                            <img src = "{{ $apparel->img_url }}"/>
+                                            <h4>{{ $apparel->name }}</h4>
+                                            <h6>From PHP {{ $apparel->price }}</h6>
                                         </a>
                                     </div>
                                 @endif
@@ -81,13 +81,13 @@
                             </div>
                         </div>
                         <div class = "row">
-                            @foreach ($apparel_data as $apparel)
-                                @if($apparel['category'] == 'ladies')
+                            @foreach ($apparels as $apparel)
+                                @if ($apparel->category_id == 2)
                                     <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                        <a href = "{{ url('/apparels') }}">
-                                            <img src = "{{ $apparel['imgUrl'] }}"/>
-                                            <h4>{{ $apparel['name'] }}</h4>
-                                            <h6>From PHP {{ $apparel['price'] }}</h6>
+                                        <a href = "{{ url('/apparels/view', ['id' => $apparel->id]) }}">
+                                            <img src = "{{ $apparel->img_url }}"/>
+                                            <h4>{{ $apparel->name }}</h4>
+                                            <h6>From PHP {{ $apparel->price }}</h6>
                                         </a>
                                     </div>
                                 @endif
@@ -106,13 +106,13 @@
                             </div>
                         </div>
                         <div class = "row">
-                            @foreach ($apparel_data as $apparel)
-                                @if($apparel['category'] == 'accessory')
+                            @foreach ($apparels as $apparel)
+                                @if ($apparel->category_id == 3)
                                     <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                        <a href = "{{ url('/apparels') }}">
-                                            <img src = "{{ $apparel['imgUrl'] }}"/>
-                                            <h4>{{ $apparel['name'] }}</h4>
-                                            <h6>From PHP {{ $apparel['price'] }}</h6>
+                                        <a href = "{{ url('/apparels/view', ['id' => $apparel->id]) }}">
+                                            <img src = "{{ $apparel->img_url }}"/>
+                                            <h4>{{ $apparel->name }}</h4>
+                                            <h6>From PHP {{ $apparel->price }}</h6>
                                         </a>
                                     </div>
                                 @endif
@@ -131,13 +131,13 @@
                             </div>
                         </div>
                         <div class = "row">
-                            @foreach ($apparel_data as $apparel)
-                                @if($apparel['category'] == 'other')
+                            @foreach ($apparels as $apparel)
+                                @if ($apparel->category_id == 4)
                                     <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
-                                        <a href = "{{ url('/apparels') }}">
-                                            <img src = "{{ $apparel['imgUrl'] }}"/>
-                                            <h4>{{ $apparel['name'] }}</h4>
-                                            <h6>From PHP {{ $apparel['price'] }}</h6>
+                                        <a href = "{{ url('/apparels/view', ['id' => $apparel->id]) }}">
+                                            <img src = "{{ $apparel->img_url }}"/>
+                                            <h4>{{ $apparel->name }}</h4>
+                                            <h6>From PHP {{ $apparel->price }}</h6>
                                         </a>
                                     </div>
                                 @endif

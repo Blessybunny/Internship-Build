@@ -1,5 +1,8 @@
 <?php
 
+use App\Apparel;
+use App\Category;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +17,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 //NAVIGATION
-    Route::get('/', 'ApparelsController@view_home');
-    Route::get('/apparels', 'ApparelsController@view_apparels');
-    Route::get('/apparels/{apparel}', 'ApparelsController@view_apparels_single');
+    Route::get('/', function () {
+        $apparels = Apparel::all();
+        return view('home', compact('apparels'));
+    });
+    Route::get('/apparels', function () {
+        $apparels = Apparel::all();
+        return view('apparels', compact('apparels'));
+    });
+
+//APPAREL
+    Route::get('/apparels/view/{id}', 'ApparelsController@view_apparel_single');
 
 //FOOTER
     Route::get('/changelog', function () {return view('changelog');});

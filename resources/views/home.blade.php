@@ -30,15 +30,20 @@
                 </div>
             </div>
             <div class = "row">
-                @for ($i = 12; $i >= 9; $i--)
-                    <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                        <a href = "{{ url('/apparels') }}">
-                            <img src = "{{ $apparel_data[$i]['imgUrl'] }}"/>
-                            <h4>{{ $apparel_data[$i]['name'] }}</h4>
-                            <h6>From PHP {{ $apparel_data[$i]['price'] }}</h6>
-                        </a>
-                    </div>
-                @endfor
+                @foreach ($apparels as $apparel)
+                    @if ($apparel->id >= 0)
+                        <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                            <a href = "{{ url('/apparels/view', ['id' => $apparel->id]) }}">
+                                <img src = "{{ $apparel->img_url }}"/>
+                                <h4>{{ $apparel->name }}</h4>
+                                <h6>From PHP {{ $apparel->price }}</h6>
+                            </a>
+                        </div>
+                    @endif
+                    @if ($apparel->id == 4)
+                        @break
+                    @endif
+                @endforeach
             </div>
         </div>
         
@@ -51,15 +56,20 @@
                 </div>
             </div>
             <div class = "row">
-                @for ($i = 8; $i >= 1; $i--)
-                    <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                        <a href = "{{ url('/apparels') }}">
-                            <img src = "{{ $apparel_data[$i]['imgUrl'] }}"/>
-                            <h4>{{ $apparel_data[$i]['name'] }}</h4>
-                            <h6>From PHP {{ $apparel_data[$i]['price'] }}</h6>
-                        </a>
-                    </div>
-                @endfor
+                @foreach ($apparels as $apparel)
+                    @if ($apparel->id >= 5)
+                        <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                            <a href = "{{ url('/apparels/view', ['id' => $apparel->id]) }}">
+                                <img src = "{{ $apparel->img_url }}"/>
+                                <h4>{{ $apparel->name }}</h4>
+                                <h6>From PHP {{ $apparel->price }}</h6>
+                            </a>
+                        </div>
+                    @endif
+                    @if ($apparel->id == 12)
+                        @break
+                    @endif
+                @endforeach
             </div>
         </div>
         

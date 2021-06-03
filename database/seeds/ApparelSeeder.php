@@ -1,17 +1,17 @@
 <?php
 
 use App\Apparel;
+use App\Category;
 use Illuminate\Database\Seeder;
 
 class ApparelSeeder extends Seeder {
     //Preserve apparel data
     public function run () {
-        /*
-            1 = igorotak
-            2 = ladies
-            3 = accessory
-            4 = other
-        */
+        //Categories
+        Category::create(['name' => 'igorotak']);
+        Category::create(['name' => 'ladies']);
+        Category::create(['name' => 'accessory']);
+        Category::create(['name' => 'other']);
         //Igorotak
         Apparel::create([
             'name' => 'Floating Igorotak Django Shirt',
