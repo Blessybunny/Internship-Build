@@ -6,7 +6,7 @@ use App\Apparel;
 use Illuminate\Http\Request;
 
 class ApparelsController extends Controller {
-    //Pseudo database for apparels
+    //temp: Pseudo database for apparels
     private $apparel_data = array();
     public function createApparelData () {
         //Shirt Male Igorotak (12 total)
@@ -184,13 +184,23 @@ class ApparelsController extends Controller {
     
     //Views
     public function view_home () {
+        //temp
         $this->createApparelData();
         $apparel_data = $this->apparel_data;
-        return view('/home', compact('apparel_data'));
+        //return
+        $apparels = Apparel::all();
+        dd($apparels);
+        return view('/home', compact('apparels', 'apparel_data'));
     }
     public function view_apparels () {
+        //temp
         $this->createApparelData();
         $apparel_data = $this->apparel_data;
+        //return
         return view('/apparels', compact('apparel_data'));
+    }
+    
+    public function view_apparels_single () {
+        
     }
 }

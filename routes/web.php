@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 //NAVIGATION
     Route::get('/', 'ApparelsController@view_home');
     Route::get('/apparels', 'ApparelsController@view_apparels');
+    Route::get('/apparels/{apparel}', 'ApparelsController@view_apparels_single');
 
 //FOOTER
     Route::get('/changelog', function () {return view('changelog');});

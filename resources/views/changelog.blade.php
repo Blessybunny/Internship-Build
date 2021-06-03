@@ -1,4 +1,4 @@
-@extends('/layouts/master')
+@extends('layouts.master')
 
 @section('title')
     Changelog
@@ -26,6 +26,9 @@
                             <ul class = "nav navbar-nav" data-tabs = "tabs">
                                 <li class = "nav-item">
                                     <a class = "nav-link active" href = "#y-2021" data-toggle = "tab">2021</a>
+                                </li>
+                                <li class = "nav-item">
+                                    <a class = "nav-link" href = "#wip" data-toggle = "tab">Work In Progress</a>
                                 </li>
                             </ul>
                         </div>
@@ -73,6 +76,25 @@
                                 <ul>
                                     <h4>May 21</h4>
                                     <li>Website deployment.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Work In Progress -->
+                <div class = "tab-pane" id = "wip">
+                    <div class = "container">
+                        <div class = "row">
+                            <div class = "col-xl-12">
+                                <ul>
+                                    <h4>Tasks</h4>
+                                    <li>Actual database for Apparels.</li>
+                                    <li>Database for apparel categories.</li>
+                                </ul>
+                                <ul>
+                                    <h4>To Do</h4>
+                                    <li>Migrate and seed to heroku after countless debugging...</li>
                                 </ul>
                             </div>
                         </div>
