@@ -1,0 +1,184 @@
+/* META */
+    ::selection {
+        background-color: transparent;
+    }
+
+/* MAIN */
+    body {
+        cursor: default;
+    }
+    a {
+        border-radius: 0 !important;
+    }
+    a:hover {
+        color: orangered;
+    }
+    h3 {
+        text-align: center;
+    }
+    h6 {
+        margin-top: -10px !important;
+    }
+                
+/* GRID SYSTEM */
+    [class *= "col-"] {
+        padding-bottom: 15px;
+    }
+                
+/* MAIN NAVIGATION */
+    #navigation-main {
+        /* Main */
+        border-bottom: 1px solid #DDDDDD;
+        box-shadow: none;
+        
+        /* Classes */
+        .logo-text {
+            padding-left: 0.9375rem;
+            padding-right: 0.9375rem;
+        }
+        .dropdown-menu {
+            border-radius: 0;
+            height: auto;
+            overflow: hidden;
+        }
+        .dropdown-menu a:hover {
+            background-color: orangered !important;
+            box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(255 69 0 / 40%);
+        }
+        .dropdown-menu a:focus {
+            background-color: orangered !important;
+        }
+    }
+
+/* FORMS, DOODADS, & WHATNOT */
+    .btn {
+        /* Main */
+        border-radius: 0 !important;
+        
+        /* Classes */
+        &.btn-primary {
+            background-color: orangered !important;
+            border-color: orangered !important;
+            box-shadow: 0 2px 2px 0 rgb(orangered, 14%), 0 3px 1px -2px rgb(orangered, 20%), 0 1px 5px 0 rgb(orangered, 12%) !important;
+        }
+        &.btn-primary:hover {
+            box-shadow: 0 14px 26px -12px rgb(orangered, 42%), 0 4px 23px 0px rgb(#000, 12%), 0 8px 10px -5px rgb(orangered, 20%) !important;
+        }
+    }      
+    .form-control {
+        /* Main */
+        background-image: linear-gradient(to top, orangered 2px, rgba(orangered, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
+    }
+                
+/* CUSTOM APPAREL LINK CARDS */
+    .link-card {
+        /* Main */
+        display: inline-flex;
+        
+        /* Elements */
+        a {
+            color: #000;
+            overflow: hidden;
+            width: 100%;
+        }
+        a:hover {
+            filter: contrast(.75);
+        }
+        a:hover h4 {
+            text-decoration: underline;
+        }
+        h4 {
+            font-size: 16px;
+            font-weight: bold;
+            padding: 0 20px;
+            text-align: center;
+        }
+        h6 {
+            padding: 0 20px;
+            text-align: center;
+        }
+        img {
+            display: block;
+            margin: auto;
+            width: 100%;
+        }
+    }
+                
+/* FILTER NAVIGATION */
+    .filter.navbar {
+        /* Main */
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        
+        /* Classes */
+        .navbar-nav {
+            flex-direction: row;
+        }
+        .active {
+            background-color: #EEEEEE;
+        }
+    }
+
+/* FOOTER */
+    .footer .disclaimer {
+        margin: auto;
+        max-width: 720px;
+    }
+
+/* PAGE: Home */
+    .banner {
+        /* Main */
+        margin-top: 70px;
+        min-height: 480px;
+        padding: 15%;
+        
+        /* Elements */
+        h1 {
+            color: #FFF;
+            font-family: Segoe UI;
+            font-size: 46px;
+            font-weight: 600;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        
+        /* Classes */
+        .wallpaper {
+            background-image: url("../img/bg-9.jpg");
+            background-position: center top;
+            background-size: cover;
+            filter: brightness(.75) contrast(.75);
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: -10;
+        }
+        .content {
+            background-color: rgba(0, 0, 0, .5);
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+    }
+    .story {
+        /* Elements */
+        img {
+            width: 100%;
+        }
+        
+        /* Classes */
+        .justified {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }

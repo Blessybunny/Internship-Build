@@ -6,60 +6,8 @@
 
 @section('content')
 
-    <!-- STYLES -->
-    <style>
-        /* Banner */
-        #banner {
-            min-height: 480px;
-            padding: 20%;
-        }
-        #banner .wallpaper {
-            background-image: url("./img/bg-9.jpg");
-            background-position: center top;
-            background-size: cover;
-            filter: brightness(.75) contrast(.75);
-            height: 100%;
-            left: 0;
-            position: absolute;
-            top: 0;
-            width: 100%;
-            z-index: -10;
-        }
-        #banner .content {
-            background-color: rgba(0, 0, 0, .5);
-            align-items: center;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            justify-content: center;
-            left: 0;
-            position: absolute;
-            top: 0;
-            width: 100%;
-        }
-        #banner .content h1 {
-            color: #FFF;
-            font-family: Segoe UI;
-            font-size: 46px;
-            font-weight: 600;
-            text-align: center;
-            text-transform: uppercase;
-        }
-        
-        /* Newsletter */
-        .newsletter.container img {
-            width: 100%;
-        }
-        .newsletter.container .justified {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-    </style>
-
     <!-- BANNER -->
-    <div id = "banner" class = "main">
+    <div class = "main banner">
         <div class = "wallpaper"></div>
         <div class = "content">
             <h1>Welcome to NADUMA</h1>
@@ -72,6 +20,7 @@
 
     <!-- MAIN CONTENT -->
     <div class = "main">
+        
         <!-- Latest apparels -->
         <div class = "container">
             <div class = "row">
@@ -115,7 +64,7 @@
         </div>
         
         <!-- Our story -->
-        <div class = "newsletter container">
+        <div class = "story container">
             <div class = "row">
                 <div class = "col">
                     <h3>Our Story</h3>
@@ -135,7 +84,7 @@
         </div>
         
         <!-- Newsletter -->
-        <div class = "newsletter-container container">
+        <div class = "container">
             <div class = "row">
                 <div class = "col">
                     <h3>Newsletter Updates</h3>

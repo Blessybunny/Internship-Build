@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Apparel;
 use Illuminate\Http\Request;
 
-class GeneralController extends Controller {
+class ApparelsController extends Controller {
     //Pseudo database for apparels
     private $apparel_data = array();
     public function createApparelData () {
@@ -184,15 +184,11 @@ class GeneralController extends Controller {
     
     //Views
     public function view_home () {
-        //Return view
         $this->createApparelData();
         $apparel_data = $this->apparel_data;
         return view('/home', compact('apparel_data'));
     }
-    
-    //View apparels
     public function view_apparels () {
-        //Return view
         $this->createApparelData();
         $apparel_data = $this->apparel_data;
         return view('/apparels', compact('apparel_data'));

@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 //NAVIGATION
-    Route::get('/', 'GeneralController@view_home');
-    Route::get('/apparels', 'GeneralController@view_apparels');
+    Route::get('/', 'ApparelsController@view_home');
+    Route::get('/apparels', 'ApparelsController@view_apparels');
 
 //FOOTER
     Route::get('/changelog', function () {return view('changelog');});
 
+//PREDICTIVE ANALYTICS
+    Route::get('/analytics', function () {return view('analytics');});

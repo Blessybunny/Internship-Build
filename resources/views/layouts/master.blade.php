@@ -7,156 +7,22 @@
             <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" />
             <meta content = 'width=device-width, initial-scale=1.0, shrink-to-fit=no' name = 'viewport' />
             
-            <link rel = "apple-touch-icon" sizes = "76x76" href = "./assets/img/apple-icon.png">
-            <link rel = "icon" type = "image/png" href = "./img/logo.png">
+            <link rel = "apple-touch-icon" sizes = "76x76" href = "{{ asset('assets/img/apple-icon.png') }}" />
+            <link rel = "icon" type = "image/png" href = "{{ asset('img/logo.png') }}" />
 
             <title>@yield('title')</title>
             
             <!-- Material kit - https://www.creative-tim.com/product/material-kit-pro?partner=114912 -->
             <link rel = "stylesheet" type = "text/css" href = "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-            <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-            <link href = "./assets/css/material-kit.css?v=2.0.7" rel = "stylesheet" />
+            <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+            <link rel = "stylesheet" href = "{{ asset('assets/css/material-kit.css?v=2.0.7') }}" />
+            
+            <!-- Custom CSS -->
+            <link rel = "stylesheet/less" type = "text/css" href = "{{ asset('less/css.less') }}" />
             
         </head>
 
         <body class = "sidebar-collapse">
-            <!-- STYLES -->
-            <style>
-                /* General */
-                ::selection {
-                    background-color: transparent;
-                }
-                body {
-                    cursor: default;
-                }
-                a:hover {
-                    color: orangered;
-                }
-                h3 {
-                    text-align: center;
-                }
-                h6 {
-                    margin-top: -10px !important;
-                }
-                
-                /* Grid systems*/
-                [class*="col-"] {
-                    padding-bottom: 15px;
-                }
-                
-                /* Navigation */
-                #navigation-main {
-                    border-bottom: 1px solid #DDDDDD;
-                    box-shadow: none;
-                }
-                #navigation-main a{
-                    border-radius: 0;
-                }
-                
-                #navigation-main .logo-text {
-                    padding-left: 0.9375rem;
-                    padding-right: 0.9375rem;
-                }
-                #navigation-main .dropdown-menu {
-                    border-radius: 0;
-                    height: auto;
-                    overflow: hidden;
-                }
-                #navigation-main .dropdown-menu a:hover {
-                    background-color: orangered !important;
-                    box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(255 69 0 / 40%);
-                }
-                #navigation-main .dropdown-menu a:focus {
-                    background-color: orangered !important;
-                }
-                
-                /* Forms, doodads, and whatnot */
-                .btn {
-                    border-radius: 0 !important;
-                }
-                .btn.btn-primary {
-                    background-color: orangered !important;
-                    border-color: orangered !important;
-                    box-shadow: 0 2px 2px 0 rgb(255 69 0 / 14%), 0 3px 1px -2px rgb(255 69 0 / 20%), 0 1px 5px 0 rgb(255 69 0 / 12%) !important;
-                }
-                .btn.btn-primary:hover {
-                    box-shadow: 0 14px 26px -12px rgb(255 69 0 / 42%), 0 4px 23px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(255 69 0 / 20%) !important;
-                }
-                input.form-control {
-                    background-image: linear-gradient(to top, orangered 2px, rgba(255, 69, 0, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
-                }
-                
-                .card-header {
-                    border-radius: 0 !important;
-                }
-                .card-header .nav-link {
-                    border-radius: 0 !important;
-                }
-                .card-header-primary {
-                    background: linear-gradient(60deg, rgb(255 69 0), rgb(225 39 0)) !important;
-                    box-shadow: 0 5px 20px 0px rgb(0 0 0 / 20%), 0 13px 24px -11px rgb(255 69 0 / 60%) !important;
-                }
-                
-                /* Link cards */
-                .link-card{
-                    display: inline-flex;
-                }
-                .link-card a{
-                    color: #000;
-                    overflow: hidden;
-                    width: 100%;
-                }
-                .link-card a:hover{
-                    filter: contrast(.75);
-                }
-                .link-card a:hover h4{
-                    text-decoration: underline;
-                }
-
-                .link-card h4 {
-                    font-size: 16px;
-                    font-weight: bold;
-                    padding: 0 20px;
-                    text-align: center;
-                }
-                .link-card h6 {
-                    padding: 0 20px;
-                    text-align: center;
-                }
-                .link-card img {
-                    display: block;
-                    margin: auto;
-                    width: 100%;
-                }
-                
-                /* Filter navigation */
-                .filter.navbar {
-                    box-shadow: none;
-                    margin: 0;
-                    padding: 0;
-                }
-                .filter.navbar a {
-                    border-radius: 0 !important;
-                }
-                .filter.navbar .navbar-nav {
-                    flex-direction: row;
-                }
-                .filter.navbar .active {
-                    background-color: #EEEEEE;
-                }
-                
-                /* Footer */
-                .footer .disclaimer {
-                    margin: auto;
-                    max-width: 720px;
-                }
-                
-                /* JUNK YARD */
-                /* Carousel */
-                .carousel-indicators li {
-                    border-radius: 0 !important;
-                }
-            </style>
             
             <!-- NAVIGATION -->
             <nav class = "navbar fixed-top navbar-expand-lg" id = "navigation-main">
@@ -222,5 +88,7 @@
         <script src = "{{ asset('assets/js/plugins/bootstrap-datetimepicker.js')}} " type = "text/javascript"></script>
         <script src = "{{ asset('assets/js/plugins/nouislider.min.js')}} " type = "text/javascript"></script>
         <script src = "{{ asset('assets/js/material-kit.js?v=2.0.7')}} " type = "text/javascript"></script>
-
+        
+        <!-- Less JS -->
+        <script src = "{{ asset('assets/js/less.js')}} " type = "text/javascript"></script>
 </html>
