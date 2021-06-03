@@ -6,6 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 //Eloquent
 
-class Apparel extends Model {
-    
+class General extends Model {
 }

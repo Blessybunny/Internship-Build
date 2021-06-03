@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Apparel;
 use Illuminate\Http\Request;
 
-class ApparelsController extends Controller {
-    //For now, ApparelsController will be the general controller
-    private $apparel_data = [];
-    public function createData () {
+class GeneralController extends Controller {
+    //Pseudo database for apparels
+    private $apparel_data = array();
+    public function createApparelData () {
         //Shirt Male Igorotak (12 total)
         array_push($this->apparel_data, [
             'name' => 'Floating Igorotak Django Shirt',
@@ -182,18 +182,18 @@ class ApparelsController extends Controller {
         ]);
     }
     
-    //View home
-    public function viewHome () {
+    //Views
+    public function view_home () {
         //Return view
-        $this->createData();
+        $this->createApparelData();
         $apparel_data = $this->apparel_data;
         return view('/home', compact('apparel_data'));
     }
     
     //View apparels
-    public function viewApparels () {
+    public function view_apparels () {
         //Return view
-        $this->createData();
+        $this->createApparelData();
         $apparel_data = $this->apparel_data;
         return view('/apparels', compact('apparel_data'));
     }

@@ -10,7 +10,7 @@
             <link rel = "apple-touch-icon" sizes = "76x76" href = "./assets/img/apple-icon.png">
             <link rel = "icon" type = "image/png" href = "./img/logo.png">
 
-            <title>Project E-Commerce</title>
+            <title>@yield('title')</title>
             
             <!-- Material kit - https://www.creative-tim.com/product/material-kit-pro?partner=114912 -->
             <link rel = "stylesheet" type = "text/css" href = "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -186,11 +186,6 @@
                                     <i class = "material-icons">apps</i> Apparels
                                 </a>
                             </li>
-                            <li class = "nav-item">
-                                <a class = "nav-link" href = "{{ url('/') }}">
-                                    <i class = "material-icons">shopping_cart</i> Cart
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -220,12 +215,12 @@
         </body>
         
         <!-- Material kit - https://www.creative-tim.com/product/material-kit-pro?partner=114912 -->
-        <script src = "./assets/js/core/jquery.min.js" type = "text/javascript"></script>
-        <script src = "./assets/js/core/popper.min.js" type = "text/javascript"></script>
-        <script src = "./assets/js/core/bootstrap-material-design.min.js" type = "text/javascript"></script>
-        <script src = "./assets/js/plugins/moment.min.js"></script>
-        <script src = "./assets/js/plugins/bootstrap-datetimepicker.js" type = "text/javascript"></script>
-        <script src = "./assets/js/plugins/nouislider.min.js" type = "text/javascript"></script>
-        <script src = "./assets/js/material-kit.js?v=2.0.7" type = "text/javascript"></script>
+        <script src = "{{ asset('assets/js/core/jquery.min.js')}} " type = "text/javascript"></script>
+        <script src = "{{ asset('assets/js/core/popper.min.js')}} " type = "text/javascript"></script>
+        <script src = "{{ asset('assets/js/core/bootstrap-material-design.min.js')}} " type = "text/javascript"></script>
+        <script src = "{{ asset('assets/js/plugins/moment.min.js')}} "></script>
+        <script src = "{{ asset('assets/js/plugins/bootstrap-datetimepicker.js')}} " type = "text/javascript"></script>
+        <script src = "{{ asset('assets/js/plugins/nouislider.min.js')}} " type = "text/javascript"></script>
+        <script src = "{{ asset('assets/js/material-kit.js?v=2.0.7')}} " type = "text/javascript"></script>
 
 </html>

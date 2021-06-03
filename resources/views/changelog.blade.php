@@ -65,7 +65,6 @@
                                         <h4>May 22</h4>
                                         <li>Implemented <a href = "https://www.creative-tim.com/product/material-kit-pro?partner=114912">Material kit</a> template.</li>
                                         <li>Added <a href = "{{ url('/changelog') }}">"changelog" page</a>.</li>
-                                        <li>Added a secluded <a href = "{{ url('/about') }}">"about" page</a>.</li>
                                         <li>Added logo and brand name "Opalescence".</li>
                                     </ul>
                                     <ul>

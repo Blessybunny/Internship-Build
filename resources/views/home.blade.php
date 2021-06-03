@@ -1,5 +1,9 @@
 @extends('/layouts/master')
 
+@section('title')
+    NADUMA Store
+@endsection
+
 @section('content')
 
     <!-- STYLES -->
