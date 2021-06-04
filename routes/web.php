@@ -27,7 +27,10 @@ use Illuminate\Support\Facades\Route;
     });
 
 //APPAREL
-    Route::get('/apparels/view/{id}', 'ApparelsController@view_apparel_single');
+    Route::get('/apparels/view/{id}', function ($id) {
+        $apparel = Apparel::findOrFail($id);
+        return view('layouts/apparel', compact('apparel'));
+    });
 
 //FOOTER
     Route::get('/changelog', function () {return view('changelog');});

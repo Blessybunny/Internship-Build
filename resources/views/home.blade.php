@@ -34,7 +34,7 @@
                     @if ($apparel->id >= 0)
                         <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
                             <a href = "{{ url('/apparels/view', ['id' => $apparel->id]) }}">
-                                <img src = "{{ $apparel->img_url }}"/>
+                                <img src = "{{ asset($apparel->img_url) }}"/>
                                 <h4>{{ $apparel->name }}</h4>
                                 <h6>From PHP {{ $apparel->price }}</h6>
                             </a>
@@ -60,7 +60,7 @@
                     @if ($apparel->id >= 5)
                         <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
                             <a href = "{{ url('/apparels/view', ['id' => $apparel->id]) }}">
-                                <img src = "{{ $apparel->img_url }}"/>
+                                <img src = "{{ asset($apparel->img_url) }}"/>
                                 <h4>{{ $apparel->name }}</h4>
                                 <h6>From PHP {{ $apparel->price }}</h6>
                             </a>

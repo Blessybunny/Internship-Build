@@ -66,7 +66,7 @@
             @yield('content');
             
             <!-- FOOTER -->
-            <footer class = "footer" data-background-color = "black">
+            <footer class = "footer">
                 <div class = "container">
                     <p class = "disclaimer">This website is for educational purposes only as part of an internship program. It only reflects the front-end side of an e-commerce website and does not endorse any of the products listed.</p>
                     <nav>
