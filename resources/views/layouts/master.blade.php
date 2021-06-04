@@ -7,14 +7,14 @@
             <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" />
             <meta content = 'width=device-width, initial-scale=1.0, shrink-to-fit=no' name = 'viewport' />
             
-            <link rel = "apple-touch-icon" sizes = "76x76" href = "{{ asset('assets/img/apple-icon.png') }}" />
-            <link rel = "icon" type = "image/png" href = "{{ asset('img/logo.png') }}" />
+            <link href = "{{ asset('assets/img/apple-icon.png') }}" rel = "apple-touch-icon" sizes = "76x76" />
+            <link href = "{{ asset('img/logo.png') }}" rel = "icon" type = "image/png" />
 
             <title>@yield('title')</title>
             
             <!-- Material kit - https://www.creative-tim.com/product/material-kit-pro?partner=114912 -->
-            <link rel = "stylesheet" type = "text/css" href = "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-            <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+            <link href = "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" rel = "stylesheet" type = "text/css" />
+            <link href = "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel = "stylesheet" />
             <link href = "{{ asset('assets/css/material-kit.css') }}" rel = "stylesheet" />
             
             <!-- Custom CSS -->
