@@ -7,18 +7,18 @@
             <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" />
             <meta content = 'width=device-width, initial-scale=1.0, shrink-to-fit=no' name = 'viewport' />
             
-            <link href = "{{ asset('assets/img/apple-icon.png') }}" rel = "apple-touch-icon" sizes = "76x76" />
-            <link href = "{{ asset('img/logo.png') }}" rel = "icon" type = "image/png" />
+            <link href = "{{ asset('assets/img/apple-icon.png', true) }}" rel = "apple-touch-icon" sizes = "76x76" />
+            <link href = "{{ asset('img/logo.png', true) }}" rel = "icon" type = "image/png" />
 
             <title>@yield('title')</title>
             
             <!-- Material kit - https://www.creative-tim.com/product/material-kit-pro?partner=114912 -->
             <link href = "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" rel = "stylesheet" type = "text/css" />
             <link href = "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel = "stylesheet" />
-            <link href = "{{ asset('assets/css/material-kit.css') }}" rel = "stylesheet" />
+            <link href = "{{ asset('assets/css/material-kit.css', true) }}" rel = "stylesheet" />
             
             <!-- Custom CSS -->
-            <link rel = "stylesheet/less" type = "text/css" href = "{{ asset('less/css.less') }}" />
+            <link rel = "stylesheet/less" type = "text/css" href = "{{ asset('less/css.less', true) }}" />
             
         </head>
 
@@ -86,14 +86,14 @@
         </body>
         
         <!-- Material kit - https://www.creative-tim.com/product/material-kit-pro?partner=114912 -->
-        <script src = "{{ asset('assets/js/core/jquery.min.js') }}" type = "text/javascript"></script>
-        <script src = "{{ asset('assets/js/core/popper.min.js') }}" type = "text/javascript"></script>
-        <script src = "{{ asset('assets/js/core/bootstrap-material-design.min.js') }}" type = "text/javascript"></script>
-        <script src = "{{ asset('assets/js/plugins/moment.min.js') }}"></script>
-        <script src = "{{ asset('assets/js/plugins/bootstrap-datetimepicker.js') }}" type = "text/javascript"></script>
-        <script src = "{{ asset('assets/js/plugins/nouislider.min.js') }}" type = "text/javascript"></script>
-        <script src = "{{ asset('assets/js/material-kit.js') }}" type = "text/javascript"></script>
+        <script src = "{{ asset('assets/js/core/jquery.min.js', true) }}" type = "text/javascript"></script>
+        <script src = "{{ asset('assets/js/core/popper.min.js', true) }}" type = "text/javascript"></script>
+        <script src = "{{ asset('assets/js/core/bootstrap-material-design.min.js', true) }}" type = "text/javascript"></script>
+        <script src = "{{ asset('assets/js/plugins/moment.min.js', true) }}"></script>
+        <script src = "{{ asset('assets/js/plugins/bootstrap-datetimepicker.js', true) }}" type = "text/javascript"></script>
+        <script src = "{{ asset('assets/js/plugins/nouislider.min.js', true) }}" type = "text/javascript"></script>
+        <script src = "{{ asset('assets/js/material-kit.js', true) }}" type = "text/javascript"></script>
         
         <!-- Less JS -->
-        <script src = "{{ asset('assets/js/less.js') }}" type = "text/javascript"></script>
+        <script src = "{{ asset('assets/js/less.js', true) }}" type = "text/javascript"></script>
 </html>
