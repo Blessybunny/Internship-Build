@@ -9,7 +9,7 @@
             
             <link rel = "apple-touch-icon" sizes = "76x76" href = "{{ asset('assets-material-dashboard/img/apple-icon.png') }}" />
             <link rel = "icon" type = "image/png" href = "{{ asset('img/logo.png') }}">
-            <title>NADUMA Analytics</title>
+            <title>@yield('title')</title>
             
             <!-- Material Dashboard - https://www.creative-tim.com/product/material-dashboard -->
             <link rel = "stylesheet" type = "text/css" href = "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -64,9 +64,6 @@
                     </div>
                 </div>
                 
-                <!-- CONTENT -->
-                <div class = "main-panel">
-                </div>
                 
             </div>
          

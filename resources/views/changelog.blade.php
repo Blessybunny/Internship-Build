@@ -52,6 +52,7 @@
                                     <h4>June 7</h4>
                                     <li>Added more attributes to the database for apparels.</li>
                                     <li>Added "analytics" page.</li>
+                                    <li>Implemented <a href = "https://www.creative-tim.com/product/material-dashboard">Material Dashboard</a> template.</li>
                                 </ul>
                                 <ul>
                                     <h4>June 4</h4>
