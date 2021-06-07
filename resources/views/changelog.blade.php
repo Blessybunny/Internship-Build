@@ -49,8 +49,16 @@
                                 <h6>Note: Only major changes are recorded.</h6>
                                 <br/>
                                 <ul>
+                                    <h4>June 7</h4>
+                                    <li>Added databases for apparel types and categories.</li>
+                                </ul>
+                                <ul>
+                                    <h4>June 4</h4>
+                                    <li>Added pages for corresponding apparels.</li>
+                                </ul>
+                                <ul>
                                     <h4>May 30</h4>
-                                    <li>Added a pseudo database for apparels. I'm so tired.</li>
+                                    <li>Added a database for apparels.</li>
                                     <li>Merged "shirt" and "miscellaneous" pages to the "apparels" page.</li>
                                     <li>Image (.jpeg) optimization.</li>
                                 </ul>
@@ -89,8 +97,7 @@
                             <div class = "col-xl-12">
                                 <ul>
                                     <h4>Tasks</h4>
-                                    <li>Actual database for Apparels.</li>
-                                    <li>Database for apparel categories.</li>
+                                    <li>Add more attributes to the apparels database.</li>
                                 </ul>
                                 <ul>
                                     <h4>To Do</h4>

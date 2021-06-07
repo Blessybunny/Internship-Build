@@ -20,26 +20,22 @@
                 
             <!-- Navigation filter -->
             <div class = "row">
-                <div class = "col">
-                    <nav class = "filter navbar">
-                        <div class = "container">
-                            <ul class = "nav navbar-nav" data-tabs = "tabs">
-                                <li class = "nav-item">
-                                    <a class = "nav-link active" href = "#igorotak-shirts" data-toggle = "tab">Igorotak Shirts</a>
-                                </li>
-                                <li class = "nav-item">
-                                    <a class = "nav-link" href = "#ladies" data-toggle = "tab">Ladies</a>
-                                </li>
-                                <li class = "nav-item">
-                                    <a class = "nav-link" href = "#accessories" data-toggle = "tab">Accessories</a>
-                                </li>
-                                <li class = "nav-item">
-                                    <a class = "nav-link" href = "#other-prints" data-toggle = "tab">Other Prints</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                    <hr/>
+                <div class = "col filter">
+                    <ul class = "nav navbar-nav justify-content-center" data-tabs = "tabs">
+                        <li class = "nav-item">
+                            <a class = "nav-link active" href = "#igorotak-shirts" data-toggle = "tab">Igorotak Shirts</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a class = "nav-link" href = "#ladies" data-toggle = "tab">Ladies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class = "nav-link" href = "#accessories" data-toggle = "tab">Accessories</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a class = "nav-link" href = "#other-prints" data-toggle = "tab">Other Prints</a>
+                        </li>
+                    </ul>
+                    <hr>
                 </div>
             </div>
                 
@@ -63,6 +59,15 @@
                                             <img src = "{{ asset($apparel->img_url) }}"/>
                                             <h4>{{ $apparel->name }}</h4>
                                             <h6>From PHP {{ $apparel->price }}</h6>
+                                            @if (
+                                                    $apparel->stock_xs === 0 or
+                                                    $apparel->stock_s === 0 or
+                                                    $apparel->stock_m === 0 or
+                                                    $apparel->stock_l === 0 or
+                                                    $apparel->stock_xl === 0
+                                            )
+                                                <h6 class = "sold-out">Sold Out</h6>
+                                            @endif
                                         </a>
                                     </div>
                                 @endif
@@ -88,6 +93,15 @@
                                             <img src = "{{ asset($apparel->img_url) }}"/>
                                             <h4>{{ $apparel->name }}</h4>
                                             <h6>From PHP {{ $apparel->price }}</h6>
+                                            @if (
+                                                    $apparel->stock_xs === 0 or
+                                                    $apparel->stock_s === 0 or
+                                                    $apparel->stock_m === 0 or
+                                                    $apparel->stock_l === 0 or
+                                                    $apparel->stock_xl === 0
+                                            )
+                                                <h6 class = "sold-out">Sold Out</h6>
+                                            @endif
                                         </a>
                                     </div>
                                 @endif
@@ -113,6 +127,15 @@
                                             <img src = "{{ asset($apparel->img_url) }}"/>
                                             <h4>{{ $apparel->name }}</h4>
                                             <h6>From PHP {{ $apparel->price }}</h6>
+                                            @if (
+                                                    $apparel->stock_xs === 0 or
+                                                    $apparel->stock_s === 0 or
+                                                    $apparel->stock_m === 0 or
+                                                    $apparel->stock_l === 0 or
+                                                    $apparel->stock_xl === 0
+                                            )
+                                                <h6 class = "sold-out">Sold Out</h6>
+                                            @endif
                                         </a>
                                     </div>
                                 @endif
@@ -138,6 +161,15 @@
                                             <img src = "{{ asset($apparel->img_url) }}"/>
                                             <h4>{{ $apparel->name }}</h4>
                                             <h6>From PHP {{ $apparel->price }}</h6>
+                                            @if (
+                                                    $apparel->stock_xs === 0 or
+                                                    $apparel->stock_s === 0 or
+                                                    $apparel->stock_m === 0 or
+                                                    $apparel->stock_l === 0 or
+                                                    $apparel->stock_xl === 0
+                                            )
+                                                <h6 class = "sold-out">Sold Out</h6>
+                                            @endif
                                         </a>
                                     </div>
                                 @endif

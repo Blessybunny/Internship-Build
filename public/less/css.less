@@ -17,7 +17,26 @@
         text-align: center;
     }
     h6 {
-        margin-top: -10px !important;
+        margin-top: -10px;
+    }
+
+/* TABLES (Custom) */
+    .table-custom {
+        /* Main */
+        width: 100%;
+        
+        /* Elements */
+        td, th {
+            padding: 10px;
+        }
+        thead tr {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        tbody tr {
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
     }
                 
 /* GRID SYSTEM */
@@ -51,6 +70,13 @@
     }
 
 /* FORMS, DOODADS, & WHATNOT */
+    label {
+        color: #AAAAAA !important;
+    }
+    option[value = ""][disabled] {
+        color: rgba(0, 0, 0, .6);
+        display: none;
+    }
     .btn {
         /* Main */
         border-radius: 0 !important;
@@ -102,18 +128,32 @@
             margin: auto;
             width: 100%;
         }
+        
+        /* Classes */
+        .sold-out {
+            border: 1px rgba(0, 0, 0, .2) solid;
+            display: block;
+            margin: 5px auto;
+            padding: 5px;
+            width: 100px;
+        }
     }
                 
 /* FILTER NAVIGATION */
-    .filter.navbar {
+    .filter {
         /* Main */
         box-shadow: none;
-        margin: 0;
-        padding: 0;
         
         /* Classes */
         .navbar-nav {
             flex-direction: row;
+        }
+        .nav-link {
+            color: #555;
+            font-size: 12px;
+            font-weight: 400;
+            padding: 0.9375rem;
+            position: relative;
         }
         .active {
             background-color: #EEEEEE;
@@ -188,5 +228,46 @@
         /* Elements */
         h3 {
             text-align: left !important;
+        }
+        h4 {
+            font-weight: bold;
+            margin-top: -10px;
+        }
+        img {
+            display: block;
+            margin: auto;
+            width: 100%;
+        }
+        input::placeholder {
+            color: #495057;
+        }
+        tr td:nth-child(3) {
+            text-align: center;
+        }
+        
+        /* Classes*/
+        .buttons {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+        .padding {
+            width: 15px;
+        }
+        .visible {
+            display: block;
+        }
+        .hidden {
+            display: none;
+        }
+        
+        /* Screen */
+        @media(max-width: 767px) {
+            h3, h4, p {
+                text-align: center !important;
+            }
+            img {
+                width: 75% !important;
+            }
         }
     }

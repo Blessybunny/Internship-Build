@@ -2,6 +2,7 @@
 
 use App\Apparel;
 use App\Category;
+use App\Type;
 
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +30,9 @@ use Illuminate\Support\Facades\Route;
 //APPAREL
     Route::get('/apparels/view/{id}', function ($id) {
         $apparel = Apparel::findOrFail($id);
-        return view('layouts/apparel', compact('apparel'));
+        $category = Category::find($apparel->category_id);
+        $type = Type::find($apparel->type_id);
+        return view('layouts/apparel', compact('apparel', 'category', 'type'));
     });
 
 //FOOTER

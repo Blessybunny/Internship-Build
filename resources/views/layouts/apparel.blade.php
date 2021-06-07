@@ -20,19 +20,119 @@
             
             <!-- Properties -->
             <div class = "properties row">
-                <div class = "col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                <div class = "col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                     <img src = "{{ asset($apparel->img_url) }}"/>
                 </div>
-                <div class = "col-8 col-sm-8 col-md-8 col-lg-8">
-                    <p>Site directory > up to shirt category</p>
+                <div class = "col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                     <h3>{{ $apparel->name }}</h3>
-                    <hr/>
-                    <p>No Ratings | 0 sold</p>
-                    <hr/>
                     <h4>PHP {{ $apparel->price }}</h4>
+                    <p>Shipping calculated at checkout.</p>
+                    <br/>
+                    <br/>
+                    @if ($type->name === "shirt")
+                        @if (
+                                $apparel->stock_xs > 0 or
+                                $apparel->stock_s > 0 or
+                                $apparel->stock_m > 0 or
+                                $apparel->stock_l > 0 or
+                                $apparel->stock_xl > 0
+                        )
+                            <form>
+                                <table class = "table-custom">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class = "form-group">
+                                                    <label for = "">Size</label>
+                                                    <select class = "form-control selectpicker" data-style = "btn btn-link" id = "exampleFormControlSelect1" onchange = "displayStock(value)">
+                                                        <option value = "" disabled selected>Select Size</option>
+                                                        @if ($apparel->stock_xs > 0)
+                                                            <option value = "xs">XS</option>
+                                                        @endif
+                                                        @if ($apparel->stock_s > 0)
+                                                            <option value = "s">S</option>
+                                                        @endif
+                                                        @if ($apparel->stock_m > 0)
+                                                            <option value = "m">M</option>
+                                                        @endif
+                                                        @if ($apparel->stock_l > 0)
+                                                            <option value = "l">L</option>
+                                                        @endif
+                                                        @if ($apparel->stock_xl > 0)
+                                                        <option value = "xl">XL</option>
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class = "form-group">
+                                                    <label for = "">Quantity</label>
+                                                    <input type = "number" class = "form-control" id = "exampleFormControlInput1" placeholder = "Enter Quantity">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class = "form-group">
+                                                    <label for = "">Remaining Stock</label>
+                                                    <br/>
+                                                    <p class = "hidden" id = "stock-display-xs">{{ $apparel->stock_xs }}</p>
+                                                    <p class = "hidden" id = "stock-display-s">{{ $apparel->stock_s }}</p>
+                                                    <p class = "hidden" id = "stock-display-m">{{ $apparel->stock_m }}</p>
+                                                    <p class = "hidden" id = "stock-display-l">{{ $apparel->stock_l }}</p>
+                                                    <p class = "hidden" id = "stock-display-xl">{{ $apparel->stock_xl }}</p>
+                                                </div>
+                                            </td>
+                                    </tbody>
+                                </table>
+                            </form>
+                            <script>
+                                function displayStock (value) {
+                                    let ids = [
+                                        document.getElementById(`stock-display-xs`),
+                                        document.getElementById(`stock-display-s`),
+                                        document.getElementById(`stock-display-m`),
+                                        document.getElementById(`stock-display-l`),
+                                        document.getElementById(`stock-display-xl`)
+                                    ];
+                                    for (let i = 0, ii = ids.length; i < ii; i++) {
+                                        ids[i].className = `hidden`;
+                                    }
+                                    switch (value) {
+                                        case `xs`: ids[0].className = `visible`; break;
+                                        case `s`: ids[1].className = `visible`; break;
+                                        case `m`: ids[2].className = `visible`; break;
+                                        case `l`: ids[3].className = `visible`; break;
+                                        case `xl`: ids[4].className = `visible`; break;
+                                    }
+                                }
+                            </script>
+                        @else
+                            <h4>This product is sold out.</h4>
+                            <script>
+                                window.onload = () => {
+                                    document.getElementById(`button-container`).innerHTML = null;
+                                };
+                            </script>
+                        @endif
+                    @endif
                 </div>
             </div>
-                                    
+                      
+            <!-- Buttons -->
+            <div id = "button-container" class = "properties row">
+                <div class = "col">
+                    <hr/>
+                    <div class = "buttons">
+                        <button type = "button" class=  "btn btn-lg btn-primary">
+                            <i class = "material-icons">add_shopping_cart</i> Add To Cart
+                        </button>
+                        <div class = "padding"></div>
+                        <button type = "button" class=  "btn btn-lg btn-primary">
+                            <i class = "material-icons">paid</i> Buy Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 
