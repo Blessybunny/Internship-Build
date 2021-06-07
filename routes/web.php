@@ -35,6 +35,8 @@ use Illuminate\Support\Facades\Route;
     Route::get('/changelog', function () {return view('changelog');});
 
 //PREDICTIVE ANALYTICS
-    Route::get('/analytics', function () {
-        return view('analytics');
-    });
+    Route::get('/statistics', function () {return view('analytics.statistics');});
+    Route::get('/statistics/inventory-apparels', function () {return view('analytics.inventory-apparels');});
+    Route::get('/statistics/inventory-materials', function () {return view('analytics.inventory-materials');});
+    Route::get('/statistics/shipping', function () {return view('analytics.shipping');});
+    Route::get('/statistics/sandbox', function () {return view('analytics.sandbox');});

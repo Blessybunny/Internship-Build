@@ -5,6 +5,7 @@
 
 /* MAIN */
     body {
+        background-color: #FFF;
         cursor: default;
     }
     a {
@@ -19,6 +20,9 @@
     h6 {
         margin-top: -10px;
     }
+img {
+    pointer-events: none;
+}
 
 /* TABLES (Custom) */
     .table-custom {
@@ -40,11 +44,11 @@
     }
                 
 /* GRID SYSTEM */
-    [class *= "col-"] {
+    .row [class *= "col"] {
         padding-bottom: 15px;
     }
                 
-/* MAIN NAVIGATION */
+/* NAVIGATIONS */
     #navigation-main {
         /* Main */
         border-bottom: 1px solid #DDDDDD;
@@ -66,6 +70,28 @@
         }
         .dropdown-menu a:focus {
             background-color: orangered !important;
+        }
+    }
+    .nav-link:hover {
+        text-decoration: underline;
+    }
+    .tabs {
+        /* Main */
+        box-shadow: none;
+        
+        /* Classes */
+        .navbar-nav {
+            flex-direction: row;
+        }
+        .nav-link {
+            color: #555;
+            font-size: 12px;
+            font-weight: 400;
+            padding: 0.9375rem;
+            position: relative;
+        }
+        .active {
+            background-color: #EEEEEE;
         }
     }
 
@@ -90,25 +116,27 @@
         &.btn-primary:hover {
             box-shadow: 0 14px 26px -12px rgb(orangered, 42%), 0 4px 23px 0px rgb(#000, 12%), 0 8px 10px -5px rgb(orangered, 20%) !important;
         }
-    }      
+    }
     .form-control {
         /* Main */
         background-image: linear-gradient(to top, orangered 2px, rgba(orangered, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
     }
                 
-/* CUSTOM APPAREL LINK CARDS */
-    .link-card {
+/* APPAREL CARDS */
+    .apparel-card {
         /* Main */
         display: inline-flex;
+        padding: 0 0 15px 0;
         
         /* Elements */
         a {
             color: #000;
             overflow: hidden;
+            position: relative;
             width: 100%;
         }
-        a:hover {
-            filter: contrast(.75);
+        a:hover img {
+            filter: contrast(.75) brightness(1.25);
         }
         a:hover h4 {
             text-decoration: underline;
@@ -126,7 +154,7 @@
         img {
             display: block;
             margin: auto;
-            width: 100%;
+            width: 75%;
         }
         
         /* Classes */
@@ -139,31 +167,16 @@
         }
     }
                 
-/* FILTER NAVIGATION */
-    .filter {
-        /* Main */
-        box-shadow: none;
-        
-        /* Classes */
-        .navbar-nav {
-            flex-direction: row;
-        }
-        .nav-link {
-            color: #555;
-            font-size: 12px;
-            font-weight: 400;
-            padding: 0.9375rem;
-            position: relative;
-        }
-        .active {
-            background-color: #EEEEEE;
-        }
-    }
-
 /* FOOTER */
-    .footer .disclaimer {
-        margin: auto;
-        max-width: 720px;
+    footer {
+        /* Main */
+        margin: 30px auto;
+        
+        /* Elements */
+        p {
+            margin: auto;
+            max-width: 720px;
+        }
     }
 
 /* PAGE: Home */
@@ -178,7 +191,7 @@
             color: #FFF;
             font-family: Segoe UI;
             font-size: 46px;
-            font-weight: 600;
+            font-weight: 500;
             text-align: center;
             text-transform: uppercase;
         }
@@ -188,7 +201,7 @@
             background-image: url("../img/bg-9.jpg");
             background-position: center top;
             background-size: cover;
-            filter: brightness(.75) contrast(.75);
+            filter: contrast(.5) brightness(1.5);
             height: 100%;
             left: 0;
             position: absolute;
@@ -211,7 +224,10 @@
     }
     .story {
         /* Elements */
-        img {
+        p, img {
+            display: block;
+            margin: auto;
+            max-width: 720px;
             width: 100%;
         }
         
@@ -220,6 +236,21 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+        }
+    }
+    .newsletter {
+        /* Elements */
+        button {
+            display: block;
+            margin: auto;
+        }
+    }
+
+/* PAGE: Changelog */
+    .changelog {
+        /* Elements */
+        ul {
+            margin-bottom: 30px;
         }
     }
 

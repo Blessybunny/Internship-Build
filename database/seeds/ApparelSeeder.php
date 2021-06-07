@@ -92,6 +92,7 @@ class ApparelSeeder extends Seeder {
             'type' => 'shirt',
             'img_url' => './img/shirt-men-igorotak/series-1-igorotak-shirt-450.jpg'
         ]);
+        
         //Ladies
         Apparel::create([
             'name' => 'Igorotak Seal V-neck Shirt',
@@ -135,6 +136,7 @@ class ApparelSeeder extends Seeder {
             'type' => 'shirt',
             'img_url' => './img/shirt-ladies/sangi-v-neck-shirt 460.jpg'
         ]);
+        
         //Accessories
         Apparel::create([
             'name' => '3-Ply Face Mask (Cordillera Inspired Woven Cloth)',
@@ -157,6 +159,7 @@ class ApparelSeeder extends Seeder {
             'type' => 'accessory',
             'img_url' => './img/accessories/balikbayan-hat-620.jpg'
         ]);
+        
         //Other
         Apparel::create([
             'name' => 'Green Necktie Shirt',

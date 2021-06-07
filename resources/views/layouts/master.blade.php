@@ -49,12 +49,12 @@
                             </li>
                             <li class = "nav-item">
                                 <a class = "nav-link" href = "{{ url('/apparels') }}">
-                                    <i class = "material-icons">apps</i> Apparels
+                                    <i class = "material-icons">store</i> Apparels
                                 </a>
                             </li>
                             <li class = "nav-item">
-                                <a class = "nav-link" href = "{{ url('/analytics') }}">
-                                    <i class = "material-icons">analytics</i> Analytics
+                                <a class = "nav-link" href = "{{ url('/statistics') }}">
+                                    <i class = "material-icons">insights</i> Statistics
                                 </a>
                             </li>
                         </ul>
@@ -63,23 +63,18 @@
             </nav>
             
             <!-- CONTENT -->
-            @yield('content');
+            @yield('content')
             
             <!-- FOOTER -->
             <footer class = "footer">
                 <div class = "container">
-                    <p class = "disclaimer">This website is for educational purposes only as part of an internship program. It only reflects the front-end side of an e-commerce website and does not endorse any of the products listed.</p>
-                    <nav>
-                        <ul>
-                            Quick Links |
-                            <li><a href = "{{ url('/') }}">Home</a></li>
-                            <li><a href = "{{ url('/changelog') }}">Changelog</a></li>
-                        </ul>
-                    </nav>
-                    <div class = "copyright">
-                        &copy;
-                        <script>document.write(new Date().getFullYear())</script>, Naduma Store
-                    </div>
+                    <p>
+                        This website is for educational purposes only as part of an internship program. It only reflects the general idea and
+                        functionalities of both the front-end and back-end sides of an e-commerce website.
+                        <br/>
+                        <br/>
+                        &copy; <script>document.write(new Date().getFullYear())</script>, Naduma Store
+                    </p>
                 </div>
             </footer>
 
