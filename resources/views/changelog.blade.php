@@ -50,7 +50,8 @@
                                 <br/>
                                 <ul>
                                     <h4>June 7</h4>
-                                    <li>Added databases for apparel types and categories.</li>
+                                    <li>Added more attributes to the database for apparels.</li>
+                                    <li>Added "analytics" page.</li>
                                 </ul>
                                 <ul>
                                     <h4>June 4</h4>

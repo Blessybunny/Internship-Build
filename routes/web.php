@@ -1,8 +1,6 @@
 <?php
 
 use App\Apparel;
-use App\Category;
-use App\Type;
 
 use Illuminate\Support\Facades\Route;
 
@@ -30,13 +28,13 @@ use Illuminate\Support\Facades\Route;
 //APPAREL
     Route::get('/apparels/view/{id}', function ($id) {
         $apparel = Apparel::findOrFail($id);
-        $category = Category::find($apparel->category_id);
-        $type = Type::find($apparel->type_id);
-        return view('layouts/apparel', compact('apparel', 'category', 'type'));
+        return view('layouts/apparel', compact('apparel'));
     });
 
 //FOOTER
     Route::get('/changelog', function () {return view('changelog');});
 
 //PREDICTIVE ANALYTICS
-    Route::get('/analytics', function () {return view('analytics');});
+    Route::get('/analytics', function () {
+        return view('analytics');
+    });

@@ -26,17 +26,13 @@
                 <div class = "col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                     <h3>{{ $apparel->name }}</h3>
                     <h4>PHP {{ $apparel->price }}</h4>
+                    <h6>{{ $apparel->sold }} Sold</h6>
+                    <hr/>
                     <p>Shipping calculated at checkout.</p>
                     <br/>
                     <br/>
-                    @if ($type->name === "shirt")
-                        @if (
-                                $apparel->stock_xs > 0 or
-                                $apparel->stock_s > 0 or
-                                $apparel->stock_m > 0 or
-                                $apparel->stock_l > 0 or
-                                $apparel->stock_xl > 0
-                        )
+                    @if ($apparel->type === "shirt")
+                        @if ($apparel->stock_xs > 0 or $apparel->stock_s > 0 or $apparel->stock_m > 0 or $apparel->stock_l > 0 or $apparel->stock_xl > 0)
                             <form>
                                 <table class = "table-custom">
                                     <tbody>
@@ -114,10 +110,41 @@
                             </script>
                         @endif
                     @endif
+                    @if ($apparel->type === "accessory")
+                        @if ($apparel->stock_universal > 0)
+                            <form>
+                                <table class = "table-custom">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class = "form-group">
+                                                    <label for = "">Quantity</label>
+                                                    <input type = "number" class = "form-control" id = "exampleFormControlInput1" placeholder = "Enter Quantity">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class = "form-group">
+                                                    <label for = "">Remaining Stock</label>
+                                                    <br/>
+                                                    <p>{{ $apparel->stock_universal }}</p>
+                                                </div>
+                                            </td>
+                                    </tbody>
+                                </table>
+                            </form>
+                        @else
+                            <h4>This product is sold out.</h4>
+                            <script>
+                                window.onload = () => {
+                                    document.getElementById(`button-container`).innerHTML = null;
+                                };
+                            </script>
+                        @endif
+                    @endif
                 </div>
             </div>
                       
-            <!-- Buttons -->
+            <!-- Shopping buttons -->
             <div id = "button-container" class = "properties row">
                 <div class = "col">
                     <hr/>

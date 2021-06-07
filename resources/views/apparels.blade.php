@@ -53,18 +53,19 @@
                         </div>
                         <div class = "row">
                             @foreach ($apparels as $apparel)
-                                @if ($apparel->category_id == 1)
+                                @if ($apparel->category === "igorotak")
                                     <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
                                         <a href = "{{ url('/apparels/view', ['id' => $apparel->id]) }}">
                                             <img src = "{{ asset($apparel->img_url) }}"/>
                                             <h4>{{ $apparel->name }}</h4>
                                             <h6>From PHP {{ $apparel->price }}</h6>
                                             @if (
-                                                    $apparel->stock_xs === 0 or
-                                                    $apparel->stock_s === 0 or
-                                                    $apparel->stock_m === 0 or
-                                                    $apparel->stock_l === 0 or
-                                                    $apparel->stock_xl === 0
+                                                    $apparel->stock_xs === 0 and
+                                                    $apparel->stock_s === 0 and
+                                                    $apparel->stock_m === 0 and
+                                                    $apparel->stock_l === 0 and
+                                                    $apparel->stock_xl === 0 and
+                                                    $apparel->type === "shirt"
                                             )
                                                 <h6 class = "sold-out">Sold Out</h6>
                                             @endif
@@ -87,18 +88,19 @@
                         </div>
                         <div class = "row">
                             @foreach ($apparels as $apparel)
-                                @if ($apparel->category_id == 2)
+                                @if ($apparel->category === "ladies")
                                     <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
                                         <a href = "{{ url('/apparels/view', ['id' => $apparel->id]) }}">
                                             <img src = "{{ asset($apparel->img_url) }}"/>
                                             <h4>{{ $apparel->name }}</h4>
                                             <h6>From PHP {{ $apparel->price }}</h6>
                                             @if (
-                                                    $apparel->stock_xs === 0 or
-                                                    $apparel->stock_s === 0 or
-                                                    $apparel->stock_m === 0 or
-                                                    $apparel->stock_l === 0 or
-                                                    $apparel->stock_xl === 0
+                                                    $apparel->stock_xs === 0 and
+                                                    $apparel->stock_s === 0 and
+                                                    $apparel->stock_m === 0 and
+                                                    $apparel->stock_l === 0 and
+                                                    $apparel->stock_xl === 0 and
+                                                    $apparel->type === "shirt"
                                             )
                                                 <h6 class = "sold-out">Sold Out</h6>
                                             @endif
@@ -121,18 +123,15 @@
                         </div>
                         <div class = "row">
                             @foreach ($apparels as $apparel)
-                                @if ($apparel->category_id == 3)
+                                @if ($apparel->category === "accessory")
                                     <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
                                         <a href = "{{ url('/apparels/view', ['id' => $apparel->id]) }}">
                                             <img src = "{{ asset($apparel->img_url) }}"/>
                                             <h4>{{ $apparel->name }}</h4>
                                             <h6>From PHP {{ $apparel->price }}</h6>
                                             @if (
-                                                    $apparel->stock_xs === 0 or
-                                                    $apparel->stock_s === 0 or
-                                                    $apparel->stock_m === 0 or
-                                                    $apparel->stock_l === 0 or
-                                                    $apparel->stock_xl === 0
+                                                    $apparel->stock_universal === 0 and
+                                                    $apparel->type === "accessory"
                                             )
                                                 <h6 class = "sold-out">Sold Out</h6>
                                             @endif
@@ -155,18 +154,19 @@
                         </div>
                         <div class = "row">
                             @foreach ($apparels as $apparel)
-                                @if ($apparel->category_id == 4)
+                                @if ($apparel->category === "other")
                                     <div class = "link-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
                                         <a href = "{{ url('/apparels/view', ['id' => $apparel->id]) }}">
                                             <img src = "{{ asset($apparel->img_url) }}"/>
                                             <h4>{{ $apparel->name }}</h4>
                                             <h6>From PHP {{ $apparel->price }}</h6>
                                             @if (
-                                                    $apparel->stock_xs === 0 or
-                                                    $apparel->stock_s === 0 or
-                                                    $apparel->stock_m === 0 or
-                                                    $apparel->stock_l === 0 or
-                                                    $apparel->stock_xl === 0
+                                                    $apparel->stock_xs === 0 and
+                                                    $apparel->stock_s === 0 and
+                                                    $apparel->stock_m === 0 and
+                                                    $apparel->stock_l === 0 and
+                                                    $apparel->stock_xl === 0 and
+                                                    $apparel->type === "shirt"
                                             )
                                                 <h6 class = "sold-out">Sold Out</h6>
                                             @endif
