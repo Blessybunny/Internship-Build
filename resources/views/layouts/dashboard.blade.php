@@ -100,6 +100,7 @@
                     <footer class = "footer">
                         <div class = "container">
                             <p>
+                                <br/>
                                 This website is for educational purposes only as part of an internship program. It only reflects the general idea and
                                 functionalities of both the front-end and back-end sides of an e-commerce website.
                                 <br/>

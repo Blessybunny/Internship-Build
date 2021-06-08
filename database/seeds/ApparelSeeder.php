@@ -1,12 +1,13 @@
 <?php
 
 use App\Apparel;
-use App\Category;
+use App\Minimum;
 use Illuminate\Database\Seeder;
 
 class ApparelSeeder extends Seeder {
-    //Preserve apparel data
     public function run () {
+        //Minimums
+        
         //Igorotak
         Apparel::create([
             'name' => 'Floating Igorotak Django Shirt',
