@@ -41,19 +41,26 @@ img {
             border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         }
     }
-.table {
-    /* Elements */
-    .green {
-        color: green;
+    .table {
+        /* Elements */
+        tbody tr:hover {
+            background-color: rgba(0, 0, 0, .1);
+        }
+        tbody td:hover {
+            cursor: pointer;
+        }
     }
-    .orange {
-        color: orange;
-    }
-    .red {
-        color: red;
-    }
-}
-                
+       
+        /* Classes */
+        .green {
+            color: green;
+        }
+        .orange {
+            color: orange;
+        }
+        .red {
+            color: red;
+        }         
 /* GRID SYSTEM */
     .row [class *= "col"] {
         padding-bottom: 15px;
