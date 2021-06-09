@@ -31,6 +31,9 @@
                     <p>Shipping calculated at checkout.</p>
                     <br/>
                     <br/>
+                    <button type = "button" class=  "btn btn-primary" data-toggle = "modal" data-target = "#sizeChartModal">
+                        <i class = "material-icons">bar_chart</i> Size Chart
+                    </button>
                     @if ($apparel->type === "shirt")
                         @if ($apparel->stock_xs > 0 or $apparel->stock_s > 0 or $apparel->stock_m > 0 or $apparel->stock_l > 0 or $apparel->stock_xl > 0)
                             <form>
@@ -160,6 +163,61 @@
                 </div>
             </div>
             
+        </div>
+    </div>
+
+    <!-- MODALS - Size Chart -->
+    <div class = "modal fade" id = "sizeChartModal">
+        <div class = "modal-dialog modal-dialog-centered">
+            <div class = "modal-content">
+                <div class = "modal-header">
+                    <h4 class = "modal-title">Size Chart
+                        <br/>
+                        <small>Adult Sized Round Neck Shirt</small>
+                    </h4>
+                    <button type = "button" class = "close" data-dismiss = "modal" aria-label = "Close">
+                        <i class = "material-icons">clear</i>
+                    </button>
+                </div>
+                <div class = "modal-body container">
+                    <table class = "table custom">
+                        <thead>
+                            <tr>
+                                <th class = "text-center">Size</th>
+                                <th class = "text-center">Width (Inches)</th>
+                                <th class = "text-center">Length (Inches)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class = "text-center">XS</td>
+                                <td class = "text-center">18</td>
+                                <td class = "text-center">26</td>
+                            </tr>
+                            <tr>
+                                <td class = "text-center">S</td>
+                                <td class = "text-center">19</td>
+                                <td class = "text-center">27</td>
+                            </tr>
+                            <tr>
+                                <td class = "text-center">M</td>
+                                <td class = "text-center">20</td>
+                                <td class = "text-center">28</td>
+                            </tr>
+                            <tr>
+                                <td class = "text-center">L</td>
+                                <td class = "text-center">21</td>
+                                <td class = "text-center">29</td>
+                            </tr>
+                            <tr>
+                                <td class = "text-center">XL</td>
+                                <td class = "text-center">22</td>
+                                <td class = "text-center">30</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 

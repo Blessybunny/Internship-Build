@@ -15,7 +15,8 @@
         <div class = "container-fluid">
             <div class = "row">
                 <div class = "col">
-                    <!-- Apparel - Shirts -->
+                    
+                    <!-- Table - Shirts -->
                     <h3>Apparels - Shirts</h3>
                     <hr/>
                     <table class = "table table-shopping">
@@ -36,7 +37,7 @@
                             @foreach ($apparels as $apparel)
                                 @if ($apparel->type === "shirt")
                                     <tr onclick = "popModal({{ $apparel->id }}, '{{ $apparel->name }}', {{ $apparel->price }}, '{{ $apparel->type }}', {{ $apparel->stock_universal }}, [{{ $apparel->stock_xs }}, {{ $apparel->stock_s }}, {{ $apparel->stock_m }}, {{ $apparel->stock_l }}, {{ $apparel->stock_xl }}])" data-toggle = "modal" data-target = "#apparelModal">
-                                        <td>{{ $apparel->name }}</td>
+                                        <td id = "apparel-image-{{ $apparel->id }}" data-image = "{{ asset($apparel->img_url) }}">{{ $apparel->name }}</td>
                                         <td>PHP {{ $apparel->price }}</td>
                                         <td class = "text-center @if ($apparel->stock_xs >= 40) green @elseif ($apparel->stock_xs >= 20) black @elseif ($apparel->stock_xs >= 10) orange @else red @endif">{{ $apparel->stock_xs }}</td>
                                         <td class = "text-center @if ($apparel->stock_s >= 40) green @elseif ($apparel->stock_s >= 20) black @elseif ($apparel->stock_s >= 10) orange @else red @endif">{{ $apparel->stock_s }}</td>
@@ -51,7 +52,7 @@
                           </tbody>
                     </table>
                     
-                    <!-- Apparel - Accessories -->
+                    <!-- Table - Accessories -->
                     <h3>Apparels - Accessories</h3>
                     <hr/>
                     <table class = "table table-shopping">
@@ -67,7 +68,7 @@
                             @foreach ($apparels as $apparel)
                                 @if ($apparel->type === "accessory")
                                     <tr onclick = "popModal({{ $apparel->id }}, '{{ $apparel->name }}', {{ $apparel->price }}, '{{ $apparel->type }}', {{ $apparel->stock_universal }}, [{{ $apparel->stock_xs }}, {{ $apparel->stock_s }}, {{ $apparel->stock_m }}, {{ $apparel->stock_l }}, {{ $apparel->stock_xl }}])" data-toggle = "modal" data-target = "#apparelModal">
-                                        <td>{{ $apparel->name }}</td>
+                                        <td id = "apparel-image-{{ $apparel->id }}" data-image = "{{ asset($apparel->img_url) }}">{{ $apparel->name }}</td>
                                         <td>PHP {{ $apparel->price }}</td>
                                         <td class = "text-center @if ($apparel->stock_universal >= 40) green @elseif ($apparel->stock_universal >= 20) black @elseif ($apparel->stock_universal >= 10) orange @else red @endif">{{ $apparel->stock_universal }}</td>
                                         <td class = "text-center">PHP {{ number_format($apparel->stock_universal * $apparel->price, 2) }}</td>
@@ -77,12 +78,12 @@
                           </tbody>
                     </table>
                     
-                    <!-- Apparel - Modals -->
+                    <!-- Modals - Apparels -->
                     <script>
                         function popModal (id, name, price, type, stockUniversal, stocks) {
                             //Print name and price
-                            document.getElementById(`modal-apparel-name`).innerHTML = name;
-                            document.getElementById(`modal-apparel-price`).innerHTML = price;
+                            document.getElementById(`modal-apparel-name`).innerHTML = `${name} | PHP ${price.toFixed(2)}`;
+                            document.getElementById(`modal-apparel-image`).src = document.getElementById(`apparel-image-${id}`).getAttribute(`data-image`);
                             
                             //Variables
                             let modalQuantity = document.getElementById(`modal-quantity`);
@@ -96,9 +97,7 @@
                                     if (stocks[i] >= 40) {
                                         paragraph.innerHTML = `This product is too high in stock of ${sizes[i]} sizes (quantity: ${stocks[i]}, maximum of 40 recommended). Consider halting production.`;
                                     }
-                                    else if (stocks[i] >= 20) {
-                                        paragraph.innerHTML = `This product has an optimal amount of stocks in ${sizes[i]} sizes (quantity: ${stocks[i]}).`;
-                                    }
+                                    else if (stocks[i] >= 20) {}
                                     else if (stocks[i] >= 10) {
                                         paragraph.className = `orange`;
                                         paragraph.innerHTML = `This product is low in stock of ${sizes[i]} sizes (quantity: ${stocks[i]}, minimum of 20 recommended).`;
@@ -117,9 +116,7 @@
                                 if (stockUniversal >= 40) {
                                     paragraph.innerHTML = `This product is too high in stock (quantity: ${stockUniversal}, maximum of 40 recommended). Consider halting production.`;
                                 }
-                                else if (stockUniversal >= 20) {
-                                    paragraph.innerHTML = `This product has an optimal amount of stock (quantity: ${stockUniversal}).`;
-                                }
+                                else if (stockUniversal >= 20) {}
                                 else if (stockUniversal >= 10) {
                                     paragraph.className = `orange`;
                                     paragraph.innerHTML = `This product is low in stock (quantity: ${stockUniversal}, minimum of 20 recommended).`;
@@ -128,11 +125,12 @@
                                     paragraph.className = `red`;
                                     paragraph.innerHTML = `This product is very low in stock (quantity: ${stockUniversal}, minimum of 20 recommended).`;
                                 }
+                                modalQuantity.appendChild(paragraph);
                             }
                         }
                     </script>
                     <div class = "modal fade" id = "apparelModal">
-                        <div class = "modal-dialog modal-lg">
+                        <div class = "modal-dialog modal-dialog-centered modal-lg">
                             <div class = "modal-content">
                                 <div class = "modal-header">
                                     <h4 id = "modal-apparel-name" class = "modal-title"></h4>
@@ -140,13 +138,16 @@
                                         <span aria-hidden = "true">&times;</span>
                                     </button>
                                 </div>
-                                <div class = "modal-body">
-                                    <p>Price: PHP <a id = "modal-apparel-price"></a></p>
-                                    <p>Notes: </p>
-                                    <div id = "modal-quantity"></div>
-                                </div>
-                                <div class = "modal-footer">
-                                    <button type = "button" class = "btn" data-dismiss = "modal">Close</button>
+                                <div class = "modal-body container">
+                                    <div class = "row">
+                                        <div class = "col-xl-4">
+                                            <img id = "modal-apparel-image"/>
+                                        </div>
+                                        <div class = "col-xl-8">
+                                            <h4>Notes: </h4>
+                                            <div id = "modal-quantity"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

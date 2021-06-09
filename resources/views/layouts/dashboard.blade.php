@@ -70,7 +70,7 @@
                             <li class = "nav-item active-pro">
                                 <a class = "nav-link" href = "{{ url('/changelog') }}">
                                     <i class = "material-icons">list_alt</i>
-                                    <p>Changelogs</p>
+                                    <p>Changelog</p>
                                 </a>
                             </li>
                         </ul>

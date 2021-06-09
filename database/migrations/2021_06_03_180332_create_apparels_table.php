@@ -11,6 +11,7 @@ class CreateApparelsTable extends Migration {
             
             $table->string('name');
             $table->decimal('price', 12, 2);
+            $table->string('img_url');
             
             $table->string('category');
             $table->string('type');
@@ -22,9 +23,8 @@ class CreateApparelsTable extends Migration {
             $table->integer('stock_m')->default(50);
             $table->integer('stock_l')->default(5);
             $table->integer('stock_xl')->default(0);
-            $table->integer('sold')->default(60);
             
-            $table->string('img_url');
+            $table->integer('sold')->default(60);
             
             $table->timestamps();
         });
