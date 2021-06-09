@@ -16,7 +16,7 @@ class CreateApparelsTable extends Migration {
             $table->string('category');
             $table->string('type');
             
-            $table->integer('stock_universal')->default(0);
+            $table->integer('stock_universal')->default(10);
             
             $table->integer('stock_xs')->default(5);
             $table->integer('stock_s')->default(5);

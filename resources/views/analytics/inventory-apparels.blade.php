@@ -17,7 +17,7 @@
                 <div class = "col">
                     
                     <!-- Table - Shirts -->
-                    <h3>Apparels - Shirts</h3>
+                    <h3>Shirts</h3>
                     <hr/>
                     <table class = "table table-shopping">
                         <thead>
@@ -53,7 +53,7 @@
                     </table>
                     
                     <!-- Table - Accessories -->
-                    <h3>Apparels - Accessories</h3>
+                    <h3>Accessories</h3>
                     <hr/>
                     <table class = "table table-shopping">
                         <thead>
@@ -138,7 +138,7 @@
                                         <span aria-hidden = "true">&times;</span>
                                     </button>
                                 </div>
-                                <div class = "modal-body container">
+                                <div class = "modal-body">
                                     <div class = "row">
                                         <div class = "col-xl-4">
                                             <img id = "modal-apparel-image"/>

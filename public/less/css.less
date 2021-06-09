@@ -24,20 +24,14 @@ img {
             width: 100%;
 }
 
-/* TABLES (Custom) */
-    .table-custom {
-        /* Main */
-        width: 100%;
-        
-        /* Elements */
-        td, th {
-            padding: 10px;
-        }
-    }
+/* TABLES */
     .table {
         /* Main */
         &.custom {
             th {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            }
+            td {
                 border-bottom: 1px solid rgba(0, 0, 0, 0.06);
             }
         }
@@ -121,14 +115,20 @@ img {
             color: #AAAAAA !important;
         }
         option[value = ""][disabled] {
-            color: rgba(0, 0, 0, .6);
             display: none;
+        }
+        input[type = "text"]::placeholder, input[type = "email"]::placeholder {
+            color: #495057;
+        }
+        input::selection {
+            background-color: rgba(orangered, .6);
+            color: #FFF;
         }
         
         /* Classes */
         .form-control {
-            /* Main */
             background-image: linear-gradient(to top, orangered 2px, rgba(orangered, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
+            height: calc(2.4375rem + 2px);
         }
     }
     .btn {
@@ -146,8 +146,6 @@ img {
         }
     }
     .modal {
-        /* Main */
-        
         /* Classes */
         .modal-content {
             border-radius: 0;
@@ -291,7 +289,11 @@ img {
     .properties {
         /* Elements */
         h3 {
-            text-align: left !important;
+            text-align: left;
+        }
+        td h3 {
+            margin: 5px;
+            text-align: center;
         }
         h4 {
             font-weight: bold;
@@ -333,12 +335,5 @@ img {
             img {
                 width: 75% !important;
             }
-        }
-    }
-
-/* PAGE: Inventory - Apparels */
-    .inventory-apparels {
-        /* Elements */
-        tbody > tr > td {
         }
     }

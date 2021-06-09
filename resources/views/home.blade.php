@@ -133,7 +133,7 @@
                 <div class = "col">
                     <form>
                         <div class = "form-group">
-                            <input type = "email" class = "form-control" placeholder = "Email address">
+                            <input type = "email" class = "form-control" placeholder = "Email address"/>
                             <small class = "form-text text-muted">Sign up to our newsletter to stay updated!</small>
                         </div>
                         <button type = "button" class = "btn btn-lg btn-primary" onclick = "window.alert('Dummy button clicked!');">
