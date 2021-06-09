@@ -41,5 +41,5 @@ use Illuminate\Support\Facades\Route;
         return view('analytics.inventory-apparels', compact('apparels'));
     });
     Route::get('/statistics/inventory-materials', function () {return view('analytics.inventory-materials');});
-    Route::get('/statistics/shipping', function () {return view('analytics.shipping');});
+    Route::get('/statistics/orders', function () {return view('analytics.orders');});
     Route::get('/statistics/sandbox', function () {return view('analytics.sandbox');});

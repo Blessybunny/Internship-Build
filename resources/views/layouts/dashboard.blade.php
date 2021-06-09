@@ -56,9 +56,9 @@
                                 </a>
                             </li>
                             <li class = "nav-item @yield('link-4')">
-                                <a class = "nav-link" href = "{{ url('/statistics/shipping') }}">
+                                <a class = "nav-link" href = "{{ url('/statistics/orders') }}">
                                     <i class = "material-icons">local_shipping</i>
-                                    <p>Shipping Logs</p>
+                                    <p>Order Logs</p>
                                 </a>
                             </li>
                             <li class = "nav-item @yield('link-5')">
@@ -113,7 +113,6 @@
                 </div>
                 
             </div>
-         
         </body>
         
         <!-- Material Dashboard - https://www.creative-tim.com/product/material-dashboard -->

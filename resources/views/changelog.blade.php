@@ -49,7 +49,7 @@
                                     <h5>June 8</h5>
                                     <li>Added "inventory" page for readymade apparels.</li>
                                     <li>Added "inventory" page for production materials.</li>
-                                    <li>Added "shipping" page for currently pending deliveries.</li>
+                                    <li>Added "orders" page for currently pending orders.</li>
                                     <li>Added "sandbox" page for testing purposes.</li>
                                 </ul>
                                 <ul>
