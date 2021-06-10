@@ -7,7 +7,8 @@
 @section('content')
 
     <!-- MAIN CONTENT -->
-    <form>
+    <form action = "{{ url('/apparels/view', ['id' => $apparel->id]) }}" method = "POST">
+        @csrf
         <div class = "main section">
             <div class = "container">
 
@@ -240,7 +241,7 @@
                             <div class = "row">
                                 <div class = "col-12">
                                     <h4>Contact Information</h4>
-                                    <input type = "email" class = "form-control" placeholder = "Enter email address" required/>
+                                    <input type = "email" class = "form-control" placeholder = "Enter email address"/>
                                     <small class = "form-text text-muted">Email address</small>
                                 </div>
                             </div>
@@ -262,13 +263,14 @@
 
                             <!-- Content wrapper -->
                             <div class = "row tab-content">
+                                <!-- Ship -->
                                 <div class = "tab-pane active" id = "tab-ship">
                                     <div class = "container">
                                         <div class = "row">
                                             <!-- Payment method -->
                                             <div class = "col-12">
                                                 <h4>Payment Method</h4>
-                                                <select id = "" class = "form-control selectpicker" required>
+                                                <select id = "" class = "form-control selectpicker">
                                                     <option value = "C.O.D.">C.O.D. (Cash on delivery)</option>
                                                     <option value = "PayPal">PayPal</option>
                                                 </select>
@@ -276,27 +278,27 @@
                                             <!-- Full name -->
                                             <div class = "col-12">
                                                 <h4>Shipping Address</h4>
-                                                <input type = "text" class = "form-control" placeholder = "Enter full name" required/>
+                                                <input type = "text" class = "form-control" placeholder = "Enter full name"/>
                                                 <small class = "form-text text-muted">Full Name</small>
                                             </div>
                                             <!-- Address -->
                                             <div class = "col-12">
-                                                <input type = "text" class = "form-control" placeholder = "Enter address" required/>
+                                                <input type = "text" class = "form-control" placeholder = "Enter address"/>
                                                 <small class = "form-text text-muted">Address</small>
                                             </div>
                                             <!-- Postal code -->
                                             <div class = "col-6">
-                                                <input type = "text" class = "form-control" placeholder = "Enter postal code" required/>
+                                                <input type = "text" class = "form-control" placeholder = "Enter postal code" />
                                                 <small class = "form-text text-muted">Postal Code</small>
                                             </div>
                                             <!-- City -->
                                             <div class = "col-6">
-                                                <input type = "text" class = "form-control" placeholder = "Enter city name" required/>
+                                                <input type = "text" class = "form-control" placeholder = "Enter city name"/>
                                                 <small class = "form-text text-muted">City</small>
                                             </div>
                                             <!-- Region -->
                                             <div class = "col-6">
-                                                <select id = "" class = "form-control selectpicker" required>
+                                                <select id = "" class = "form-control selectpicker">
                                                     <option value = "" disabled selected>Select Region</option>
                                                     <option value = "Abra">Abra</option>
                                                     <option value = "Agusan del Norte">Agusan del Norte</option>
@@ -389,7 +391,7 @@
                                             </div>
                                             <!-- Country -->
                                             <div class = "col-6">
-                                                <select id = "" class = "form-control selectpicker" required>
+                                                <select id = "" class = "form-control selectpicker">
                                                     <option value = "Philippines" selected>Philippines</option>
                                                 </select>
                                                 <small class = "form-text text-muted">Country</small>
@@ -397,6 +399,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Pick-up -->
                                 <div class = "tab-pane" id = "tab-pick-up">
                                     <div class = "container">
                                         <div class = "row">
@@ -422,7 +425,9 @@
                             </div>
 
                             <div class = "modal-footer justify-content-center">
-                                <a href = "#pablo" class = "btn btn-lg btn-primary btn-round">Complete Order</a>
+                                <button type = "submit" class = "btn btn-primary btn-round">
+                                    <i class = "material-icons">shopping_cart</i> Complete Order
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -439,9 +444,6 @@
                 else if (type === `accessory`) {
                     selected.innerHTML = `Quantity: ${quantity}`;
                 }
-            }
-            function deliveryMethod () {
-                
             }
         </script>
     </form>
