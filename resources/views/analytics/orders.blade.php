@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    Inventory - Shipping Logs
+    Inventory - Orders
 @endsection
 
 @section('content')        
@@ -18,7 +18,7 @@
             <div class = "row">
 
                 <div class = "col-lg-6 col-md-6 col-sm-6">
-                    <p>Shipping Logs Page</p>
+                    <p>Order Logs Page</p>
                 </div>
             </div>
             

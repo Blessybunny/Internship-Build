@@ -21,7 +21,7 @@
                     <hr/>
                     <table class = "table table-shopping">
                         <thead>
-                        <tr>
+                            <tr>
                                 <th>Apparel Name</th>
                                 <th>Price</th>
                                 <th class = "text-center">Quantity (XS)</th>
@@ -57,7 +57,7 @@
                     <hr/>
                     <table class = "table table-shopping">
                         <thead>
-                        <tr>
+                            <tr>
                                 <th>Apparel Name</th>
                                 <th>Price</th>
                                 <th class = "text-center">Quantity</th>
@@ -86,8 +86,8 @@
                             document.getElementById(`modal-apparel-image`).src = document.getElementById(`apparel-image-${id}`).getAttribute(`data-image`);
                             
                             //Variables
-                            let modalQuantity = document.getElementById(`modal-quantity`);
-                            modalQuantity.innerHTML = ``;
+                            let quantity = document.getElementById(`modal-quantity`);
+                            quantity.innerHTML = ``;
                             
                             //Quantities for shirts
                             if (type === `shirt`) {
@@ -106,7 +106,7 @@
                                         paragraph.className = `red`;
                                         paragraph.innerHTML = `This product is very low in stock of ${sizes[i]} sizes (quantity: ${stocks[i]}, minimum of 20 recommended).`;
                                     }
-                                    modalQuantity.appendChild(paragraph);
+                                    quantity.appendChild(paragraph);
                                 }
                             }
                             
@@ -125,7 +125,7 @@
                                     paragraph.className = `red`;
                                     paragraph.innerHTML = `This product is very low in stock (quantity: ${stockUniversal}, minimum of 20 recommended).`;
                                 }
-                                modalQuantity.appendChild(paragraph);
+                                quantity.appendChild(paragraph);
                             }
                         }
                     </script>

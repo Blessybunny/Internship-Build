@@ -18,7 +18,7 @@
                 </div>
             </div>
                 
-            <!-- Navigation filter -->
+            <!-- Navigation tabs -->
             <div class = "tabs row">
                 <div class = "col">
                     <ul class = "nav navbar-nav justify-content-center" data-tabs = "tabs">

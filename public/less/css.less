@@ -130,6 +130,12 @@ img {
             background-image: linear-gradient(to top, orangered 2px, rgba(orangered, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
             height: calc(2.4375rem + 2px);
         }
+        .form-check .form-check-input:checked~.circle {
+            border-color: orangered;
+        }
+        .form-check .form-check-label .circle .check {
+            background-color: orangered;
+        }
     }
     .btn {
         /* Main */
@@ -151,6 +157,10 @@ img {
             border-radius: 0;
             border: 0;
         }
+    }
+    .tab-pane.active {
+        /* Main */
+        width: 100%;
     }
                 
 /* APPAREL CARDS */
