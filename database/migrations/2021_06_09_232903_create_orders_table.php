@@ -10,21 +10,21 @@ class CreateOrdersTable extends Migration {
             $table->id();
             
             $table->string('email');
-            $table->string('delivery-type');
+            $table->string('delivery_method');
+            $table->string('payment_method')->nullable();
             
-            $table->string('payment-type')->nullable();
             $table->string('name')->nullable();
             $table->string('address')->nullable();
-            $table->string('postal-code')->nullable();
-            $table->string('city-name')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('city')->nullable();
             $table->string('region')->nullable();
             $table->string('country')->nullable();
             
-            $table->string('pickup-location')->nullable();
+            $table->string('pickup_location')->nullable();
             
-            $table->integer('apparel-id');
-            $table->integer('apparel-quantity');
-            $table->string('apparel-size')->nullable();
+            $table->integer('apparel_id')->nullable();//
+            $table->integer('apparel_quantity')->nullable();//
+            $table->string('apparel_size')->nullable();
             
             $table->timestamps();
         });

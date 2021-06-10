@@ -66,7 +66,7 @@
                                             </td>
                                             <td class = "text-left">
                                                 <label>Quantity</label>
-                                                <input id = "form-stock-quantity" type = "number" class = "form-control" value = "1"/>
+                                                <input onfocusout = "quantityCheck(value)" id = "form-stock-quantity" type = "number" class = "form-control" value = "1"/>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -127,7 +127,7 @@
                                         <tr>
                                             <td>
                                                 <label>Quantity</label>
-                                                <input id = "form-stock-quantity" type = "number" class = "form-control" value = "1"/>
+                                                <input onfocusout = "quantityCheck(value)" id = "form-stock-quantity" type = "number" class = "form-control" value = "1"/>
                                             </td>
                                             <td class = "text-center">
                                                 <label>Remaining Stock</label>
@@ -162,6 +162,12 @@
                         </div>
                     </div>
                 </div>
+                <script>
+                    function quantityCheck () {
+                        let quantity = document.getElementById(`form-stock-quantity`);
+                        if (quantity.value <= 0) quantity.value = 1;
+                    }
+                </script>
 
             </div>
         </div>
@@ -241,7 +247,7 @@
                             <div class = "row">
                                 <div class = "col-12">
                                     <h4>Contact Information</h4>
-                                    <input type = "email" class = "form-control" placeholder = "Enter email address"/>
+                                    <input name = "email" type = "email" class = "form-control" placeholder = "Enter email address" required/>
                                     <small class = "form-text text-muted">Email address</small>
                                 </div>
                             </div>
@@ -252,13 +258,46 @@
                                     <h4>Delivery Method</h4>
                                     <ul class = "nav navbar-nav" data-tabs = "tabs">
                                         <li class = "nav-item">
-                                            <a class = "nav-link active" href = "#tab-ship" data-toggle = "tab">Ship</a>
+                                            <a onclick = "changeDeliveryMethod('ship')" class = "nav-link active" href = "#tab-ship" data-toggle = "tab">Ship</a>
                                         </li>
                                         <li class = "nav-item">
-                                            <a class = "nav-link" href = "#tab-pick-up" data-toggle = "tab">Pickup</a>
+                                            <a onclick = "changeDeliveryMethod('pick-up')" class = "nav-link" href = "#tab-pick-up" data-toggle = "tab">Pickup</a>
                                         </li>
                                     </ul>
                                 </div>
+                                <div class = "hidden">
+                                    <input id = "hidden-radio-delivery-method-ship" type = "radio" name = "delivery-method" value = "ship" checked/>
+                                    <input id = "hidden-radio-delivery-method-pick-up" type = "radio" name = "delivery-method" value = "pick-up"/>
+                                </div>
+                                <script>
+                                    function changeDeliveryMethod (type) {
+                                        //Vaiables
+                                        let ship = document.getElementById(`hidden-radio-delivery-method-ship`),
+                                            pickUp = document.getElementById(`hidden-radio-delivery-method-pick-up`),
+                                            shipInputs = [
+                                                document.getElementById(`input-name`),
+                                                document.getElementById(`input-address`),
+                                                document.getElementById(`input-postal-code`),
+                                                document.getElementById(`input-city`)
+                                            ];
+                                        
+                                        //Ship delivery method
+                                        if (type === `ship`) {
+                                            ship.checked = true;
+                                            for (let i = 0, ii = shipInputs.length; i < ii; i++) {
+                                                shipInputs[i].required = true;
+                                            }
+                                        }
+                                        
+                                        //Pick-up delivery method
+                                        else if (type === `pick-up`) {
+                                            pickUp.checked = true;
+                                            for (let i = 0, ii = shipInputs.length; i < ii; i++) {
+                                                shipInputs[i].required = false;
+                                            }
+                                        }
+                                    }
+                                </script>
                             </div>
 
                             <!-- Content wrapper -->
@@ -270,7 +309,7 @@
                                             <!-- Payment method -->
                                             <div class = "col-12">
                                                 <h4>Payment Method</h4>
-                                                <select id = "" class = "form-control selectpicker">
+                                                <select name = "payment-method" class = "form-control selectpicker">
                                                     <option value = "C.O.D.">C.O.D. (Cash on delivery)</option>
                                                     <option value = "PayPal">PayPal</option>
                                                 </select>
@@ -278,28 +317,27 @@
                                             <!-- Full name -->
                                             <div class = "col-12">
                                                 <h4>Shipping Address</h4>
-                                                <input type = "text" class = "form-control" placeholder = "Enter full name"/>
+                                                <input id = "input-name" name = "name" type = "text" class = "form-control" placeholder = "Enter full name" required/>
                                                 <small class = "form-text text-muted">Full Name</small>
                                             </div>
                                             <!-- Address -->
                                             <div class = "col-12">
-                                                <input type = "text" class = "form-control" placeholder = "Enter address"/>
+                                                <input id = "input-address" name = "address" type = "text" class = "form-control" placeholder = "Enter address" required/>
                                                 <small class = "form-text text-muted">Address</small>
                                             </div>
                                             <!-- Postal code -->
                                             <div class = "col-6">
-                                                <input type = "text" class = "form-control" placeholder = "Enter postal code" />
+                                                <input id = "input-postal-code" name = "postal-code" type = "text" class = "form-control" placeholder = "Enter postal code" required/>
                                                 <small class = "form-text text-muted">Postal Code</small>
                                             </div>
                                             <!-- City -->
                                             <div class = "col-6">
-                                                <input type = "text" class = "form-control" placeholder = "Enter city name"/>
+                                                <input id = "input-city" name = "city" type = "text" class = "form-control" placeholder = "Enter city name" required/>
                                                 <small class = "form-text text-muted">City</small>
                                             </div>
                                             <!-- Region -->
                                             <div class = "col-6">
-                                                <select id = "" class = "form-control selectpicker">
-                                                    <option value = "" disabled selected>Select Region</option>
+                                                <select name = "region" class = "form-control selectpicker">
                                                     <option value = "Abra">Abra</option>
                                                     <option value = "Agusan del Norte">Agusan del Norte</option>
                                                     <option value = "Agusan del Sur">Agusan del Sur</option>
@@ -391,7 +429,7 @@
                                             </div>
                                             <!-- Country -->
                                             <div class = "col-6">
-                                                <select id = "" class = "form-control selectpicker">
+                                                <select name = "country" class = "form-control selectpicker">
                                                     <option value = "Philippines" selected>Philippines</option>
                                                 </select>
                                                 <small class = "form-text text-muted">Country</small>
@@ -423,7 +461,8 @@
                                     </div>
                                 </div>
                             </div>
-
+                            
+                            <!-- Submit -->
                             <div class = "modal-footer justify-content-center">
                                 <button type = "submit" class = "btn btn-primary btn-round">
                                     <i class = "material-icons">shopping_cart</i> Complete Order

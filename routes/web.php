@@ -1,6 +1,7 @@
 <?php
 
 use App\Apparel;
+use App\Order;
 
 use Illuminate\Support\Facades\Route;
 
@@ -31,32 +32,43 @@ use Illuminate\Support\Facades\Route;
         return view('layouts/apparel', compact('apparel'));
     });
     Route::post('/apparels/view/{id}', function ($id) {
-        /*
-        
-        //Validate
-        $validated_fields = request()->validate([
-            'title' => 'required',
-            'date-year' => 'required',
-            'date-month' => 'required',
-            'date-day' => 'required',
-            'runtime' => 'required',
-            'age-rating' => 'required',
-            'plot' => 'required',
-            'genre' => 'nullable'
-        ]);
-        //Add user to database
-        $movie = Movie::create([
-            'title' => $validated_fields['title'],
-            'release_date' => $validated_fields['date-year'].'-'.$validated_fields['date-month'].'-'.$validated_fields['date-day'],
-            'runtime' => $validated_fields['runtime'],
-            'age_rating' => $validated_fields['age-rating'],
-            'plot' => $validated_fields['plot']
-        ]);
-        //Record new checked genres
-        foreach ($validated_fields['genre'] as $record) {
-            Genre::create(['movie_id' => $movie->id, 'genre' => $record]);
+        //Validate if ship delivery
+        $delivery_method = request()->validate(['delivery-method' => 'required']);
+        if ($delivery_method['delivery-method'] === 'ship') {
+            $validated_fields = request()->validate([
+                'email' => 'required',
+                'payment-method' => 'required',
+                'name' => 'required',
+                'address' => 'required',
+                'postal-code' => 'required',
+                'city' => 'required',
+                'region' => 'required',
+                'country' => 'required'
+            ]);
+            $order = Order::create([
+                'email' => $validated_fields['email'],
+                'delivery_method' => $delivery_method['delivery-method'],
+                'payment_method' => $validated_fields['payment-method'],
+                'name' => $validated_fields['name'],
+                'address' => $validated_fields['address'],
+                'postal_code' => $validated_fields['postal-code'],
+                'city' => $validated_fields['city'],
+                'region' => $validated_fields['region'],
+                'country' => $validated_fields['country'],
+            ]);
         }
-        */
+        
+        //Validate if pick-up delivery
+        else if ($delivery_method['delivery-method'] === 'pick-up') {
+            $validated_fields = request()->validate([
+                'email' => 'required',
+            ]);
+            $order = Order::create([
+                'email' => $validated_fields['email'],
+                'delivery_method' => $delivery_method['delivery-method']
+            ]);
+        }
+        
         //Return to same page
         return redirect('/apparels/view/'.$id.'');
     });
