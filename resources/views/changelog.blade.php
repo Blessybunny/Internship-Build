@@ -46,8 +46,16 @@
                                 </ul>
                                 <br/>
                                 <ul>
+                                    <h5>June 10</h5>
+                                    <li>Functionalities for each corresponding apparels added.</li>
+                                </ul>
+                                <ul>
+                                    <h5>June 9</h5>
+                                    <li>Functionalities for "inventory" page for products added.</li>
+                                </ul>
+                                <ul>
                                     <h5>June 8</h5>
-                                    <li>Added "inventory" page for readymade apparels.</li>
+                                    <li>Added "inventory" page for products.</li>
                                     <li>Added "inventory" page for production materials.</li>
                                     <li>Added "orders" page for currently pending orders.</li>
                                     <li>Added "sandbox" page for testing purposes.</li>
@@ -102,38 +110,6 @@
                         <div class = "row">
                             <div class = "col">
                                 <hr/>
-                                <ul>
-                                    <h5>To Implement</h5>
-                                    <li>
-                                        <ul>
-                                            Add a new page for the channel of payment:
-                                            <li>Contact information: email or mobile number</li>
-                                            <li>Delivery method: Ship or pick-up</li>
-                                        </ul>
-                                        <ul>
-                                            If pick-up:
-                                            <li>Drop-selection for available addresses.</li>
-                                        </ul>
-                                        <ul>
-                                            If shipping:
-                                            <li>First name (optional)</li>
-                                            <li>Address</li>
-                                            <li>Apartment, suite, etc. (optional)</li>
-                                            <li>Postal code</li>
-                                            <li>Region (benchmark on NADUMA)</li>
-                                            <li>Country (just Philippines)</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        Payment phase (benchmark on NADUMA)
-                                    </li>
-                                    <li>
-                                        <ul>
-                                            For shipping implementation:
-                                            <li>Add database for "Delivery".</li>
-                                        </ul>
-                                    </li>
-                                </ul>
                                 <ul>
                                     <h5>General</h5>
                                     <li>Narrow down essential elements found in Material Dashboard.</li>
