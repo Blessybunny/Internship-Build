@@ -38,7 +38,7 @@
                                         <tr>
                                             <td>
                                                 <label>Size</label>
-                                                <select id = "form-stock-size" class = "form-control selectpicker" onchange = "displayStock(value)">
+                                                <select name = "apparel-size" id = "form-stock-size" class = "form-control selectpicker" onchange = "displayStock(value)">
                                                     @if ($apparel->stock_xs > 0)
                                                         <option value = "xs">XS</option>
                                                     @endif
@@ -66,7 +66,7 @@
                                             </td>
                                             <td class = "text-left">
                                                 <label>Quantity</label>
-                                                <input onfocusout = "quantityCheck(value)" id = "form-stock-quantity" type = "number" class = "form-control" value = "1"/>
+                                                <input name = "apparel-quantity" onfocusout = "quantityCheck(value)" id = "form-stock-quantity" type = "number" class = "form-control" value = "1"/>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -127,7 +127,7 @@
                                         <tr>
                                             <td>
                                                 <label>Quantity</label>
-                                                <input onfocusout = "quantityCheck(value)" id = "form-stock-quantity" type = "number" class = "form-control" value = "1"/>
+                                                <input name = "apparel-quantity" onfocusout = "quantityCheck(value)" id = "form-stock-quantity" type = "number" class = "form-control" value = "1" />
                                             </td>
                                             <td class = "text-center">
                                                 <label>Remaining Stock</label>
@@ -268,6 +268,7 @@
                                 <div class = "hidden">
                                     <input id = "hidden-radio-delivery-method-ship" type = "radio" name = "delivery-method" value = "ship" checked/>
                                     <input id = "hidden-radio-delivery-method-pick-up" type = "radio" name = "delivery-method" value = "pick-up"/>
+                                    <input type = "text" name = "apparel-id" value = "{{ $apparel->id }}"/>
                                 </div>
                                 <script>
                                     function changeDeliveryMethod (type) {
@@ -445,7 +446,7 @@
                                                 <h4>Pickup Locations</h4>
                                                 <div class = "form-check form-check-radio">
                                                     <label class = "form-check-label">
-                                                        <input class = "form-check-input" type = "radio" name = "radio-location" id = "" value = "" checked/>
+                                                        <input class = "form-check-input" type = "radio" name = "pickup-location" value = "Naduma Store (SM Baguio Branch)" checked/>
                                                         <h5>Naduma Store (SM Baguio branch)</h5>
                                                         <p>
                                                             Ex 0223 North Terrace, SM City Upper Sesson Road,<br/>

@@ -35,37 +35,31 @@ use Illuminate\Support\Facades\Route;
         //Validate if ship delivery
         $delivery_method = request()->validate(['delivery-method' => 'required']);
         if ($delivery_method['delivery-method'] === 'ship') {
-            $validated_fields = request()->validate([
-                'email' => 'required',
-                'payment-method' => 'required',
-                'name' => 'required',
-                'address' => 'required',
-                'postal-code' => 'required',
-                'city' => 'required',
-                'region' => 'required',
-                'country' => 'required'
-            ]);
             $order = Order::create([
-                'email' => $validated_fields['email'],
-                'delivery_method' => $delivery_method['delivery-method'],
-                'payment_method' => $validated_fields['payment-method'],
-                'name' => $validated_fields['name'],
-                'address' => $validated_fields['address'],
-                'postal_code' => $validated_fields['postal-code'],
-                'city' => $validated_fields['city'],
-                'region' => $validated_fields['region'],
-                'country' => $validated_fields['country'],
+                'email' => request()->input('email'),
+                'delivery_method' => request()->input('delivery-method'),
+                'payment_method' => request()->input('payment-method'),
+                'name' => request()->input('name'),
+                'address' => request()->input('address'),
+                'postal_code' => request()->input('postal-code'),
+                'city' => request()->input('city'),
+                'region' => request()->input('region'),
+                'country' => request()->input('country'),
+                'apparel_id' => request()->input('apparel-id'),
+                'apparel_quantity' => request()->input('apparel-quantity'),
+                'apparel_size' => request()->input('apparel-size')
             ]);
         }
         
         //Validate if pick-up delivery
         else if ($delivery_method['delivery-method'] === 'pick-up') {
-            $validated_fields = request()->validate([
-                'email' => 'required',
-            ]);
             $order = Order::create([
-                'email' => $validated_fields['email'],
-                'delivery_method' => $delivery_method['delivery-method']
+                'email' => request()->input('email'),
+                'delivery_method' => request()->input('delivery-method'),
+                'pickup_location' => request()->input('pickup-location'),
+                'apparel_id' => request()->input('apparel-id'),
+                'apparel_quantity' => request()->input('apparel-quantity'),
+                'apparel_size' => request()->input('apparel-size')
             ]);
         }
         

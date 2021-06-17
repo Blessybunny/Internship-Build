@@ -46,6 +46,10 @@
                                 </ul>
                                 <br/>
                                 <ul>
+                                    <h5>June 17</h5>
+                                    <li>Added database for order logs.</li>
+                                </ul>
+                                <ul>
                                     <h5>June 10</h5>
                                     <li>Functionalities for each corresponding apparels added.</li>
                                 </ul>
@@ -72,7 +76,7 @@
                                 </ul>
                                 <ul>
                                     <h5>May 30</h5>
-                                    <li>Added a database for apparels.</li>
+                                    <li>Added database for apparels.</li>
                                     <li>Merged "shirt" and "miscellaneous" pages to the "apparels" page.</li>
                                     <li>Image (.jpeg) optimization.</li>
                                 </ul>

@@ -14,10 +14,13 @@ class Order extends Model {
         'name',
         'address',
         'postal_code',
-        'city_name',
+        'city',
         'region',
         'country',
             
-        'pickup_location'
+        'pickup_location',
+        'apparel_id',
+        'apparel_quantity',
+        'apparel_size'
     ];
 }

@@ -22,8 +22,8 @@ class CreateOrdersTable extends Migration {
             
             $table->string('pickup_location')->nullable();
             
-            $table->integer('apparel_id')->nullable();//
-            $table->integer('apparel_quantity')->nullable();//
+            $table->integer('apparel_id');
+            $table->integer('apparel_quantity');
             $table->string('apparel_size')->nullable();
             
             $table->timestamps();
