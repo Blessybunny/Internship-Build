@@ -77,5 +77,5 @@ use Illuminate\Support\Facades\Route;
         return view('analytics.inventory-apparels', compact('apparels'));
     });
     Route::get('/statistics/inventory-materials', function () {return view('analytics.inventory-materials');});
-    Route::get('/statistics/orders', function () {return view('analytics.orders');});
+    Route::get('/statistics/order-logs', function () {return view('analytics.order-logs');});
     Route::get('/statistics/sandbox', function () {return view('analytics.sandbox');});
