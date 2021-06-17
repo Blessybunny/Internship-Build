@@ -34,22 +34,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($apparels as $apparel)
-                                @if ($apparel->type === "shirt")
-                                    <tr onclick = "popModal({{ $apparel->id }}, '{{ $apparel->name }}', {{ $apparel->price }}, '{{ $apparel->type }}', {{ $apparel->stock_universal }}, [{{ $apparel->stock_xs }}, {{ $apparel->stock_s }}, {{ $apparel->stock_m }}, {{ $apparel->stock_l }}, {{ $apparel->stock_xl }}])" data-toggle = "modal" data-target = "#apparelModal">
-                                        <td id = "apparel-image-{{ $apparel->id }}" data-image = "{{ asset($apparel->img_url) }}">{{ $apparel->name }}</td>
-                                        <td>PHP {{ $apparel->price }}</td>
-                                        <td class = "text-center @if ($apparel->stock_xs >= 40) green @elseif ($apparel->stock_xs >= 20) black @elseif ($apparel->stock_xs >= 10) orange @else red @endif">{{ $apparel->stock_xs }}</td>
-                                        <td class = "text-center @if ($apparel->stock_s >= 40) green @elseif ($apparel->stock_s >= 20) black @elseif ($apparel->stock_s >= 10) orange @else red @endif">{{ $apparel->stock_s }}</td>
-                                        <td class = "text-center @if ($apparel->stock_m >= 40) green @elseif ($apparel->stock_m >= 20) black @elseif ($apparel->stock_m >= 10) orange @else red @endif">{{ $apparel->stock_m }}</td>
-                                        <td class = "text-center @if ($apparel->stock_l >= 40) green @elseif ($apparel->stock_l >= 20) black @elseif ($apparel->stock_l >= 10) orange @else red @endif">{{ $apparel->stock_l }}</td>
-                                        <td class = "text-center @if ($apparel->stock_xl >= 40) green @elseif ($apparel->stock_xl >= 20) black @elseif ($apparel->stock_xl >= 10) orange @else red @endif">{{ $apparel->stock_xl }}</td>
-                                        <td class = "text-center">{{ $apparel->stock_xs + $apparel->stock_s + $apparel->stock_m + $apparel->stock_l + $apparel->stock_xl }}</td>
-                                        <td class = "text-center">PHP {{ number_format(($apparel->stock_xs + $apparel->stock_s + $apparel->stock_m + $apparel->stock_l + $apparel->stock_xl) * $apparel->price, 2) }}</td>
-                                    </tr>
-                                @endif
-                            @endforeach
-                          </tbody>
+                'email' => request()->input('email'),
+                'delivery_method' => request()->input('delivery-method'),
+                'payment_method' => request()->input('payment-method'),
+                'name' => request()->input('name'),
+                'address' => request()->input('address'),
+                'postal_code' => request()->input('postal-code'),
+                'city' => request()->input('city'),
+                'region' => request()->input('region'),
+                'country' => request()->input('country'),
+                'apparel_id' => request()->input('apparel-id'),
+                'apparel_quantity' => request()->input('apparel-quantity'),
+                'apparel_size' => request()->input('apparel-size')
+                        </tbody>
                     </table>
                     
                     <!-- Table - Pick-up -->
@@ -65,17 +62,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($apparels as $apparel)
-                                @if ($apparel->type === "accessory")
-                                    <tr onclick = "popModal({{ $apparel->id }}, '{{ $apparel->name }}', {{ $apparel->price }}, '{{ $apparel->type }}', {{ $apparel->stock_universal }}, [{{ $apparel->stock_xs }}, {{ $apparel->stock_s }}, {{ $apparel->stock_m }}, {{ $apparel->stock_l }}, {{ $apparel->stock_xl }}])" data-toggle = "modal" data-target = "#apparelModal">
-                                        <td id = "apparel-image-{{ $apparel->id }}" data-image = "{{ asset($apparel->img_url) }}">{{ $apparel->name }}</td>
-                                        <td>PHP {{ $apparel->price }}</td>
-                                        <td class = "text-center @if ($apparel->stock_universal >= 40) green @elseif ($apparel->stock_universal >= 20) black @elseif ($apparel->stock_universal >= 10) orange @else red @endif">{{ $apparel->stock_universal }}</td>
-                                        <td class = "text-center">PHP {{ number_format($apparel->stock_universal * $apparel->price, 2) }}</td>
-                                    </tr>
-                                @endif
-                            @endforeach
-                          </tbody>
+                        </tbody>
                     </table>
                     
                 </div>

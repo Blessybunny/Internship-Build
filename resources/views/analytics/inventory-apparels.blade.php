@@ -49,7 +49,7 @@
                                     </tr>
                                 @endif
                             @endforeach
-                          </tbody>
+                        </tbody>
                     </table>
                     
                     <!-- Table - Accessories -->
@@ -75,7 +75,7 @@
                                     </tr>
                                 @endif
                             @endforeach
-                          </tbody>
+                        </tbody>
                     </table>
                     
                     <!-- Modals - Apparels -->
