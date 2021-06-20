@@ -71,14 +71,14 @@ use Illuminate\Support\Facades\Route;
     Route::get('/changelog', function () {return view('changelog');});
 
 //PREDICTIVE ANALYTICS
-    Route::get('/statistics', function () {return view('analytics.statistics');});
-    Route::get('/statistics/inventory-apparels', function () {
+    Route::get('/dashboard', function () {return view('analytics.dashboard');});
+    Route::get('/dashboard/inventory-apparels', function () {
         $apparels = Apparel::all();
         return view('analytics.inventory-apparels', compact('apparels'));
     });
-    Route::get('/statistics/inventory-materials', function () {return view('analytics.inventory-materials');});
-    Route::get('/statistics/order-logs', function () {
+    Route::get('/dashboard/inventory-materials', function () {return view('analytics.inventory-materials');});
+    Route::get('/dashboard/order-logs', function () {
         $orders = Order::all();
         return view('analytics.order-logs', compact('orders'));
     });
-    Route::get('/statistics/sandbox', function () {return view('analytics.sandbox');});
+    Route::get('/dashboard/sandbox', function () {return view('analytics.sandbox');});

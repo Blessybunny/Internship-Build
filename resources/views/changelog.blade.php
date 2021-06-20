@@ -42,62 +42,34 @@
                             <div class = "col">
                                 <hr/>
                                 <ul>
-                                    <h5>Only major changes are recorded.</h5>
+                                    <h5>Only big and significant changes are recorded.</h5>
                                 </ul>
                                 <br/>
                                 <ul>
                                     <h5>June 17</h5>
-                                    <li>Added database for order logs.</li>
-                                </ul>
-                                <ul>
-                                    <h5>June 10</h5>
-                                    <li>Functionalities for each corresponding apparels added.</li>
-                                </ul>
-                                <ul>
-                                    <h5>June 9</h5>
-                                    <li>Functionalities for "inventory" page for products added.</li>
+                                    <li>Added database for orders.</li>
                                 </ul>
                                 <ul>
                                     <h5>June 8</h5>
-                                    <li>Added "inventory" page for products.</li>
+                                    <li>Added "inventory" page for available products.</li>
                                     <li>Added "inventory" page for production materials.</li>
-                                    <li>Added "orders" page for currently pending orders.</li>
-                                    <li>Added "sandbox" page for testing purposes.</li>
+                                    <li>Added "orders" page.</li>
                                 </ul>
                                 <ul>
                                     <h5>June 7</h5>
                                     <li>Implemented <a href = "https://www.creative-tim.com/product/material-dashboard">Material Dashboard</a> template.</li>
                                     <li>Added "statistics" page.</li>
-                                    <li>Added more attributes to the database for apparels.</li>
-                                </ul>
-                                <ul>
-                                    <h5>June 4</h5>
-                                    <li>Added pages for each corresponding apparels.</li>
                                 </ul>
                                 <ul>
                                     <h5>May 30</h5>
                                     <li>Added database for apparels.</li>
-                                    <li>Merged "shirt" and "miscellaneous" pages to the "apparels" page.</li>
-                                    <li>Image (.jpeg) optimization.</li>
-                                </ul>
-                                <ul>
-                                    <h5>May 29</h5>
-                                    <li>Revamped layout.</li>
-                                </ul>
-                                    <ul>
-                                    <h5>May 24</h5>
-                                    <li>Added "shirt" page.</li>
-                                    <li>Added "miscellaneous" page.</li>
-                                </ul>
-                                <ul>
-                                    <h5>May 23</h5>
-                                    <li>Rebranded to "Naduma".</li>
+                                    <li>Added "apparels" page.</li>
                                 </ul>
                                 <ul>
                                     <h5>May 22</h5>
                                     <li>Implemented <a href = "https://www.creative-tim.com/product/material-kit-pro?partner=114912">Material kit</a> template.</li>
-                                    <li>Added changelog page.</li>
-                                    <li>Added logo and brand name "Opalescence".</li>
+                                    <li>Added "changelog" page.</li>
+                                    <li>Added custom logo.</li>
                                 </ul>
                                 <ul>
                                     <h5>May 21</h5>

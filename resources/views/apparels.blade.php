@@ -59,7 +59,7 @@
                                             <img src = "{{ asset($apparel->img_url) }}"/>
                                             <h4>{{ $apparel->name }}</h4>
                                             <h6>From PHP {{ $apparel->price }}</h6>
-                                            @if ($apparel->type === "shirt" and $apparel->stock_xs === 0 and $apparel->stock_s === 0 and $apparel->stock_m === 0 and $apparel->stock_l === 0 and $apparel->stock_xl === 0)
+                                            @if ($apparel->type === "shirt" and $apparel->stock_xs === 0 and $apparel->stock_sm === 0 and $apparel->stock_md === 0 and $apparel->stock_lg === 0 and $apparel->stock_xl === 0)
                                                 <h6 class = "sold-out">Sold Out</h6>
                                             @endif
                                         </a>
@@ -88,7 +88,7 @@
                                             <img src = "{{ asset($apparel->img_url) }}"/>
                                             <h4>{{ $apparel->name }}</h4>
                                             <h6>From PHP {{ $apparel->price }}</h6>
-                                            @if ($apparel->type === "shirt" and $apparel->stock_xs === 0 and $apparel->stock_s === 0 and $apparel->stock_m === 0 and $apparel->stock_l === 0 and $apparel->stock_xl === 0)
+                                            @if ($apparel->type === "shirt" and $apparel->stock_xs === 0 and $apparel->stock_sm === 0 and $apparel->stock_md === 0 and $apparel->stock_lg === 0 and $apparel->stock_xl === 0)
                                                 <h6 class = "sold-out">Sold Out</h6>
                                             @endif
                                         </a>
@@ -146,7 +146,7 @@
                                             <img src = "{{ asset($apparel->img_url) }}"/>
                                             <h4>{{ $apparel->name }}</h4>
                                             <h6>From PHP {{ $apparel->price }}</h6>
-                                            @if ($apparel->type === "shirt" and $apparel->stock_xs === 0 and $apparel->stock_s === 0 and $apparel->stock_m === 0 and $apparel->stock_l === 0 and $apparel->stock_xl === 0)
+                                            @if ($apparel->type === "shirt" and $apparel->stock_xs === 0 and $apparel->stock_sm === 0 and $apparel->stock_md === 0 and $apparel->stock_lg === 0 and $apparel->stock_xl === 0)
                                                 <h6 class = "sold-out">Sold Out</h6>
                                             @endif
                                         </a>

@@ -19,9 +19,9 @@ class CreateApparelsTable extends Migration {
             $table->integer('stock_universal')->default(10);
             
             $table->integer('stock_xs')->default(5);
-            $table->integer('stock_s')->default(5);
-            $table->integer('stock_m')->default(50);
-            $table->integer('stock_l')->default(5);
+            $table->integer('stock_sm')->default(5);
+            $table->integer('stock_md')->default(50);
+            $table->integer('stock_lg')->default(5);
             $table->integer('stock_xl')->default(0);
             
             $table->integer('sold')->default(60);

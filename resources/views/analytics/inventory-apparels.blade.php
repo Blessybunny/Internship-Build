@@ -25,9 +25,9 @@
                                 <th>Apparel Name</th>
                                 <th>Price</th>
                                 <th class = "text-center">Quantity (XS)</th>
-                                <th class = "text-center">Quantity (S)</th>
-                                <th class = "text-center">Quantity (M)</th>
-                                <th class = "text-center">Quantity (L)</th>
+                                <th class = "text-center">Quantity (SM)</th>
+                                <th class = "text-center">Quantity (MD)</th>
+                                <th class = "text-center">Quantity (LG)</th>
                                 <th class = "text-center">Quantity (XL)</th>
                                 <th class = "text-center">Total Quantity</th>
                                 <th class = "text-center">Total Price</th>
@@ -40,12 +40,12 @@
                                         <td id = "apparel-image-{{ $apparel->id }}" data-image = "{{ asset($apparel->img_url) }}">{{ $apparel->name }}</td>
                                         <td>PHP {{ $apparel->price }}</td>
                                         <td class = "text-center @if ($apparel->stock_xs >= 40) green @elseif ($apparel->stock_xs >= 20) black @elseif ($apparel->stock_xs >= 10) orange @else red @endif">{{ $apparel->stock_xs }}</td>
-                                        <td class = "text-center @if ($apparel->stock_s >= 40) green @elseif ($apparel->stock_s >= 20) black @elseif ($apparel->stock_s >= 10) orange @else red @endif">{{ $apparel->stock_s }}</td>
-                                        <td class = "text-center @if ($apparel->stock_m >= 40) green @elseif ($apparel->stock_m >= 20) black @elseif ($apparel->stock_m >= 10) orange @else red @endif">{{ $apparel->stock_m }}</td>
-                                        <td class = "text-center @if ($apparel->stock_l >= 40) green @elseif ($apparel->stock_l >= 20) black @elseif ($apparel->stock_l >= 10) orange @else red @endif">{{ $apparel->stock_l }}</td>
+                                        <td class = "text-center @if ($apparel->stock_sm >= 40) green @elseif ($apparel->stock_sm >= 20) black @elseif ($apparel->stock_sm >= 10) orange @else red @endif">{{ $apparel->stock_sm }}</td>
+                                        <td class = "text-center @if ($apparel->stock_md >= 40) green @elseif ($apparel->stock_md >= 20) black @elseif ($apparel->stock_md >= 10) orange @else red @endif">{{ $apparel->stock_md }}</td>
+                                        <td class = "text-center @if ($apparel->stock_lg >= 40) green @elseif ($apparel->stock_lg >= 20) black @elseif ($apparel->stock_lg >= 10) orange @else red @endif">{{ $apparel->stock_lg }}</td>
                                         <td class = "text-center @if ($apparel->stock_xl >= 40) green @elseif ($apparel->stock_xl >= 20) black @elseif ($apparel->stock_xl >= 10) orange @else red @endif">{{ $apparel->stock_xl }}</td>
-                                        <td class = "text-center">{{ $apparel->stock_xs + $apparel->stock_s + $apparel->stock_m + $apparel->stock_l + $apparel->stock_xl }}</td>
-                                        <td class = "text-center">PHP {{ number_format(($apparel->stock_xs + $apparel->stock_s + $apparel->stock_m + $apparel->stock_l + $apparel->stock_xl) * $apparel->price, 2) }}</td>
+                                        <td class = "text-center">{{ $apparel->stock_xs + $apparel->stock_sm + $apparel->stock_md + $apparel->stock_lg + $apparel->stock_xl }}</td>
+                                        <td class = "text-center">PHP {{ number_format(($apparel->stock_xs + $apparel->stock_sm + $apparel->stock_md + $apparel->stock_lg + $apparel->stock_xl) * $apparel->price, 2) }}</td>
                                     </tr>
                                 @endif
                             @endforeach

@@ -53,8 +53,8 @@
                                 </a>
                             </li>
                             <li class = "nav-item">
-                                <a class = "nav-link" href = "{{ url('/statistics') }}">
-                                    <i class = "material-icons">insights</i> Statistics
+                                <a class = "nav-link" href = "{{ url('/dashboard') }}">
+                                    <i class = "material-icons">insights</i> Analytics
                                 </a>
                             </li>
                         </ul>
