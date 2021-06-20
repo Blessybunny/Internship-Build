@@ -25,7 +25,7 @@
         <body class = "wrapper">
                 
             <!-- NAVIGATION -->
-            <div class = "sidebar" data-color = "orange" data-background-color = "white" data-image = "{{ asset('img/misc-2.jpg') }}">
+            <div class = "sidebar dashboard" data-background-color = "white" data-image = "{{ asset('img/misc-2.jpg') }}">
                 <!-- Logo -->
                 <div class = "logo">
                     <a href = "#" class = "simple-text logo-normal">NADUMA Analytics</a>

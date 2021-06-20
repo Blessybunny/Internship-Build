@@ -15,6 +15,7 @@
         <div class = "container-fluid">
             <div class = "row">
                 <div class = "col">
+                    
                     <div id = "accordion" class = "card-collapse">
                         <div class = "card card-plain">
                             <!-- Table - Ship -->
