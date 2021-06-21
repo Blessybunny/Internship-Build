@@ -63,6 +63,12 @@
                                 <p>Order Logs</p>
                             </a>
                         </li>
+                        <li class = "nav-item @yield('link-5')">
+                            <a class = "nav-link" href = "{{ url('/dashboard/order-history') }}">
+                                <i class = "material-icons">history</i>
+                                <p>Order History</p>
+                            </a>
+                        </li>
                         <li class = "nav-item active-pro">
                             <a class = "nav-link" href = "{{ url('/changelog') }}">
                                 <i class = "material-icons">list_alt</i>

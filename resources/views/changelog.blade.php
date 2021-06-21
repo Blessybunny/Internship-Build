@@ -46,6 +46,10 @@
                                 </ul>
                                 <br/>
                                 <ul>
+                                    <h5>June 21</h5>
+                                    <li>Added "order" page for completed deliveries.</li>
+                                </ul>
+                                <ul>
                                     <h5>June 17</h5>
                                     <li>Added database for orders.</li>
                                 </ul>
@@ -53,7 +57,7 @@
                                     <h5>June 8</h5>
                                     <li>Added "inventory" page for available products.</li>
                                     <li>Added "inventory" page for production materials.</li>
-                                    <li>Added "orders" page.</li>
+                                    <li>Added "order" page for pending and outgoing orders.</li>
                                 </ul>
                                 <ul>
                                     <h5>June 7</h5>

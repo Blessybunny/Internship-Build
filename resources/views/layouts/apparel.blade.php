@@ -428,6 +428,7 @@
                     case `lg`: stock.innerHTML = qty_lg; break;
                     case `xl`: stock.innerHTML = qty_xl; break;
                 }
+                document.getElementById(`form-quantity`).value = 1;
             }
             
             //Quantity check... with minimum and maximum

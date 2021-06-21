@@ -26,6 +26,8 @@ class CreateOrdersTable extends Migration {
             $table->integer('apparel_quantity');
             $table->string('apparel_size')->nullable();
             
+            $table->string('status')->default('pending');
+            
             $table->timestamps();
         });
     }

@@ -18,17 +18,26 @@ use Illuminate\Support\Facades\Route;
 
 //NAVIGATION
     Route::get('/', function () {
+        //Get apparel db
         $apparels = Apparel::all();
+        
+        //Return
         return view('home', compact('apparels'));
     });
     Route::get('/apparels', function () {
+        //Get apparel db
         $apparels = Apparel::all();
+        
+        //Return
         return view('apparels', compact('apparels'));
     });
 
 //APPAREL
     Route::get('/apparels/view/{id}', function ($id) {
+        //Get apparel
         $apparel = Apparel::findOrFail($id);
+        
+        //Return
         return view('layouts/apparel', compact('apparel'));
     });
     Route::post('/apparels/view/{id}', function ($id) {
@@ -70,22 +79,54 @@ use Illuminate\Support\Facades\Route;
 //FOOTER
     Route::get('/changelog', function () {return view('changelog');});
 
-//PREDICTIVE ANALYTICS
+//PREDICTIVE ANALYTICS - Dashboard
     Route::get('/dashboard', function () {return view('analytics.dashboard');});
+
+//PREDICTIVE ANALYTICS - Inventory
     Route::get('/dashboard/inventory-apparels', function () {
-        $minmax = array(
-            'low' => 50, //0-50
-            'mid' => 100, //50-100
-            'opt' => 200 //100-200
-        );
-        //dd($minmax['opt']);
+        //Apparel threshold
+        $minmax = array('low' => 50, 'mid' => 100, 'opt' => 200); //0-50, 50-100, 100-200
+        
+        //Get apparel db
         $apparels = Apparel::all();
+        
+        //Return
         return view('analytics.inventory-apparels', compact('apparels', 'minmax'));
     });
     Route::get('/dashboard/inventory-materials', function () {
         return view('analytics.inventory-materials');
     });
+
+//PREDICTIVE ANALYTICS - Orders
     Route::get('/dashboard/order-logs', function () {
+        //Get order db
         $orders = Order::all();
+        
+        //Return
         return view('analytics.order-logs', compact('orders'));
+    });
+    Route::post('/dashboard/order-logs/{id}/{status}', function ($id, $status) {
+        //Update
+        //$update = Order::where('id', $id)->update(['status' => 'delivered']);
+        if ($status === 'pending') {
+            $update = Order::where('id', $id)->update(['status' => 'pending']);
+        }
+        else if ($status === 'outgoing') {
+            $update = Order::where('id', $id)->update(['status' => 'outgoing']);
+        }
+        else if ($status === 'delivered') {
+            $update = Order::where('id', $id)->update(['status' => 'delivered']);
+        }
+        else if ($status === 'delete') {
+            $delete = Order::where('id', $id)->delete();
+        }
+        //Return to same page
+        return redirect('/dashboard/order-logs');
+    });
+    Route::get('/dashboard/order-history', function () {
+        //Get order db
+        $orders = Order::all();
+        
+        //Return
+        return view('analytics.order-history', compact('orders'));
     });
