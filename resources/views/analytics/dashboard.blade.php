@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    Statistics
+    Dashboard
 @endsection
 
 @section('content')        

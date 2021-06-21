@@ -35,6 +35,7 @@
                                             <th class = "text-center">Quantity (XL)</th>
                                             <th class = "text-center">Total Quantity</th>
                                             <th class = "text-center">Total Price</th>
+                                            <th class = "text-center">Total Sold</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -43,13 +44,14 @@
                                                 <tr onclick = "popModal({{ $apparel->id }}, '{{ $apparel->name }}', {{ $apparel->price }}, '{{ $apparel->type }}', {{ $apparel->stock_universal }}, [{{ $apparel->stock_xs }}, {{ $apparel->stock_sm }}, {{ $apparel->stock_md }}, {{ $apparel->stock_lg }}, {{ $apparel->stock_xl }}])" data-toggle = "modal" data-target = "#apparelModal">
                                                     <td id = "apparel-image-{{ $apparel->id }}" data-image = "{{ asset($apparel->img_url) }}">{{ $apparel->name }}</td>
                                                     <td>PHP {{ $apparel->price }}</td>
-                                                    <td class = "text-center @if ($apparel->stock_xs >= 40) green @elseif ($apparel->stock_xs >= 20) black @elseif ($apparel->stock_xs >= 10) orange @else red @endif">{{ $apparel->stock_xs }}</td>
-                                                    <td class = "text-center @if ($apparel->stock_sm >= 40) green @elseif ($apparel->stock_sm >= 20) black @elseif ($apparel->stock_sm >= 10) orange @else red @endif">{{ $apparel->stock_sm }}</td>
-                                                    <td class = "text-center @if ($apparel->stock_md >= 40) green @elseif ($apparel->stock_md >= 20) black @elseif ($apparel->stock_md >= 10) orange @else red @endif">{{ $apparel->stock_md }}</td>
-                                                    <td class = "text-center @if ($apparel->stock_lg >= 40) green @elseif ($apparel->stock_lg >= 20) black @elseif ($apparel->stock_lg >= 10) orange @else red @endif">{{ $apparel->stock_lg }}</td>
-                                                    <td class = "text-center @if ($apparel->stock_xl >= 40) green @elseif ($apparel->stock_xl >= 20) black @elseif ($apparel->stock_xl >= 10) orange @else red @endif">{{ $apparel->stock_xl }}</td>
+                                                    <td class = "text-center @if ($apparel->stock_xs >= $minmax['opt']) green @elseif ($apparel->stock_xs >= $minmax['mid'] and $apparel->stock_xs <= $minmax['opt']) black @elseif ($apparel->stock_xs <= $minmax['mid'] and $apparel->stock_xs >= $minmax['low']) orange @elseif ($apparel->stock_xs <= $minmax['low']) red @endif">{{ $apparel->stock_xs }}</td>
+                                                    <td class = "text-center @if ($apparel->stock_sm >= $minmax['opt']) green @elseif ($apparel->stock_sm >= $minmax['mid'] and $apparel->stock_sm <= $minmax['opt']) black @elseif ($apparel->stock_sm <= $minmax['mid'] and $apparel->stock_sm >= $minmax['low']) orange @elseif ($apparel->stock_sm <= $minmax['low']) red @endif">{{ $apparel->stock_sm }}</td>
+                                                    <td class = "text-center @if ($apparel->stock_md >= $minmax['opt']) green @elseif ($apparel->stock_md >= $minmax['mid'] and $apparel->stock_md <= $minmax['opt']) black @elseif ($apparel->stock_md <= $minmax['mid'] and $apparel->stock_md >= $minmax['low']) orange @elseif ($apparel->stock_md <= $minmax['low']) red @endif">{{ $apparel->stock_md }}</td>
+                                                    <td class = "text-center @if ($apparel->stock_lg >= $minmax['opt']) green @elseif ($apparel->stock_lg >= $minmax['mid'] and $apparel->stock_lg <= $minmax['opt']) black @elseif ($apparel->stock_lg <= $minmax['mid'] and $apparel->stock_lg >= $minmax['low']) orange @elseif ($apparel->stock_lg <= $minmax['low']) red @endif">{{ $apparel->stock_lg }}</td>
+                                                    <td class = "text-center @if ($apparel->stock_xl >= $minmax['opt']) green @elseif ($apparel->stock_xl >= $minmax['mid'] and $apparel->stock_xl <= $minmax['opt']) black @elseif ($apparel->stock_xl <= $minmax['mid'] and $apparel->stock_xl >= $minmax['low']) orange @elseif ($apparel->stock_xl <= $minmax['low']) red @endif">{{ $apparel->stock_xl }}</td>
                                                     <td class = "text-center">{{ $apparel->stock_xs + $apparel->stock_sm + $apparel->stock_md + $apparel->stock_lg + $apparel->stock_xl }}</td>
                                                     <td class = "text-center">PHP {{ number_format(($apparel->stock_xs + $apparel->stock_sm + $apparel->stock_md + $apparel->stock_lg + $apparel->stock_xl) * $apparel->price, 2) }}</td>
+                                                    <td class = "text-center">{{ $apparel->sold }}</td>
                                                 </tr>
                                             @endif
                                         @endforeach
@@ -71,12 +73,13 @@
                         <div class = "card-body">
                             <div class = "table-responsive">
                                 <table class = "table table-shopping">
-                                    <thead>
+                                    <thead class = "text-primary">
                                         <tr>
                                             <th>Apparel Name</th>
                                             <th>Price</th>
-                                            <th class = "text-center">Quantity</th>
+                                            <th class = "text-center">Total Quantity</th>
                                             <th class = "text-center">Total Price</th>
+                                            <th class = "text-center">Total Sold</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -85,8 +88,9 @@
                                                 <tr onclick = "popModal({{ $apparel->id }}, '{{ $apparel->name }}', {{ $apparel->price }}, '{{ $apparel->type }}', {{ $apparel->stock_universal }}, [{{ $apparel->stock_xs }}, {{ $apparel->stock_s }}, {{ $apparel->stock_m }}, {{ $apparel->stock_l }}, {{ $apparel->stock_xl }}])" data-toggle = "modal" data-target = "#apparelModal">
                                                     <td id = "apparel-image-{{ $apparel->id }}" data-image = "{{ asset($apparel->img_url) }}">{{ $apparel->name }}</td>
                                                     <td>PHP {{ $apparel->price }}</td>
-                                                    <td class = "text-center @if ($apparel->stock_universal >= 40) green @elseif ($apparel->stock_universal >= 20) black @elseif ($apparel->stock_universal >= 10) orange @else red @endif">{{ $apparel->stock_universal }}</td>
+                                                    <td class = "text-center @if ($apparel->stock_universal >= $minmax['opt']) green @elseif ($apparel->stock_universal >= $minmax['mid'] and $apparel->stock_universal <= $minmax['opt']) black @elseif ($apparel->stock_universal >= $minmax['mid'] and $apparel->stock_universal >= $minmax['low']) orange @elseif ($apparel->stock_universal <= $minmax['low']) red @endif">{{ $apparel->stock_universal }}</td>
                                                     <td class = "text-center">PHP {{ number_format($apparel->stock_universal * $apparel->price, 2) }}</td>
+                                                    <td class = "text-center">{{ $apparel->sold }}</td>
                                                 </tr>
                                             @endif
                                         @endforeach
@@ -98,7 +102,7 @@
                 </div>
             </div>
             
-            <!-- Modals - Apparels -->
+            <!-- Modal pop-up -->
             <div class = "modal fade" id = "apparelModal">
                 <div class = "modal-dialog modal-dialog-centered">
                     <div class = "modal-content">
@@ -177,15 +181,15 @@
                         let sizes = [`extra small`, `small`, 'medium', `large`, `extra large`];
                         for (let i = 0, ii = stocks.length; i < ii; i++) {
                             let list = document.createElement(`li`);
-                            if (stocks[i] >= 40) {
+                            if (stocks[i] >= {{ $minmax['opt'] }}) {
                                 list.innerHTML = `Stocks of ${sizes[i]} sizes are beyond maximum. Consider halting production.`;
                             }
-                            else if (stocks[i] >= 20) {}
-                            else if (stocks[i] >= 10) {
+                            else if (stocks[i] >= {{ $minmax['mid'] }} && stocks[i] <= {{ $minmax['opt'] }}) {}
+                            else if (stocks[i] >= {{ $minmax['low'] }} && stocks[i] <= {{ $minmax['mid'] }}) {
                                 list.className = `orange`;
                                 list.innerHTML = `Stocks of ${sizes[i]} sizes are low.`;
                             }
-                            else {
+                            else if (stocks[i] <= {{ $minmax['low'] }}) {
                                 list.className = `red`;
                                 list.innerHTML = `Stocks of ${sizes[i]} sizes are critically low.`;
                             }
@@ -212,15 +216,15 @@
                             </tbody>
                         `;
                         let list = document.createElement(`li`);
-                        if (stockUniversal >= 40) {
-                            list.innerHTML = `Stocks of are beyond maximum. Consider halting production.`;
+                        if (stockUniversal >= {{ $minmax['opt'] }}) {
+                            list.innerHTML = `Stocks are beyond maximum. Consider halting production.`;
                         }
-                        else if (stockUniversal >= 20) {}
-                        else if (stockUniversal >= 10) {
+                        else if (stockUniversal >= {{ $minmax['mid'] }} && stocks[i] <= {{ $minmax['opt'] }}) {}
+                        else if (stockUniversal >= {{ $minmax['low'] }} && stocks[i] <= {{ $minmax['mid'] }}) {
                             list.className = `orange`;
                             list.innerHTML = `Stocks are low.`;
                         }
-                        else {
+                        else if (stockUniversal <= {{ $minmax['low'] }}) {
                             list.className = `red`;
                             list.innerHTML = `Stocks are critically low.`;
                         }

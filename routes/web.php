@@ -73,12 +73,19 @@ use Illuminate\Support\Facades\Route;
 //PREDICTIVE ANALYTICS
     Route::get('/dashboard', function () {return view('analytics.dashboard');});
     Route::get('/dashboard/inventory-apparels', function () {
+        $minmax = array(
+            'low' => 50, //0-50
+            'mid' => 100, //50-100
+            'opt' => 200 //100-200
+        );
+        //dd($minmax['opt']);
         $apparels = Apparel::all();
-        return view('analytics.inventory-apparels', compact('apparels'));
+        return view('analytics.inventory-apparels', compact('apparels', 'minmax'));
     });
-    Route::get('/dashboard/inventory-materials', function () {return view('analytics.inventory-materials');});
+    Route::get('/dashboard/inventory-materials', function () {
+        return view('analytics.inventory-materials');
+    });
     Route::get('/dashboard/order-logs', function () {
         $orders = Order::all();
         return view('analytics.order-logs', compact('orders'));
     });
-    Route::get('/dashboard/sandbox', function () {return view('analytics.sandbox');});

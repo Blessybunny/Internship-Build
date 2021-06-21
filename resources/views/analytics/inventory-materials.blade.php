@@ -14,13 +14,6 @@
     <div class = "content">
         <div class = "container-fluid">
 
-            <!-- Warnings -->
-            <div class = "row">
-
-                <div class = "col-lg-6 col-md-6 col-sm-6">
-                    <p>Materials Page</p>
-                </div>
-            </div>
             
         </div>
     </div>
