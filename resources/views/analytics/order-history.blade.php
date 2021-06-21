@@ -20,6 +20,7 @@
                     <div class = "card">
                         <div class = "card-header card-header-primary">
                             <h4 class = "card-title ">Completed Orders</h4>
+                            <p class = "card-category">Includes orders successfully delivered.</p>
                         </div>
                         <div class = "card-body">
                             <div class = "table-responsive">

@@ -2,6 +2,7 @@
 
 use App\Apparel;
 use App\Order;
+use App\Material;
 
 use Illuminate\Support\Facades\Route;
 
@@ -94,7 +95,12 @@ use Illuminate\Support\Facades\Route;
         return view('analytics.inventory-apparels', compact('apparels', 'minmax'));
     });
     Route::get('/dashboard/inventory-materials', function () {
-        return view('analytics.inventory-materials');
+        //Supply threshold
+        $minmax = array('low' => 100, 'mid' => 250, 'opt' => 500); //0-100, 100-250, 250-500
+        
+        //Get material db
+        $materials = Material::all();
+        return view('analytics.inventory-materials', compact('materials', 'minmax'));
     });
 
 //PREDICTIVE ANALYTICS - Orders
@@ -107,7 +113,6 @@ use Illuminate\Support\Facades\Route;
     });
     Route::post('/dashboard/order-logs/{id}/{status}', function ($id, $status) {
         //Update
-        //$update = Order::where('id', $id)->update(['status' => 'delivered']);
         if ($status === 'pending') {
             $update = Order::where('id', $id)->update(['status' => 'pending']);
         }
@@ -115,6 +120,42 @@ use Illuminate\Support\Facades\Route;
             $update = Order::where('id', $id)->update(['status' => 'outgoing']);
         }
         else if ($status === 'delivered') {
+            //Increment sales
+            $order = Order::where('id', $id)->first();
+            
+            $apparel = Apparel::where('id', Order::where('id', $id)->first()->apparel_id)->first();
+            $apparel->sold += $order->apparel_quantity;
+            $apparel->save();
+            
+            //Decrement stock if accessory
+            if ($order->apparel_size === null) {
+                $apparel->stock_universal -= $order->apparel_quantity;
+                $apparel->save();
+            }
+            
+            //Decrement stock if shirt
+            else if ($order->apparel_size === 'xs') {
+                $apparel->stock_xs -= $order->apparel_quantity;
+                $apparel->save();
+            }
+            else if ($order->apparel_size === 'sm') {
+                $apparel->stock_sm -= $order->apparel_quantity;
+                $apparel->save();
+            }
+            else if ($order->apparel_size === 'md') {
+                $apparel->stock_md -= $order->apparel_quantity;
+                $apparel->save();
+            }
+            else if ($order->apparel_size === 'lg') {
+                $apparel->stock_lg -= $order->apparel_quantity;
+                $apparel->save();
+            }
+            else if ($order->apparel_size === 'xl') {
+                $apparel->stock_xl -= $order->apparel_quantity;
+                $apparel->save();
+            }
+            
+            //Update state
             $update = Order::where('id', $id)->update(['status' => 'delivered']);
         }
         else if ($status === 'delete') {

@@ -1,6 +1,7 @@
 <?php
 
 use App\Apparel;
+use App\Material;
 use Illuminate\Database\Seeder;
 
 class ApparelSeeder extends Seeder {
@@ -403,6 +404,93 @@ class ApparelSeeder extends Seeder {
             'stock_lg' => rand(0, 300),
             'stock_xl' => rand(0, 300),
             'sold' => rand(0, 100)
+        ]);
+        
+        //Fabrics
+        Material::create([
+            'name' => 'Cotton Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Silk Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Linen Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Wool Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Georgette Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Chiffon Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Nylon Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Polyester Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Velvet Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Denim Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Rayon Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Viscose Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Satin Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Crepe Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Lycra Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Net / Lace Fabric',
+            'unit' => 'bolt',
+            'quantity' => rand(0, 500)
+        ]);
+        Material::create([
+            'name' => 'Leather',
+            'unit' => 'square feet',
+            'quantity' => rand(0, 500)
         ]);
     }
 }

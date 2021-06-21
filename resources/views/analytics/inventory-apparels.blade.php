@@ -14,6 +14,24 @@
     <div class = "content dashboard">
         <div class = "container-fluid">
             
+            <!-- Legend - Levels -->
+            <div class = "row">
+                <div class = "col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class = "card">
+                        <div class = "card-header card-header-primary">
+                            <h4 class = "card-title ">Apparels - Levels</h4>
+                            <p class = "card-category">Level indicators for production demands.</p>
+                        </div>
+                        <div class = "card-body">
+                            <p>0-{{ $minmax['low'] }}: Critical low supply.</p>
+                            <p>{{ $minmax['low'] }}-{{ $minmax['mid'] }}: Low supply.</p>
+                            <p>{{ $minmax['mid'] }}-{{ $minmax['opt'] }}: Normal.</p>
+                            <p>{{ $minmax['opt'] }}+ : Oversupply.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <!-- Table - Shirts -->
             <div class = "row">
                 <div class = "col">

@@ -48,6 +48,7 @@
                                 <ul>
                                     <h5>June 21</h5>
                                     <li>Added "order" page for completed deliveries.</li>
+                                    <li>Added database for materials.</li>
                                 </ul>
                                 <ul>
                                     <h5>June 17</h5>
@@ -90,15 +91,6 @@
                         <div class = "row">
                             <div class = "col">
                                 <hr/>
-                                <ul>
-                                    <h5>General</h5>
-                                    <li>Narrow down essential elements found in Material Dashboard.</li>
-                                    <li>Fix design inconsistencies with Material Dashboard in accordance to Material Kit modifications.</li>
-                                </ul>
-                                <ul>
-                                    <h5>Apparels (single view)</h5>
-                                    <li>Find elements to further stylize.</li>
-                                </ul>
                                 <ul>
                                     <h5>Back-end</h5>
                                     <li>Give fix to latest apparels to being actually "latest" ($date).</li>

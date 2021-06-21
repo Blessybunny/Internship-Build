@@ -20,6 +20,7 @@
                     <div class = "card">
                         <div class = "card-header card-header-primary">
                             <h4 class = "card-title ">Pending Orders</h4>
+                            <p class = "card-category">Includes orders delayed and not en route for delivery.</p>
                         </div>
                         <div class = "card-body">
                             <div class = "table-responsive">
@@ -76,6 +77,7 @@
                     <div class = "card">
                         <div class = "card-header card-header-primary">
                             <h4 class = "card-title ">Outgoing Orders</h4>
+                            <p class = "card-category">Includes orders currently en route for delivery.</p>
                         </div>
                         <div class = "card-body">
                             <div class = "table-responsive">
