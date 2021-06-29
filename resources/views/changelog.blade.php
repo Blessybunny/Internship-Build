@@ -7,7 +7,7 @@
 @section('content')        
 
     <!-- MAIN CONTENT -->
-    <div class = "main section">
+    <div class = "main section kit">
         <div class = "container">
             
             <!-- Header -->
@@ -19,7 +19,7 @@
             </div>
                 
             <!-- Navigation tabs -->
-            <div class = "tabs row">
+            <div class = "row tabs">
                 <div class = "col">
                     <ul class = "nav navbar-nav justify-content-center" data-tabs = "tabs">
                         <li class = "nav-item">
@@ -33,7 +33,7 @@
             </div>
             
             <!-- Content wrapper -->
-            <div class = "changelog row tab-content">
+            <div class = "row tab-content">
                 
                 <!-- 2021 -->
                 <div class = "tab-pane active" id = "y-2021">
@@ -46,8 +46,16 @@
                                 </ul>
                                 <br/>
                                 <ul>
+                                    <h5>June 28</h5>
+                                    <li>Back-end rework.</li>
+                                </ul>
+                                <ul>
+                                    <h5>June 27</h5>
+                                    <li>Added database for branches.</li>
+                                </ul>
+                                <ul>
                                     <h5>June 21</h5>
-                                    <li>Added "order" page for completed deliveries.</li>
+                                    <li>Added "order" page for completed orders.</li>
                                     <li>Added database for materials.</li>
                                 </ul>
                                 <ul>
@@ -56,8 +64,7 @@
                                 </ul>
                                 <ul>
                                     <h5>June 8</h5>
-                                    <li>Added "inventory" page for available products.</li>
-                                    <li>Added "inventory" page for production materials.</li>
+                                    <li>Added "inventory" page.</li>
                                     <li>Added "order" page for pending and outgoing orders.</li>
                                 </ul>
                                 <ul>
@@ -72,7 +79,7 @@
                                 </ul>
                                 <ul>
                                     <h5>May 22</h5>
-                                    <li>Implemented <a href = "https://www.creative-tim.com/product/material-kit-pro?partner=114912">Material kit</a> template.</li>
+                                    <li>Implemented <a href = "https://www.creative-tim.com/product/material-kit-pro?partner=114912">Material Kit</a> template.</li>
                                     <li>Added "changelog" page.</li>
                                     <li>Added custom logo.</li>
                                 </ul>
@@ -92,9 +99,12 @@
                             <div class = "col">
                                 <hr/>
                                 <ul>
-                                    <h5>Back-end</h5>
-                                    <li>Give fix to latest apparels to being actually "latest" ($date).</li>
-                                    <li>Repurpose "Featured Apparels" to be "Most Popular" ($sold).</li>
+                                    <h5>Back-end (IMPORTANT)</h5>
+                                    <li>Fix apparel (single) page, apparel section.</li>
+                                </ul>
+                                <ul>
+                                    <h5>Front-end</h5>
+                                    <li>Add comas to currencies.</li>
                                 </ul>
                             </div>
                         </div>

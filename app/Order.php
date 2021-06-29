@@ -18,7 +18,7 @@ class Order extends Model {
         'region',
         'country',
             
-        'pickup_location',
+        'branch_id',
         'apparel_id',
         'apparel_quantity',
         'apparel_size'

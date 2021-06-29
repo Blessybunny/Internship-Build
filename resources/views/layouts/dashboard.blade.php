@@ -46,24 +46,18 @@
                             </a>
                         </li>
                         <li class = "nav-item @yield('link-2')">
-                            <a class = "nav-link" href = "{{ url('/dashboard/inventory-apparels') }}">
+                            <a class = "nav-link" href = "{{ url('/dashboard/inventory') }}">
                                 <i class = "material-icons">inventory</i>
-                                <p>Inventory - Apparels</p>
+                                <p>Inventory</p>
                             </a>
                         </li>
                         <li class = "nav-item @yield('link-3')">
-                            <a class = "nav-link" href = "{{ url('/dashboard/inventory-materials') }}">
-                                <i class = "material-icons">inventory</i>
-                                <p>Inventory - Materials</p>
-                            </a>
-                        </li>
-                        <li class = "nav-item @yield('link-4')">
                             <a class = "nav-link" href = "{{ url('/dashboard/order-logs') }}">
                                 <i class = "material-icons">local_shipping</i>
                                 <p>Order Logs</p>
                             </a>
                         </li>
-                        <li class = "nav-item @yield('link-5')">
+                        <li class = "nav-item @yield('link-4')">
                             <a class = "nav-link" href = "{{ url('/dashboard/order-history') }}">
                                 <i class = "material-icons">history</i>
                                 <p>Order History</p>

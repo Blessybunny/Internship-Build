@@ -1,45 +1,134 @@
 <?php
 
 use App\Apparel;
-use App\Order;
+use App\Category;
 use App\Material;
+use App\Order;
+use App\Branch;
+use App\BranchApparel;
+use App\BranchMaterial;
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 //NAVIGATION
     Route::get('/', function () {
-        //Get apparel db
+        //Get relevant databases
         $apparels = Apparel::all();
+        $branch_apparels = BranchApparel::all();
+        
+        //Get total sold and total stock quantity for each top 8 most sold apparel from every branch
+        $featured_apparels = ([]);
+        foreach ($apparels as $apparel) {
+            $sold = 0;
+            $quantity_universal = 0;
+            $quantity_xs = 0;
+            $quantity_sm = 0;
+            $quantity_md = 0;
+            $quantity_lg = 0;
+            $quantity_xl = 0;
+            foreach ($branch_apparels as $branch_apparel) {
+                if ($apparel->id === $branch_apparel->apparel_id) {
+                    $sold += $branch_apparel->quantity_sold;
+                    $quantity_universal += $branch_apparel->quantity_universal;
+                    $quantity_xs += $branch_apparel->quantity_xs;
+                    $quantity_sm += $branch_apparel->quantity_sm;
+                    $quantity_md += $branch_apparel->quantity_md;
+                    $quantity_lg += $branch_apparel->quantity_lg;
+                    $quantity_xl += $branch_apparel->quantity_xl;
+                }
+            }
+            array_push($featured_apparels, [
+                'id' => $apparel->id,
+                'quantity_universal' => $quantity_universal,
+                'quantity_xs' => $quantity_xs,
+                'quantity_sm' => $quantity_sm,
+                'quantity_md' => $quantity_md,
+                'quantity_lg' => $quantity_lg,
+                'quantity_xl' => $quantity_xl,
+                'sold' => $sold
+            ]);
+        }
+        $featured_apparels = collect($featured_apparels)->sortBy('sold')->reverse()->toArray();
+        $featured_apparels = array_slice($featured_apparels, 0, 8);
         
         //Return
-        return view('home', compact('apparels'));
+        return view('home', compact('apparels', 'featured_apparels'));
     });
     Route::get('/apparels', function () {
-        //Get apparel db
+        //Get relevant databases
         $apparels = Apparel::all();
+        $categories = Category::all();
+        $branch_apparels = BranchApparel::all();
+        
+        //Get total stock quantity for each apparel from every branch
+        $all_apparels = ([]);
+        foreach ($apparels as $apparel) {
+            $quantity_universal = 0;
+            $quantity_xs = 0;
+            $quantity_sm = 0;
+            $quantity_md = 0;
+            $quantity_lg = 0;
+            $quantity_xl = 0;
+            foreach ($branch_apparels as $branch_apparel) {
+                if ($apparel->id === $branch_apparel->apparel_id) {
+                    $quantity_universal += $branch_apparel->quantity_universal;
+                    $quantity_xs += $branch_apparel->quantity_xs;
+                    $quantity_sm += $branch_apparel->quantity_sm;
+                    $quantity_md += $branch_apparel->quantity_md;
+                    $quantity_lg += $branch_apparel->quantity_lg;
+                    $quantity_xl += $branch_apparel->quantity_xl;
+                }
+            }
+            array_push($all_apparels, [
+                'id' => $apparel->id,
+                'quantity_universal' => $quantity_universal,
+                'quantity_xs' => $quantity_xs,
+                'quantity_sm' => $quantity_sm,
+                'quantity_md' => $quantity_md,
+                'quantity_lg' => $quantity_lg,
+                'quantity_xl' => $quantity_xl
+            ]);
+        }
         
         //Return
-        return view('apparels', compact('apparels'));
+        return view('apparels', compact('apparels', 'categories', 'all_apparels'));
     });
 
 //APPAREL
     Route::get('/apparels/view/{id}', function ($id) {
-        //Get apparel
+        //Get relevant databases
         $apparel = Apparel::findOrFail($id);
+        $branches = Branch::all();
+        $branch_apparels = BranchApparel::all();
+        
+        //Get total stock quantity from every branch
+        $quantity_universal = 0;
+        $quantity_xs = 0;
+        $quantity_sm = 0;
+        $quantity_md = 0;
+        $quantity_lg = 0;
+        $quantity_xl = 0;
+        foreach ($branch_apparels as $branch_apparel) {
+            if ($apparel->id === $branch_apparel->apparel_id) {
+                $quantity_universal += $branch_apparel->quantity_universal;
+                $quantity_xs += $branch_apparel->quantity_xs;
+                $quantity_sm += $branch_apparel->quantity_sm;
+                $quantity_md += $branch_apparel->quantity_md;
+                $quantity_lg += $branch_apparel->quantity_lg;
+                $quantity_xl += $branch_apparel->quantity_xl;
+            }
+        }
+        $quantity = [
+            'quantity_universal' => $quantity_universal,
+            'quantity_xs' => $quantity_xs,
+            'quantity_sm' => $quantity_sm,
+            'quantity_md' => $quantity_md,
+            'quantity_lg' => $quantity_lg,
+            'quantity_xl' => $quantity_xl
+        ];
         
         //Return
-        return view('layouts/apparel', compact('apparel'));
+        return view('layouts/apparel', compact('apparel', 'quantity', 'branches'));
     });
     Route::post('/apparels/view/{id}', function ($id) {
         //Validate if ship delivery
@@ -66,7 +155,7 @@ use Illuminate\Support\Facades\Route;
             $order = Order::create([
                 'email' => request()->input('email'),
                 'delivery_method' => request()->input('delivery-method'),
-                'pickup_location' => request()->input('pickup-location'),
+                'branch_id' => request()->input('branch-id'),
                 'apparel_id' => request()->input('apparel-id'),
                 'apparel_quantity' => request()->input('apparel-quantity'),
                 'apparel_size' => request()->input('apparel-size')
@@ -77,40 +166,44 @@ use Illuminate\Support\Facades\Route;
         return redirect('/apparels/view/'.$id.'');
     });
 
-//FOOTER
+//OTHER
     Route::get('/changelog', function () {return view('changelog');});
 
-//PREDICTIVE ANALYTICS - Dashboard
-    Route::get('/dashboard', function () {return view('analytics.dashboard');});
+//PREDICTIVE ANALYTICS - Dashboard (WIP)
+    Route::get('/dashboard', function () {
+        return view('analytics.dashboard');
+    });
 
 //PREDICTIVE ANALYTICS - Inventory
-    Route::get('/dashboard/inventory-apparels', function () {
+    Route::get('/dashboard/inventory', function () {
         //Apparel threshold
-        $minmax = array('low' => 50, 'mid' => 100, 'opt' => 200); //0-50, 50-100, 100-200
+        $minmax_apparels = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
+        $minmax_materials = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
         
-        //Get apparel db
+        //Get relevant databases
         $apparels = Apparel::all();
+        $materials = Material::all();
+        $branches = Branch::all();
+        $branch_apparels = BranchApparel::all();
+        $branch_materials = BranchMaterial::all();
         
         //Return
-        return view('analytics.inventory-apparels', compact('apparels', 'minmax'));
-    });
-    Route::get('/dashboard/inventory-materials', function () {
-        //Supply threshold
-        $minmax = array('low' => 100, 'mid' => 250, 'opt' => 500); //0-100, 100-250, 250-500
-        
-        //Get material db
-        $materials = Material::all();
-        return view('analytics.inventory-materials', compact('materials', 'minmax'));
+        return view('analytics.inventory', compact('apparels', 'materials', 'branches', 'branch_apparels', 'branch_materials', 'minmax_apparels', 'minmax_materials'));
     });
 
 //PREDICTIVE ANALYTICS - Orders
     Route::get('/dashboard/order-logs', function () {
-        //Get order db
+        //Get relevant databases
         $orders = Order::all();
         
         //Return
         return view('analytics.order-logs', compact('orders'));
     });
+
+
+// (WIP)
+
+
     Route::post('/dashboard/order-logs/{id}/{status}', function ($id, $status) {
         //Update
         if ($status === 'pending') {

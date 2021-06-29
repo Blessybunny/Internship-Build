@@ -9,8 +9,9 @@
     <!-- MAIN CONTENT -->
     <form action = "{{ url('/apparels/view', ['id' => $apparel->id]) }}" method = "POST">
         @csrf
+        
         <!-- Page Content -->
-        <div class = "main section">
+        <div class = "main section kit">
             <div class = "container">
                 
                 <!-- Header -->
@@ -21,9 +22,9 @@
                     </div>
                 </div>
                 
-                <!-- Properties - Shirt -->
+                <!-- Apparel: Shirt -->
                 @if ($apparel->type === "shirt")
-                    <div class = "properties row">
+                    <div class = "row apparel-view">
                         <div class = "col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                             <img src = "{{ asset($apparel->img_url) }}"/>
                         </div>
@@ -33,57 +34,55 @@
                             <hr/>
                             <p>Shipping calculated at checkout.</p>
                             <hr/>
-                            @if ($apparel->stock_xs > 0 or $apparel->stock_sm > 0 or $apparel->stock_md > 0 or $apparel->stock_lg > 0 or $apparel->stock_xl > 0)
-                                <table class = "table custom">
+                            @if ($quantity['quantity_xs'] > 0 or $quantity['quantity_sm'] > 0 or $quantity['quantity_md'] > 0 or $quantity['quantity_lg'] > 0 or $quantity['quantity_xl'] > 0)
+                                <table class = "table">
                                     <tbody>
                                         <tr>
                                             <td>
                                                 <label>Size</label>
-                                                <select name = "apparel-size" id = "form-size" class = "form-control selectpicker" onchange = "displayStock(value, {{ $apparel->stock_xs }}, {{ $apparel->stock_sm }}, {{ $apparel->stock_md }}, {{ $apparel->stock_lg }}, {{ $apparel->stock_xl }} )">
-                                                    @if ($apparel->stock_xs > 0)
+                                                <select class = "form-control" name = "apparel-size" onchange = "displayStock(value, {{ $quantity['quantity_xs'] }}, {{ $quantity['quantity_sm'] }}, {{ $quantity['quantity_md'] }}, {{ $quantity['quantity_lg'] }}, {{ $quantity['quantity_xl'] }} )">
+                                                    @if ($quantity['quantity_xs'] > 0)
                                                         <option value = "xs">Extra small</option>
                                                     @endif
-                                                    @if ($apparel->stock_sm > 0)
+                                                    @if ($quantity['quantity_sm'] > 0)
                                                         <option value = "sm">Small</option>
                                                     @endif
-                                                    @if ($apparel->stock_md > 0)
+                                                    @if ($quantity['quantity_md'] > 0)
                                                         <option value = "md">Medium</option>
                                                     @endif
-                                                    @if ($apparel->stock_lg > 0)
+                                                    @if ($quantity['quantity_lg'] > 0)
                                                         <option value = "lg">Large</option>
                                                     @endif
-                                                    @if ($apparel->stock_xl > 0)
+                                                    @if ($quantity['quantity_xl'] > 0)
                                                         <option value = "xl">Extra large</option>
                                                     @endif
                                                 </select>
                                             </td>
                                             <td class = "text-center">
                                                 <label>Remaining Stock</label>
-                                                <h3 id = "form-stock"></h3>
+                                                <h3 id = "form-apparel-stock"></h3>
                                             </td>
                                             <td class = "text-left">
                                                 <label>Quantity</label>
-                                                <input name = "apparel-quantity" id = "form-quantity" class = "form-control" type = "number" value = "1" onfocusout = "quantityCheck(value)" />
+                                                <input class = "form-control" name = "apparel-quantity" type = "number" value = "1" onfocusout = "quantityCheck(value)" />
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <button type = "button" class = "btn btn-primary" data-toggle = "modal" data-target = "#sizeChartModal">
+                                <button type = "button" class = "btn btn-primary" data-toggle = "modal" data-target = "#modalSizeChart">
                                     <i class = "material-icons">bar_chart</i> Size Chart
                                 </button>
-                                <script>window.onload = () => displayStock(document.getElementById(`form-size`).value, {{ $apparel->stock_xs }}, {{ $apparel->stock_sm }}, {{ $apparel->stock_md }}, {{ $apparel->stock_lg }}, {{ $apparel->stock_xl }} );</script>
                             @else
                                 <br/>
                                 <h4>This product is sold out.</h4>
-                                <script>window.onload = () => document.getElementById('purchase-buttons').innerHTML = null;</script>
                             @endif
                         </div>
                     </div>
                 @endif
                 
-                <!-- Properties - Accessory -->
+                <!-- Apparel: Accessory -->
                 @if ($apparel->type === "accessory")
-                    <div class = "properties row">
+                    <div class = "row apparel-view">
                         <div class = "col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                             <img src = "{{ asset($apparel->img_url) }}"/>
                         </div>
@@ -93,17 +92,17 @@
                             <hr/>
                             <p>Shipping calculated at checkout.</p>
                             <hr/>
-                            @if ($apparel->stock_universal > 0)
-                                <table class = "table custom">
+                            @if ($quantity['quantity_universal'] > 0)
+                                <table class = "table">
                                     <tbody>
                                         <tr>
                                             <td>
                                                 <label>Quantity</label>
-                                                <input name = "apparel-quantity" id = "form-quantity" class = "form-control" type = "number" value = "1" onfocusout = "quantityCheck(value)" />
+                                                <input class = "form-control" name = "apparel-quantity" type = "number" value = "1" onfocusout = "quantityCheck(value)" />
                                             </td>
                                             <td class = "text-center">
                                                 <label>Remaining Stock</label>
-                                                <h3 id = "form-stock">{{ $apparel->stock_universal }}</h3>
+                                                <h3 id = "form-apparel-stock">{{ $quantity['quantity_universal'] }}</h3>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -111,22 +110,21 @@
                             @else
                                 <br/>
                                 <h4>This product is sold out.</h4>
-                                <script>window.onload = () => document.getElementById('purchase-buttons').innerHTML = null;</script>
                             @endif
                         </div>
                     </div>
                 @endif
                 
                 <!-- Purchase Options -->
-                <div id = "purchase-buttons" class = "properties row">
+                <div class = "row" id = "container-buttons">
                     <div class = "col">
                         <hr/>
-                        <div class = "buttons">
+                        <div class = "justify">
                             <button onclick = "window.alert('Dummy button clicked!')" type = "button" class = "btn btn-primary">
                                 <i class = "material-icons">add_shopping_cart</i> Add To Cart
                             </button>
-                            <div class = "padding"></div>
-                            <button onclick = "buyNow('{{ $apparel->type }}')" type = "button" class = "btn btn-primary" data-toggle = "modal" data-target = "#purchaseModal">
+                            &nbsp;
+                            <button onclick = "modalPurchase('{{ $apparel->type }}')" type = "button" class = "btn btn-primary" data-toggle = "modal" data-target = "#modalPurchase">
                                 <i class = "material-icons">paid</i> Buy Now
                             </button>
                         </div>
@@ -136,8 +134,8 @@
             </div>
         </div>
 
-        <!-- Modal - Size Chart -->
-        <div class = "modal fade" id = "sizeChartModal">
+        <!-- Modal: Size Chart -->
+        <div class = "modal fade" id = "modalSizeChart">
             <div class = "modal-dialog modal-dialog-centered">
                 <div class = "modal-content">
                     <div class = "modal-header">
@@ -191,12 +189,12 @@
             </div>
         </div>
 
-        <!-- Modal - Payment Process -->
-        <div class = "modal fade" id = "purchaseModal">
+        <!-- Modal: Payment Process -->
+        <div class = "modal fade" id = "modalPurchase">
             <div class = "modal-dialog">
                 <div class = "modal-content">
                     
-                    <!-- Product size and quantity -->
+                    <!-- Product details -->
                     <div class = "modal-header">
                         <h4 class = "modal-title">Product: {{ $apparel->name }}
                             <br/>
@@ -214,28 +212,28 @@
                         <div class = "row">
                             <div class = "col-12">
                                 <h4>Contact Information</h4>
-                                <input name = "email" type = "email" class = "form-control" placeholder = "Enter email address" required />
+                                <input class = "form-control" name = "email" type = "email"  placeholder = "Enter email address" required />
                                 <small class = "form-text text-muted">Email address</small>
                             </div>
                         </div>
 
                         <!-- Navigation tabs -->
-                        <div class = "tabs row">
+                        <div class = "row tabs">
                             <div class = "col">
                                 <h4>Delivery Method</h4>
                                 <ul class = "nav navbar-nav" data-tabs = "tabs">
                                     <li class = "nav-item">
-                                        <a onclick = "deliveryMethod('ship')" class = "nav-link active" href = "#tab-ship" data-toggle = "tab">Ship</a>
+                                        <a onclick = "setDeliveryMethod('ship')" class = "nav-link active" href = "#tab-ship" data-toggle = "tab">Ship</a>
                                     </li>
                                     <li class = "nav-item">
-                                        <a onclick = "deliveryMethod('pick-up')" class = "nav-link" href = "#tab-pick-up" data-toggle = "tab">Pickup</a>
+                                        <a onclick = "setDeliveryMethod('pick-up')" class = "nav-link" href = "#tab-pick-up" data-toggle = "tab">Pickup</a>
                                     </li>
                                 </ul>
                             </div>
                             <div class = "hidden">
-                                <input id = "hidden-radio-delivery-method-ship" type = "radio" name = "delivery-method" value = "ship" checked />
-                                <input id = "hidden-radio-delivery-method-pick-up" type = "radio" name = "delivery-method" value = "pick-up" />
-                                <input type = "text" name = "apparel-id" value = "{{ $apparel->id }}" />
+                                <input name = "delivery-method" type = "radio" value = "ship" checked />
+                                <input name = "delivery-method" type = "radio" value = "pick-up" />
+                                <input name = "apparel-id" type = "text" value = "{{ $apparel->id }}" />
                             </div>
                         </div>
 
@@ -249,35 +247,35 @@
                                         <!-- Payment method -->
                                         <div class = "col-12">
                                             <h4>Payment Method</h4>
-                                            <select name = "payment-method" class = "form-control selectpicker">
+                                            <select class = "form-control selectpicker" name = "payment-method">
                                                 <option value = "C.O.D.">C.O.D. (Cash on delivery)</option>
                                                 <option value = "PayPal">PayPal</option>
                                             </select>
                                         </div>
-                                        <!-- Full name -->
+                                        <!-- Name -->
                                         <div class = "col-12">
                                             <h4>Shipping Address</h4>
-                                            <input id = "input-name" name = "name" type = "text" class = "form-control" placeholder = "Enter full name" required />
+                                            <input class = "form-control" name = "name" type = "text" placeholder = "Enter full name" required />
                                             <small class = "form-text text-muted">Full Name</small>
                                         </div>
                                         <!-- Address -->
                                         <div class = "col-12">
-                                            <input id = "input-address" name = "address" type = "text" class = "form-control" placeholder = "Enter address" required />
+                                            <input class = "form-control" name = "address" type = "text" placeholder = "Enter address" required />
                                             <small class = "form-text text-muted">Address</small>
                                         </div>
                                         <!-- Postal code -->
                                         <div class = "col-6">
-                                            <input id = "input-postal-code" name = "postal-code" type = "text" class = "form-control" placeholder = "Enter postal code" required />
+                                            <input class = "form-control" name = "postal-code" type = "text" placeholder = "Enter postal code" required />
                                             <small class = "form-text text-muted">Postal Code</small>
                                         </div>
                                         <!-- City -->
                                         <div class = "col-6">
-                                            <input id = "input-city" name = "city" type = "text" class = "form-control" placeholder = "Enter city name" required />
+                                            <input class = "form-control" name = "city" type = "text"  placeholder = "Enter city name" required />
                                             <small class = "form-text text-muted">City</small>
                                         </div>
                                         <!-- Region -->
                                         <div class = "col-6">
-                                            <select name = "region" class = "form-control selectpicker">
+                                            <select class = "form-control selectpicker" name = "region">
                                                 <option value = "Abra">Abra</option>
                                                 <option value = "Agusan del Norte">Agusan del Norte</option>
                                                 <option value = "Agusan del Sur">Agusan del Sur</option>
@@ -369,7 +367,7 @@
                                         </div>
                                         <!-- Country -->
                                         <div class = "col-6">
-                                            <select name = "country" class = "form-control selectpicker">
+                                            <select class = "form-control selectpicker" name = "country">
                                                 <option value = "Philippines" selected>Philippines</option>
                                             </select>
                                             <small class = "form-text text-muted">Country</small>
@@ -384,19 +382,17 @@
                                     <div class = "row">
                                         <div class = "col-12">
                                             <h4>Pickup Locations</h4>
-                                            <div class = "form-check form-check-radio">
-                                                <label class = "form-check-label">
-                                                    <input class = "form-check-input" type = "radio" name = "pickup-location" value = "Naduma Store (SM Baguio Branch)" checked />
-                                                    <p>
-                                                        Naduma Store (SM Baguio branch)<br/><br/>
-                                                        Ex 0223 North Terrace, SM City Upper Sesson Road,<br/>
-                                                        Baguio City PH-BEN
-                                                    </p>
-                                                    <span class = "circle">
-                                                        <span class = "check"></span>
-                                                    </span>
-                                                </label>
-                                            </div>
+                                            @foreach ($branches as $branch)
+                                                <div class = "form-check form-check-radio">
+                                                    <label class = "form-check-label">
+                                                        <input class = "form-check-input input-branches" name = "branch-id" type = "radio" value = "{{ $branch->id }}" />
+                                                        <p>{{ $branch->name }}</p>
+                                                        <span class = "circle">
+                                                            <span class = "check"></span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -418,64 +414,90 @@
         
         <!-- Scripts -->
         <script>
-            //Display stock quantity... for size selection
-            function displayStock (value, qty_xs, qty_sm, qty_md, qty_lg, qty_xl) {
-                let stock = document.getElementById(`form-stock`);
-                switch (value) {
-                    case `xs`: stock.innerHTML = qty_xs; break;
-                    case `sm`: stock.innerHTML = qty_sm; break;
-                    case `md`: stock.innerHTML = qty_md; break;
-                    case `lg`: stock.innerHTML = qty_lg; break;
-                    case `xl`: stock.innerHTML = qty_xl; break;
-                }
-                document.getElementById(`form-quantity`).value = 1;
-            }
+            //Form names
+            let size = document.getElementsByName(`apparel-size`)[0],
+                quantity = document.getElementsByName(`apparel-quantity`)[0],
+                deliveryMethod = document.getElementsByName(`delivery-method`),
+                
+                name = document.getElementsByName(`name`)[0],
+                address = document.getElementsByName(`address`)[0],
+                postalCode = document.getElementsByName(`postal-code`)[0],
+                city = document.getElementsByName(`city`)[0],
+                
+                branches = document.getElementsByName(`branch-id`),
             
-            //Quantity check... with minimum and maximum
-            function quantityCheck () {
-                let quantity = document.getElementById(`form-quantity`),
-                    stock = parseInt(document.getElementById(`form-stock`).innerHTML);
+            //Form elements
+                stock = document.getElementById(`form-apparel-stock`),
+                
+            //Other elements
+                buttons = document.getElementById(`container-buttons`),
+                details = document.getElementById(`modal-details`);
+            
+            
+            //Display stock quantity for each apparel size
+            const displayStock = (value, quantity_xs, quantity_sm, quantity_md, quantity_lg, quantity_xl) => {
+                switch (value) {
+                    case `xs`: stock.innerHTML = quantity_xs; break;
+                    case `sm`: stock.innerHTML = quantity_sm; break;
+                    case `md`: stock.innerHTML = quantity_md; break;
+                    case `lg`: stock.innerHTML = quantity_lg; break;
+                    case `xl`: stock.innerHTML = quantity_xl; break;
+                }
+                quantity.value = 1;
+            };
+            
+            //Quantity minimum and maximum check
+            const quantityCheck = () => {
                 if (quantity.value <= 0) quantity.value = 1;
-                else if (quantity.value >= stock) quantity.value = stock;
-            }
+                else if (quantity.value >= parseInt(stock.innerHTML)) quantity.value = parseInt(stock.innerHTML);
+            };
             
             //Print size and quantity selected to modal
-            function buyNow (type) {
-                let details = document.getElementById(`modal-details`),
-                    size = document.getElementById(`form-size`),
-                    quantity = document.getElementById(`form-quantity`).value;
+            const modalPurchase = (type) => {
                 switch (type) {
-                    case 'shirt': details.innerHTML = `Size: ${size.options[size.selectedIndex].text}<br/>Quantity: ${quantity}<br/>Price: PHP ${ ({{ $apparel->price }} * quantity).toFixed(2) }`; break;
-                    case 'accessory': details.innerHTML = `Quantity: ${quantity}<br/>Price: PHP ${ ({{ $apparel->price }} * quantity).toFixed(2) }`; break;
+                    case 'shirt': details.innerHTML = `Size: ${size.options[size.selectedIndex].text}<br/>Quantity: ${quantity.value}<br/>Price: PHP ${ ({{ $apparel->price }} * quantity.value).toFixed(2) }`; break;
+                    case 'accessory': details.innerHTML = `Quantity: ${quantity.value}<br/>Price: PHP ${ ({{ $apparel->price }} * quantity.value).toFixed(2) }`; break;
                 }
-            }
+            };
             
             //Delivery method change... toggle between required fields
-            function deliveryMethod (type) {
-                let ship = document.getElementById(`hidden-radio-delivery-method-ship`),
-                    pickUp = document.getElementById(`hidden-radio-delivery-method-pick-up`),
-                    shipInputs = [
-                        document.getElementById(`input-name`),
-                        document.getElementById(`input-address`),
-                        document.getElementById(`input-postal-code`),
-                        document.getElementById(`input-city`)
-                    ];
-
-                //Ship delivery method
+            const setDeliveryMethod = (type) => {
+                //Ship
                 if (type === `ship`) {
-                    ship.checked = true;
-                    for (let i = 0, ii = shipInputs.length; i < ii; i++) {
-                        shipInputs[i].required = true;
-                    }
+                    deliveryMethod[0].checked = true;
+                    
+                    name.required = true;
+                    address.required = true;
+                    postalCode.required = true;
+                    city.required = true;
+                    
+                    for (let i = 0, ii = branches.length; i < ii; i++) branches[i].required = false;
                 }
 
-                //Pick-up delivery method
+                //Pick-up
                 else if (type === `pick-up`) {
-                    pickUp.checked = true;
-                    for (let i = 0, ii = shipInputs.length; i < ii; i++) {
-                        shipInputs[i].required = false;
-                    }
+                    deliveryMethod[1].checked = true;
+                    
+                    name.required = false;
+                    address.required = false;
+                    postalCode.required = false;
+                    city.required = false;
+                    
+                    for (let i = 0, ii = branches.length; i < ii; i++) branches[i].required = true;
                 }
+            };
+            
+            //Onload functions
+            if (`{{ $apparel->type }}` === `shirt`) {
+                if ({{ $quantity['quantity_xs'] }} > 0 || {{ $quantity['quantity_sm'] }} > 0 || {{ $quantity['quantity_md'] }} > 0 || {{ $quantity['quantity_lg'] }} > 0 || {{ $quantity['quantity_xl'] }} > 0) {
+                    displayStock(size.value, {{ $quantity['quantity_xs'] }}, {{ $quantity['quantity_sm'] }}, {{ $quantity['quantity_md'] }}, {{ $quantity['quantity_lg'] }}, {{ $quantity['quantity_xl'] }});
+                }
+                else buttons.innerHTML = null;
+                            
+            }
+            if (`{{ $apparel->type }}` === `accessory`) {
+                if ({{ $quantity['quantity_universal'] }} > 0) {}
+                else buttons.innerHTML = null;
             }
         </script>
         

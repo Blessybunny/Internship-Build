@@ -13,18 +13,22 @@
     a {
         border-radius: 0 !important;
     }
-    a:hover {
-        color: @color-theme;
-    }
-    h3 {
-        text-align: center;
-    }
-    h6 {
-        margin-top: -10px;
+    p, td, li {
+        font-size: 14px;
     }
     img {
         pointer-events: none;
         width: 100%;
+    }
+    footer {
+        /* Main */
+        margin: 30px auto;
+        
+        /* Elements */
+        p {
+            margin: auto;
+            max-width: 720px;
+        }
     }
 
 /* CLASSES */
@@ -37,8 +41,15 @@
     .red {
         color: red;
     }
+    .visible {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+    }
     .hidden {
-        display: none !important;
+        display: none;
+        opacity: 0;
+        visibility: hidden;
     }
     .capitalize {
         text-transform: capitalize;
@@ -46,18 +57,15 @@
     .uppercase {
         text-transform: uppercase;
     }
+        .justify {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
 
 /* TABLES */
     .table {
         /* Main */
-        &.custom {
-            th {
-                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-            }
-            td {
-                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-            }
-        }
         &.table-shopping {
             tbody tr:hover {
                 background-color: rgba(0, 0, 0, .1);
@@ -174,65 +182,60 @@
         /* Main */
         width: 100%;
     }
-                
-/* APPAREL CARDS */
-    .apparel-card {
-        /* Main */
-        display: inline-flex;
-        padding: 0 0 15px 0;
-        
+
+/* TEMPLATE: Material kit */
+    .kit {
         /* Elements */
         a {
-            color: #000;
-            overflow: hidden;
-            position: relative;
-            width: 100%;
+            color: @color-theme;
         }
-        a:hover img {
-            filter: contrast(.75) brightness(1.25);
-        }
-        a:hover h4 {
-            text-decoration: underline;
-        }
-        h4 {
-            font-size: 16px;
-            font-weight: bold;
-            padding: 0 20px;
+        h3 {
             text-align: center;
         }
         h6 {
-            padding: 0 20px;
-            text-align: center;
-        }
-        img {
-            display: block;
-            margin: auto;
-            width: 75%;
-        }
-        
-        /* Classes */
-        .sold-out {
-            border: 1px rgba(0, 0, 0, .2) solid;
-            display: block;
-            margin: 5px auto;
-            padding: 5px;
-            width: 100px;
-        }
-    }
-                
-/* FOOTER */
-    footer {
-        /* Main */
-        margin: 30px auto;
-        
-        /* Elements */
-        p {
-            margin: auto;
-            max-width: 720px;
+            margin-top: -10px;
         }
     }
 
-/* PAGE: Home */
+/* TEMPLATE: Material dashboard */
+    .dashboard {
+        /* Classes */
+        .nav-item.active a,
+        .nav-item.active a:hover {
+            background-color: @color-theme;
+        }
+        
+        .card,
+        .card-header {
+            border-radius: 0 !important;
+        }
+        .card-header-primary {
+            background: linear-gradient(@color-theme, @color-theme) !important;
+            box-shadow: 0 4px 20px 0px rgb(#000, 14%), 0 7px 10px -5px rgb(@color-theme, 40%) !important;
+        }
+        .text-primary {
+            color: @color-theme !important;
+        }
+        
+        .modal-body {
+            td:nth-child(2) {
+                padding-left: 30px;
+            }
+            img {
+                float: right;
+                margin: 0 0 30px 30px;
+                width: 200px;
+            }
+        }
+        
+        /* Elements */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    }
+   
+/* PAGE: Home, Apparels, Changelog, Apparel (single) */
     .banner {
         /* Main */
         margin-top: 70px;
@@ -283,13 +286,6 @@
             max-width: 720px;
             width: 100%;
         }
-        
-        /* Classes */
-        .justified {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
     }
     .newsletter {
         /* Elements */
@@ -299,23 +295,52 @@
         }
     }
 
-/* PAGE: Changelog */
-    .changelog {
+    .apparel-card {
+        /* Main */
+        display: inline-flex;
+        margin-bottom: 10px;
+        
         /* Elements */
-        ul {
-            margin-bottom: 30px;
+        a {
+            color: #000;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+        a:hover img {
+            filter: contrast(.75) brightness(1.25);
+        }
+        a:hover h4 {
+            text-decoration: underline;
+        }
+        h4 {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+        }
+        h6 {
+            text-align: center;
+        }
+        img {
+            display: block;
+            margin: auto;
+            width: 80%;
+        }
+        
+        /* Classes */
+        .sold-out {
+            border: 1px rgba(0, 0, 0, .2) solid;
+            display: block;
+            margin: 10px auto 0 auto;
+            padding: 5px;
+            width: 100px;
         }
     }
 
-/* PAGE: Apparels (Single view) */
-    .properties {
+    .apparel-view {
         /* Elements */
         h3 {
             text-align: left;
-        }
-        td h3 {
-            margin: 5px;
-            text-align: center;
         }
         h4 {
             font-weight: bold;
@@ -326,22 +351,27 @@
             margin: auto;
             width: 100%;
         }
-        input::placeholder {
+        
+        /* Classes*/
+        .table td {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        
+/*unchecked*/
+        
+        /*input::placeholder {
             color: #495057;
+        }*/
+        td h3 {
+            margin: 5px;
+            text-align: center;
         }
         tr td:nth-child(3) {
             text-align: center;
         }
         
-        /* Classes*/
-        .buttons {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-        .padding {
-            width: 15px;
-        }
         .visible {
             display: block;
         }
@@ -356,47 +386,6 @@
             }
             img {
                 width: 75% !important;
-            }
-        }
-    }
-
-/* PAGE: Dashboards */
-    .dashboard {
-        /* Classes */
-        .nav-item.active a {
-            background-color: @color-theme;
-        }
-        .nav-item.active a:hover {
-            background-color: @color-theme;
-        }
-        
-        .card {
-            border-radius: 0;
-        }
-        .card-header.card-header-primary {
-            background: linear-gradient(@color-theme, @color-theme) !important;
-            box-shadow: 0 4px 20px 0px rgb(#000, 14%), 0 7px 10px -5px rgb(@color-theme, 40%) !important;
-            border-radius: 0 !important;
-        }
-        .text-primary {
-            color: @color-theme !important;
-        }
-        
-        .modal-body {
-            p, td, li {
-                font-size: 14px;
-            }
-            ul {
-                list-style-type: none;
-                padding: 0;
-            }
-            td:nth-child(2) {
-                padding-left: 30px;
-            }
-            img {
-                float: right;
-                margin: 0 0 30px 30px;
-                width: 150px;
             }
         }
     }
