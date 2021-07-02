@@ -199,20 +199,42 @@ use Illuminate\Support\Facades\Route;
         //Return
         return view('analytics.order-logs', compact('orders'));
     });
-
+    Route::get('/dashboard/order-history', function () {
+        //Get relevant databases
+        $orders = Order::all();
+        
+        //Return
+        return view('analytics.order-history', compact('orders'));
+    });
 
 // (WIP)
-
-
+            /*
+                Suggestion:
+                Select from the branch with the highest stock, as a starting point.
+                
+                Status:
+                Leave this until supervisors give the best suggestions.
+            */
     Route::post('/dashboard/order-logs/{id}/{status}', function ($id, $status) {
-        //Update
+        //Basic status change
         if ($status === 'pending') {
             $update = Order::where('id', $id)->update(['status' => 'pending']);
         }
         else if ($status === 'outgoing') {
             $update = Order::where('id', $id)->update(['status' => 'outgoing']);
         }
+        else if ($status === 'cancel') {
+            $update = Order::where('id', $id)->update(['status' => 'cancelled']);
+        }
+        
+        //Delivered (BROKEN)
         else if ($status === 'delivered') {
+            /*
+            
+            
+            
+            
+            
             //Increment sales
             $order = Order::where('id', $id)->first();
             
@@ -246,21 +268,12 @@ use Illuminate\Support\Facades\Route;
             else if ($order->apparel_size === 'xl') {
                 $apparel->stock_xl -= $order->apparel_quantity;
                 $apparel->save();
-            }
+            }*/
             
             //Update state
             $update = Order::where('id', $id)->update(['status' => 'delivered']);
         }
-        else if ($status === 'delete') {
-            $delete = Order::where('id', $id)->delete();
-        }
+        
         //Return to same page
         return redirect('/dashboard/order-logs');
-    });
-    Route::get('/dashboard/order-history', function () {
-        //Get order db
-        $orders = Order::all();
-        
-        //Return
-        return view('analytics.order-history', compact('orders'));
     });

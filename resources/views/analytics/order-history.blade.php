@@ -19,8 +19,8 @@
                 <div class = "col">
                     <div class = "card">
                         <div class = "card-header card-header-primary">
-                            <h4 class = "card-title ">Completed Orders</h4>
-                            <p class = "card-category">Includes orders successfully delivered.</p>
+                            <h4 class = "card-title ">Order History</h4>
+                            <p class = "card-category">Includes orders successfully delivered or cancelled.</p>
                         </div>
                         <div class = "card-body">
                             <div class = "table-responsive">
@@ -29,17 +29,21 @@
                                         <tr>
                                             <th>Order ID</th>
                                             <th>Order Date</th>
-                                            <th>Delivery Date</th>
+                                            <th>Last Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($orders as $order)
-                                            @if ($order->status === "delivered")
-                                                @php $apparel = DB::table('apparels')->where('id', $order->apparel_id)->first() @endphp
+                                            @if ($order->status === "delivered" or $order->status === "cancelled")
+                                                @php
+                                                    $apparel = DB::table('apparels')->find($order->apparel_id);
+                                                    $branch = DB::table('branches')->find($order->branch_id)->name ?? '';
+                                                @endphp
                                                 <tr onclick = "popModal(
                                                                '{{ $order->id }}',
                                                                '{{ $order->email }}',
                                                                '{{ $order->delivery_method }}',
+                                                               '{{ $branch }}',
                                                                '{{ $order->payment_method }}',
                                                                '{{ $order->name }}',
                                                                '{{ $order->address }}',
@@ -47,7 +51,6 @@
                                                                '{{ $order->city }}',
                                                                '{{ $order->region }}',
                                                                '{{ $order->country }}',
-                                                               '{{ $order->pickup_location }}',
                                                                '{{ $apparel->name }}',
                                                                '{{ $apparel->price }}',
                                                                '{{ $order->apparel_quantity }}',
@@ -97,7 +100,7 @@
 
             <!-- Scripts -->
             <script>
-                function popModal (id, email, deliveryMethod, paymentMethod, name, address, postalCode, city, region, country, pickupLocation, apparelName, apparelPrice, apparelQuantity, apparelSize, imgUrl, status, dateOrdered, dateDelivered) {
+                function popModal (id, email, deliveryMethod, branch, paymentMethod, name, address, postalCode, city, region, country, apparelName, apparelPrice, apparelQuantity, apparelSize, imgUrl, status, dateOrdered, dateLast) {
                     //Print apparel name and image
                     document.getElementById(`order-id`).innerHTML = `Order ID #${id}`;
                     document.getElementById(`modal-apparel-image`).src = imgUrl;
@@ -110,8 +113,8 @@
                                 <td>${dateOrdered}</td>
                             </tr>
                             <tr>
-                                <td>Delivery Date</td>
-                                <td>${dateDelivered}</td>
+                                <td>Last Status</td>
+                                <td>${dateLast}</td>
                             </tr>
                             <tr>
                                 <td>Status</td>
@@ -181,9 +184,9 @@
                                 <td>Country</td>
                                 <td>${country}</td>
                             </tr>`: ``}
-                            ${pickupLocation ? `<tr>
-                                <td>Pick-up Location</td>
-                                <td>${pickupLocation}</td>
+                            ${branch ? `<tr>
+                                <td>Branch Pick-up</td>
+                                <td>${branch}</td>
                             </tr>`: ``}
                         </tbody>
                     `;

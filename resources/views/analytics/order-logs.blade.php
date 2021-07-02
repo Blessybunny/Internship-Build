@@ -14,9 +14,10 @@
     <div class = "content dashboard">
         <div class = "container-fluid">
             
-            <!-- Table - Pending orders -->
+            <!-- Tables -->
             <div class = "row">
-                <div class = "col">
+                <!-- Pending orders -->
+                <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
                     <div class = "card">
                         <div class = "card-header card-header-primary">
                             <h4 class = "card-title">Pending Orders</h4>
@@ -34,11 +35,15 @@
                                     <tbody>
                                         @foreach ($orders as $order)
                                             @if ($order->status === "pending")
-                                                @php $apparel = DB::table('apparels')->where('id', $order->apparel_id)->first() @endphp
+                                                @php
+                                                    $apparel = DB::table('apparels')->find($order->apparel_id);
+                                                    $branch = DB::table('branches')->find($order->branch_id)->name ?? '';
+                                                @endphp
                                                 <tr onclick = "popModal(
                                                                '{{ $order->id }}',
                                                                '{{ $order->email }}',
                                                                '{{ $order->delivery_method }}',
+                                                               '{{ $branch }}',
                                                                '{{ $order->payment_method }}',
                                                                '{{ $order->name }}',
                                                                '{{ $order->address }}',
@@ -46,7 +51,6 @@
                                                                '{{ $order->city }}',
                                                                '{{ $order->region }}',
                                                                '{{ $order->country }}',
-                                                               '{{ $order->pickup_location }}',
                                                                '{{ $apparel->name }}',
                                                                '{{ $apparel->price }}',
                                                                '{{ $order->apparel_quantity }}',
@@ -69,11 +73,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Table - Outgoing orders -->
-            <div class = "row">
-                <div class = "col">
+                
+                <!-- Outgoing orders -->
+                <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
                     <div class = "card">
                         <div class = "card-header card-header-primary">
                             <h4 class = "card-title">Outgoing Orders</h4>
@@ -128,6 +130,9 @@
                 </div>
             </div>
             
+            <div class = "row">
+            </div>
+            
             <!-- Modal pop-up -->
             <div class = "modal fade" id = "orderModal">
                 <div class = "modal-dialog modal-dialog-centered modal-lg">
@@ -167,10 +172,10 @@
                                                 <i class = "material-icons">check_circle</i> Mark as "Delivered"
                                             </button>
                                         </form>
-                                        <form id = "form-btn-delete" method = "POST">
+                                        <form id = "form-btn-cancel" method = "POST">
                                             @csrf
-                                            <button onclick = "return confirm('Are you sure to delete this order?')" type = "submit" class = "btn btn-sm btn-danger" title = "Select this option at your own risk.">
-                                                <i class = "material-icons">close</i> Delete Order
+                                            <button onclick = "return confirm('Are you sure to cancel this order?')" type = "submit" class = "btn btn-sm btn-danger" title = "Select this option at your own risk.">
+                                                <i class = "material-icons">close</i> Cancel Order
                                             </button>
                                         </form>
                                     </div>
@@ -183,7 +188,7 @@
 
             <!-- Scripts -->
             <script>
-                function popModal (id, email, deliveryMethod, paymentMethod, name, address, postalCode, city, region, country, pickupLocation, apparelName, apparelPrice, apparelQuantity, apparelSize, imgUrl, status, dateOrdered) {
+                function popModal (id, email, deliveryMethod, branch, paymentMethod, name, address, postalCode, city, region, country, apparelName, apparelPrice, apparelQuantity, apparelSize, imgUrl, status, dateOrdered) {
                     //Print apparel name and image
                     document.getElementById(`order-id`).innerHTML = `Order ID #${id}`;
                     document.getElementById(`modal-apparel-image`).src = imgUrl;
@@ -192,7 +197,7 @@
                     document.getElementById(`form-btn-pending`).action = document.getElementById(`row-order-${id}`).getAttribute('data-status-target') + `/pending`;
                     document.getElementById(`form-btn-outgoing`).action = document.getElementById(`row-order-${id}`).getAttribute('data-status-target') + `/outgoing`;
                     document.getElementById(`form-btn-delivered`).action = document.getElementById(`row-order-${id}`).getAttribute('data-status-target') + `/delivered`;
-                    document.getElementById(`form-btn-delete`).action = document.getElementById(`row-order-${id}`).getAttribute('data-status-target') + `/delete`;
+                    document.getElementById(`form-btn-cancel`).action = document.getElementById(`row-order-${id}`).getAttribute('data-status-target') + `/cancel`;
                     
                     //Order details
                     document.getElementById(`order-info`).innerHTML = `
@@ -269,9 +274,9 @@
                                 <td>Country</td>
                                 <td>${country}</td>
                             </tr>`: ``}
-                            ${pickupLocation ? `<tr>
-                                <td>Pick-up Location</td>
-                                <td>${pickupLocation}</td>
+                            ${branch ? `<tr>
+                                <td>Branch Pick-up</td>
+                                <td>${branch}</td>
                             </tr>`: ``}
                         </tbody>
                     `;

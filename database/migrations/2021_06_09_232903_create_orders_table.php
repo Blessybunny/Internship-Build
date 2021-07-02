@@ -11,7 +11,7 @@ class CreateOrdersTable extends Migration {
             
             $table->string('email');
             $table->string('delivery_method');
-            $table->integer('branch_id')->nullable();
+            $table->integer('branch_id')->default(0);
             
             $table->string('payment_method')->nullable();
             $table->string('name')->nullable();
