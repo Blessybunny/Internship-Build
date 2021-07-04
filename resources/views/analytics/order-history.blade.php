@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    Inventory - Order History
+    Order Log - History
 @endsection
 
 @section('content')        
@@ -19,7 +19,7 @@
                 <div class = "col">
                     <div class = "card">
                         <div class = "card-header card-header-primary">
-                            <h4 class = "card-title ">Order History</h4>
+                            <h4 id = "table-history-header" class = "card-title"></h4>
                             <p class = "card-category">Includes orders successfully delivered or cancelled.</p>
                         </div>
                         <div class = "card-body">
@@ -28,6 +28,7 @@
                                     <thead class = "text-primary">
                                         <tr>
                                             <th>Order ID</th>
+                                            <th>Status</th>
                                             <th>Order Date</th>
                                             <th>Last Status</th>
                                         </tr>
@@ -60,8 +61,10 @@
                                                                '{{ $order->created_at->format('l jS \\of F Y h:i:s A') }}',
                                                                '{{ $order->updated_at->format('l jS \\of F Y h:i:s A') }}')"
                                                         data-toggle = "modal"
-                                                        data-target = "#orderModal">
+                                                        data-target = "#orderModal"
+                                                        class = "order-history">
                                                     <td># {{ $order->id }}</td>
+                                                    <td class = "capitalize">{{ $order->status }}</td>
                                                     <td>{{ $order->created_at->format('l jS \\of F Y h:i:s A') }}</td>
                                                     <td>{{ $order->updated_at->format('l jS \\of F Y h:i:s A') }}</td>
                                                 </tr>
@@ -100,7 +103,11 @@
 
             <!-- Scripts -->
             <script>
-                function popModal (id, email, deliveryMethod, branch, paymentMethod, name, address, postalCode, city, region, country, apparelName, apparelPrice, apparelQuantity, apparelSize, imgUrl, status, dateOrdered, dateLast) {
+                //Order count
+                window.onload = () => document.getElementById(`table-history-header`).innerHTML = `Order History | ${document.getElementsByClassName(`order-history`).length} Records`;
+                
+                //Modals
+                let popModal = (id, email, deliveryMethod, branch, paymentMethod, name, address, postalCode, city, region, country, apparelName, apparelPrice, apparelQuantity, apparelSize, imgUrl, status, dateOrdered, dateLast) => {
                     //Print apparel name and image
                     document.getElementById(`order-id`).innerHTML = `Order ID #${id}`;
                     document.getElementById(`modal-apparel-image`).src = imgUrl;
@@ -190,7 +197,7 @@
                             </tr>`: ``}
                         </tbody>
                     `;
-                }
+                };
             </script>
             
         </div>

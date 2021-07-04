@@ -19,7 +19,7 @@
                 <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
                     <div class = "card">
                         <div class = "card-header card-header-primary">
-                            <h4 class = "card-title">Branch</h4>
+                            <h4 id = "branch-header" class = "card-title"></h4>
                         </div>
                         <div class = "card-body">
                             <div style = "display: flex;">
@@ -30,7 +30,7 @@
                                     </button>
                                     <div class = "dropdown-menu">
                                         @foreach ($branches as $branch)
-                                            <a id = "branch-{{ $branch->id }}-link" class = "dropdown-item" href = "#" onclick = "selectBranch({{ $branch->id }}, '{{ $branch->name }}')">Branch {{ $branch->id }}: {{ $branch->name }}</a>
+                                            <a id = "branch-{{ $branch->id }}-link" class = "dropdown-item branch-item" href = "#" onclick = "selectBranch({{ $branch->id }}, '{{ $branch->name }}')">Branch {{ $branch->id }}: {{ $branch->name }}</a>
                                         @endforeach
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                         <div class = "col">
                             <div class = "card">
                                 <div class = "card-header card-header-primary">
-                                    <h4 class = "card-title">Apparels</h4>
+                                    <h4 class = "card-title apparel-header"></h4>
                                 </div>
                                 <div class = "card-body">
                                     <div class = "table-responsive">
@@ -81,7 +81,18 @@
                                                         @foreach ($apparels as $apparel)
                                                             @if ($branch_apparel->apparel_id === $apparel->id)
                                                                 @if ($apparel->type === "shirt")
-                                                                    <tr onclick = "modalApparel('{{ $apparel->id }}', '{{ $apparel->name }}', '{{ $apparel->type }}', {{ $apparel->price }}, '{{ asset($apparel->img_url) }}', {{ $branch_apparel->quantity_universal }}, [{{ $branch_apparel->quantity_xs }}, {{ $branch_apparel->quantity_sm }}, {{ $branch_apparel->quantity_md }}, {{ $branch_apparel->quantity_lg }}, {{ $branch_apparel->quantity_xl }}], '{{ $branch_apparel->quantity_sold }}')" data-toggle = "modal" data-target = "#modalApparel">
+                                                                    <tr onclick = "modalApparel(
+                                                                                   '{{ $apparel->id }}',
+                                                                                   '{{ $apparel->name }}',
+                                                                                   '{{ $apparel->type }}',
+                                                                                   {{ $apparel->price }},
+                                                                                   '{{ asset($apparel->img_url) }}',
+                                                                                   {{ $branch_apparel->quantity_universal }},
+                                                                                   [{{ $branch_apparel->quantity_xs }}, {{ $branch_apparel->quantity_sm }}, {{ $branch_apparel->quantity_md }}, {{ $branch_apparel->quantity_lg }}, {{ $branch_apparel->quantity_xl }}],
+                                                                                   '{{ $branch_apparel->quantity_sold }}')"
+                                                                            data-toggle = "modal"
+                                                                            data-target = "#modalApparel"
+                                                                            class = "apparel-{{ $branch->id }}">
                                                                         <td>{{ $apparel->name }}</td>
                                                                         <td>PHP {{ $apparel->price }}</td>
                                                                         <td class = "text-center @if ($branch_apparel->quantity_xs >= $minmax_apparels['opt']) green @elseif ($branch_apparel->quantity_xs >= $minmax_apparels['mid'] and $branch_apparel->quantity_xs <= $minmax_apparels['opt']) black @elseif ($branch_apparel->quantity_xs <= $minmax_apparels['mid'] and $branch_apparel->quantity_xs >= $minmax_apparels['low']) orange @elseif ($branch_apparel->quantity_xs <= $minmax_apparels['low']) red @endif">{{ $branch_apparel->quantity_xs }}</td>
@@ -110,7 +121,7 @@
                         <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
                             <div class = "card">
                                 <div class = "card-header card-header-primary">
-                                    <h4 class = "card-title">Accessories</h4>
+                                    <h4 class = "card-title accessory-header"></h4>
                                 </div>
                                 <div class = "card-body">
                                     <div class = "table-responsive">
@@ -128,7 +139,18 @@
                                                         @foreach ($apparels as $apparel)
                                                             @if ($branch_apparel->apparel_id === $apparel->id)
                                                                 @if ($apparel->type === "accessory")
-                                                                    <tr onclick = "modalApparel('{{ $apparel->id }}', '{{ $apparel->name }}', '{{ $apparel->type }}', {{ $apparel->price }}, '{{ asset($apparel->img_url) }}', {{ $branch_apparel->quantity_universal }}, [{{ $branch_apparel->quantity_xs }}, {{ $branch_apparel->quantity_sm }}, {{ $branch_apparel->quantity_md }}, {{ $branch_apparel->quantity_lg }}, {{ $branch_apparel->quantity_xl }}], '{{ $branch_apparel->quantity_sold }}')" data-toggle = "modal" data-target = "#modalApparel">
+                                                                    <tr onclick = "modalApparel(
+                                                                                   '{{ $apparel->id }}',
+                                                                                   '{{ $apparel->name }}',
+                                                                                   '{{ $apparel->type }}',
+                                                                                   {{ $apparel->price }},
+                                                                                   '{{ asset($apparel->img_url) }}',
+                                                                                   {{ $branch_apparel->quantity_universal }},
+                                                                                   [{{ $branch_apparel->quantity_xs }}, {{ $branch_apparel->quantity_sm }}, {{ $branch_apparel->quantity_md }}, {{ $branch_apparel->quantity_lg }}, {{ $branch_apparel->quantity_xl }}],
+                                                                                   '{{ $branch_apparel->quantity_sold }}')"
+                                                                            data-toggle = "modal"
+                                                                            data-target = "#modalApparel"
+                                                                            class = "accessory-{{ $branch->id }}">
                                                                         <td>{{ $apparel->name }}</td>
                                                                         <td>PHP {{ $apparel->price }}</td>
                                                                         <td class = "text-center @if ($branch_apparel->quantity_universal >= $minmax_apparels['opt']) green @elseif ($branch_apparel->quantity_universal >= $minmax_apparels['mid'] and $branch_apparel->quantity_universal <= $minmax_apparels['opt']) black @elseif ($branch_apparel->quantity_universal <= $minmax_apparels['mid'] and $branch_apparel->quantity_universal >= $minmax_apparels['low']) orange @elseif ($branch_apparel->quantity_universal <= $minmax_apparels['low']) red @endif">{{ $branch_apparel->quantity_universal }}</td>
@@ -149,7 +171,7 @@
                         <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
                             <div class = "card">
                                 <div class = "card-header card-header-primary">
-                                    <h4 class = "card-title">Materials</h4>
+                                    <h4 class = "card-title material-header"></h4>
                                 </div>
                                 <div class = "card-body">
                                     <div class = "table-responsive">
@@ -166,7 +188,13 @@
                                                     @if ($branch_material->branch_id === $branch->id)
                                                         @foreach ($materials as $material)
                                                             @if ($branch_material->material_id === $material->id)
-                                                                <tr onclick = "modalMaterial('{{ $material->name }}', '{{ $material->unit }}', {{ $branch_material->quantity }})" data-toggle = "modal" data-target = "#modalMaterial">
+                                                                <tr onclick = "modalMaterial(
+                                                                               '{{ $material->name }}',
+                                                                               '{{ $material->unit }}',
+                                                                               {{ $branch_material->quantity }})"
+                                                                        data-toggle = "modal"
+                                                                        data-target = "#modalMaterial"
+                                                                        class = "material-{{ $branch->id }}">
                                                                     <td>{{ $material->name }}</td>
                                                                     <td class = "text-center @if ($branch_material->quantity >= $minmax_materials['opt']) green @elseif ($branch_material->quantity >= $minmax_materials['mid'] and $branch_material->quantity <= $minmax_materials['opt']) black @elseif ($branch_material->quantity <= $minmax_materials['mid'] and $branch_material->quantity >= $minmax_materials['low']) orange @elseif ($branch_material->quantity <= $minmax_materials['low']) red @endif">{{ $branch_material->quantity }}</td>
                                                                     <td class = "capitalize text-center">{{ $material->unit }}</td>
@@ -183,6 +211,7 @@
                         </div>
                         
                     </div>
+                    
                 </div>
             @endforeach
             
@@ -273,8 +302,26 @@
             
             <!-- Scripts -->
             <script>
-                //Load default branch
-                window.onload = document.getElementById(`branch-1-link`).onclick;
+                //Onload functions
+                window.onload = () => {
+                    //Load default branch
+                    document.getElementById(`branch-1-link`).onclick();
+                    
+                    //Branch count
+                    document.getElementById(`branch-header`).innerHTML = `Branch Selection | ${document.getElementsByClassName(`branch-item`).length} Branches`;
+                
+                    //Apparel count
+                    let headerApparel = document.getElementsByClassName(`apparel-header`);
+                    for (let i = 0, ii = headerApparel.length; i < ii; i++) headerApparel[i].innerHTML = `Apparels | ${document.getElementsByClassName(`apparel-${i + 1}`).length} Items`;
+                
+                    //Accessory count
+                    let headerAccessory = document.getElementsByClassName(`accessory-header`);
+                    for (let i = 0, ii = headerAccessory.length; i < ii; i++) headerAccessory[i].innerHTML = `Accessories | ${document.getElementsByClassName(`accessory-${i + 1}`).length} Items`;
+                
+                    //Material count
+                    let headerMaterial = document.getElementsByClassName(`material-header`);
+                    for (let i = 0, ii = headerMaterial.length; i < ii; i++) headerMaterial[i].innerHTML = `Materials | ${document.getElementsByClassName(`material-${i + 1}`).length} Items`;
+                };
                 
                 //Branch selection
                 const selectBranch = (id, name) => {

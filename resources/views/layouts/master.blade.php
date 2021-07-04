@@ -52,11 +52,6 @@
                                     <i class = "material-icons">store</i> Apparels
                                 </a>
                             </li>
-                            <li class = "nav-item">
-                                <a class = "nav-link" href = "{{ url('/dashboard') }}">
-                                    <i class = "material-icons">insights</i> Analytics
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </div>

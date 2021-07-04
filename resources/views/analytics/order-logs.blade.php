@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    Inventory - Order Logs
+    Order Log - Pending &amp; Outgoing
 @endsection
 
 @section('content')        
@@ -16,12 +16,13 @@
             
             <!-- Tables -->
             <div class = "row">
+                
                 <!-- Pending orders -->
                 <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
                     <div class = "card">
                         <div class = "card-header card-header-primary">
-                            <h4 class = "card-title">Pending Orders</h4>
-                            <p class = "card-category">Includes orders delayed and not en route for delivery.</p>
+                            <h4 id = "table-pending-header" class = "card-title"></h4>
+                            <p class = "card-category">Includes orders delayed or not en route for delivery.</p>
                         </div>
                         <div class = "card-body">
                             <div class = "table-responsive">
@@ -30,14 +31,16 @@
                                         <tr>
                                             <th>Order ID</th>
                                             <th>Order Date</th>
+                                            <th class = "text-center">Overdue</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($orders as $order)
                                             @if ($order->status === "pending")
                                                 @php
-                                                    $apparel = DB::table('apparels')->find($order->apparel_id);
-                                                    $branch = DB::table('branches')->find($order->branch_id)->name ?? '';
+                                                    $apparel = DB::table('apparels')->where('id', $order->apparel_id)->first();
+                                                    $branch = DB::table('branches')->where('id', $order->branch_id)->first()->name ?? '';
+                                                    $overdue = (strtotime($order->created_at) > strtotime('-'.$due.' days')) ? 'No' : 'Yes';
                                                 @endphp
                                                 <tr onclick = "popModal(
                                                                '{{ $order->id }}',
@@ -57,13 +60,16 @@
                                                                '{{ $order->apparel_size }}',
                                                                '{{ asset($apparel->img_url) }}',
                                                                '{{ $order->status }}',
-                                                               '{{ $order->created_at->format('l jS \\of F Y h:i:s A') }}')"
+                                                               '{{ $order->created_at->format('l jS \\of F Y h:i:s A') }}',
+                                                               '{{ $overdue }}')"
                                                         data-toggle = "modal"
                                                         data-target = "#orderModal"
                                                         data-status-target = "{{ url('/dashboard/order-logs', ['id' => $order->id]) }}"
-                                                        id = "row-order-{{ $order->id }}">
+                                                        id = "row-order-{{ $order->id }}"
+                                                        class = "order-pending @if ($overdue === 'Yes') red @endif">
                                                     <td># {{ $order->id }}</td>
                                                     <td>{{ $order->created_at->format('l jS \\of F Y h:i:s A') }}</td>
+                                                    <td class = "text-center">{{ $overdue }}</td>
                                                 </tr>
                                             @endif
                                         @endforeach
@@ -78,7 +84,7 @@
                 <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
                     <div class = "card">
                         <div class = "card-header card-header-primary">
-                            <h4 class = "card-title">Outgoing Orders</h4>
+                            <h4 id = "table-outgoing-header" class = "card-title"></h4>
                             <p class = "card-category">Includes orders currently en route for delivery.</p>
                         </div>
                         <div class = "card-body">
@@ -88,16 +94,22 @@
                                         <tr>
                                             <th>Order ID</th>
                                             <th>Order Date</th>
+                                            <th class = "text-center">Overdue</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($orders as $order)
                                             @if ($order->status === "outgoing")
-                                                @php $apparel = DB::table('apparels')->where('id', $order->apparel_id)->first() @endphp
+                                                @php
+                                                    $apparel = DB::table('apparels')->where('id', $order->apparel_id)->first();
+                                                    $branch = DB::table('branches')->where('id', $order->branch_id)->first()->name ?? '';
+                                                    $overdue = (strtotime($order->created_at) > strtotime('-'.$due.' days')) ? 'No' : 'Yes';
+                                                @endphp
                                                 <tr onclick = "popModal(
                                                                '{{ $order->id }}',
                                                                '{{ $order->email }}',
                                                                '{{ $order->delivery_method }}',
+                                                               '{{ $branch }}',
                                                                '{{ $order->payment_method }}',
                                                                '{{ $order->name }}',
                                                                '{{ $order->address }}',
@@ -105,21 +117,22 @@
                                                                '{{ $order->city }}',
                                                                '{{ $order->region }}',
                                                                '{{ $order->country }}',
-                                                               '{{ $order->pickup_location }}',
                                                                '{{ $apparel->name }}',
                                                                '{{ $apparel->price }}',
                                                                '{{ $order->apparel_quantity }}',
                                                                '{{ $order->apparel_size }}',
                                                                '{{ asset($apparel->img_url) }}',
                                                                '{{ $order->status }}',
-                                                               '{{ $order->created_at->format('l jS \\of F Y h:i:s A') }}')"
+                                                               '{{ $order->created_at->format('l jS \\of F Y h:i:s A') }}',
+                                                               '{{ $overdue }}')"
                                                         data-toggle = "modal"
                                                         data-target = "#orderModal"
                                                         data-status-target = "{{ url('/dashboard/order-logs', ['id' => $order->id]) }}"
-                                                        id = "row-order-{{ $order->id }}">
+                                                        id = "row-order-{{ $order->id }}"
+                                                        class = "order-pending @if ($overdue === 'Yes') red @endif">
                                                     <td># {{ $order->id }}</td>
                                                     <td>{{ $order->created_at->format('l jS \\of F Y h:i:s A') }}</td>
-                                                </tr>
+                                                    <td class = "text-center">{{ $overdue }}</td>
                                             @endif
                                         @endforeach
                                     </tbody>
@@ -128,9 +141,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class = "row">
+                
             </div>
             
             <!-- Modal pop-up -->
@@ -188,7 +199,14 @@
 
             <!-- Scripts -->
             <script>
-                function popModal (id, email, deliveryMethod, branch, paymentMethod, name, address, postalCode, city, region, country, apparelName, apparelPrice, apparelQuantity, apparelSize, imgUrl, status, dateOrdered) {
+                //Order count
+                window.onload = () => {
+                    document.getElementById(`table-pending-header`).innerHTML = `Pending Orders | ${document.getElementsByClassName(`order-pending`).length} Orders`;
+                    document.getElementById(`table-outgoing-header`).innerHTML = `Outgoing Orders | ${document.getElementsByClassName(`order-outgoing`).length} Orders`;
+                };
+                
+                //Modals
+                let popModal = (id, email, deliveryMethod, branch, paymentMethod, name, address, postalCode, city, region, country, apparelName, apparelPrice, apparelQuantity, apparelSize, imgUrl, status, dateOrdered, overdue) => {
                     //Print apparel name and image
                     document.getElementById(`order-id`).innerHTML = `Order ID #${id}`;
                     document.getElementById(`modal-apparel-image`).src = imgUrl;
@@ -209,6 +227,10 @@
                             <tr>
                                 <td>Status</td>
                                 <td class = "capitalize">${status}</td>
+                            </tr>
+                            <tr>
+                                <td>Overdue</td>
+                                <td class = "capitalize">${overdue}</td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
@@ -280,7 +302,7 @@
                             </tr>`: ``}
                         </tbody>
                     `;
-                }
+                };
             </script>
             
         </div>

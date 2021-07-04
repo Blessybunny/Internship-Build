@@ -10,7 +10,7 @@ use App\BranchMaterial;
 
 use Illuminate\Support\Facades\Route;
 
-//NAVIGATION
+//GENERAL
     Route::get('/', function () {
         //Get relevant databases
         $apparels = Apparel::all();
@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\Route;
                     $quantity_xl += $branch_apparel->quantity_xl;
                 }
             }
-            array_push($featured_apparels, [
+            array_push ($featured_apparels, [
                 'id' => $apparel->id,
                 'quantity_universal' => $quantity_universal,
                 'quantity_xs' => $quantity_xs,
@@ -79,7 +79,7 @@ use Illuminate\Support\Facades\Route;
                     $quantity_xl += $branch_apparel->quantity_xl;
                 }
             }
-            array_push($all_apparels, [
+            array_push ($all_apparels, [
                 'id' => $apparel->id,
                 'quantity_universal' => $quantity_universal,
                 'quantity_xs' => $quantity_xs,
@@ -131,7 +131,7 @@ use Illuminate\Support\Facades\Route;
         return view('layouts/apparel', compact('apparel', 'quantity', 'branches'));
     });
     Route::post('/apparels/view/{id}', function ($id) {
-        //Validate if ship delivery
+        //Ship
         $delivery_method = request()->validate(['delivery-method' => 'required']);
         if ($delivery_method['delivery-method'] === 'ship') {
             $order = Order::create([
@@ -150,7 +150,7 @@ use Illuminate\Support\Facades\Route;
             ]);
         }
         
-        //Validate if pick-up delivery
+        //Pick-up
         else if ($delivery_method['delivery-method'] === 'pick-up') {
             $order = Order::create([
                 'email' => request()->input('email'),
@@ -171,12 +171,33 @@ use Illuminate\Support\Facades\Route;
 
 //PREDICTIVE ANALYTICS - Dashboard (WIP)
     Route::get('/dashboard', function () {
+        //Apparel and material level indicators
+        $minmax_apparels = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
+        $minmax_materials = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
+        
+        //Get relevant databases
+        $apparels = Apparel::all();
+        $materials = Material::all();
+        $branches = Branch::all();
+        $branch_apparels = BranchApparel::all();
+        $branch_materials = BranchMaterial::all();
+        
+        //Get relevant databases
+        $orders = Order::all();
+        
+        //Get latest orders (wip)
+        $latest_orders = ([]);
+        
+        //Get oldest orders (wip)
+        $oldest_orders = ([]);
+        
+        //Return
         return view('analytics.dashboard');
     });
 
 //PREDICTIVE ANALYTICS - Inventory
     Route::get('/dashboard/inventory', function () {
-        //Apparel threshold
+        //Apparel and material level indicators
         $minmax_apparels = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
         $minmax_materials = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
         
@@ -196,25 +217,27 @@ use Illuminate\Support\Facades\Route;
         //Get relevant databases
         $orders = Order::all();
         
+        //Due maximum days
+        $due = 7;
+        
         //Return
-        return view('analytics.order-logs', compact('orders'));
+        return view('analytics.order-logs', compact('orders', 'due'));
     });
     Route::get('/dashboard/order-history', function () {
         //Get relevant databases
-        $orders = Order::all();
+        $orders = Order::orderBy('updated_at', 'DESC')->get();
         
         //Return
         return view('analytics.order-history', compact('orders'));
     });
+    /*
+        WIP
+        Suggestion:
+        Select from the branch with the highest stock, as a starting point.
 
-// (WIP)
-            /*
-                Suggestion:
-                Select from the branch with the highest stock, as a starting point.
-                
-                Status:
-                Leave this until supervisors give the best suggestions.
-            */
+        Status:
+        Leave this until supervisors give the best suggestions.
+    */
     Route::post('/dashboard/order-logs/{id}/{status}', function ($id, $status) {
         //Basic status change
         if ($status === 'pending') {
