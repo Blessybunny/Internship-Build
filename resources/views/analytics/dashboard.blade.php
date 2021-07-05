@@ -24,15 +24,44 @@
                             <h4 class = "card-title">Order Status</h4>
                         </div>
                         <div class = "card-body">
-                            <ul>
-                                <li>Created orders all time.</li>
-                                <li>Created orders this week.</li>
-                                <li>Created orders this month.</li>
-                                <li>Created orders this year.</li>
-                                <br/>
-                                <li>Current pending orders (include overdue) active.</li>
-                                <li>Current outgoing orders (include overdue) active.</li>
-                            </ul>
+                            <div class = "table-responsive">
+                                <table class = "table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Total orders created</td>
+                                            <td>{{ DB::table('orders')->count()}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total orders delivered</td>
+                                            <td>{{ DB::table('orders')->where('status', '=', 'delivered')->count() }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total orders cancelled</td>
+                                            <td>{{ DB::table('orders')->where('status', '=', 'cancelled')->count() }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Created orders this week</td>
+                                            <td>{{ DB::table('orders')->whereBetween('created_at', [$date_now->startOfWeek(), $date_now->endOfWeek()])->get()->count() }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Created orders this month</td>
+                                            <td>{{ DB::table('orders')->whereBetween('created_at', [$date_now->startOfMonth(), $date_now->endOfMonth()])->get()->count() }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Created orders this year</td>
+                                            <td>{{ DB::table('orders')->whereBetween('created_at', [$date_now->startOfYear(), $date_now->endOfYear()])->get()->count() }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total pending orders</td>
+                                            <td>{{ DB::table('orders')->where('status', '=', 'pending')->count() }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Active outgoing orders</td>
+                                            <td>{{ DB::table('orders')->where('status', '=', 'outgoing')->count() }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -99,19 +128,5 @@
             
         </div>
     </div>
-
-<!-- Temp -->
-<script>
-/*
-
-            <div class = "row">
-                <h3>One last thing to do...</h3>
-                <p>Add warnings where each stock of apparels on different sizes are low on numbers.</p>
-                <p>Add warnings where each stock of materials are low on numbers.</p>
-                <p>Add warnings where shipping is long overdue.</p>
-                <p>Add warnings where an apparel is overproduces (this warning is dismissable).</p>
-            </div>
-*/
-</script>
 
 @endsection

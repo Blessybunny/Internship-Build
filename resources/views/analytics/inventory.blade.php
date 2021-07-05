@@ -14,31 +14,34 @@
     <div class = "content dashboard">
         <div class = "container-fluid">
             
-            <!-- Branch selection and info -->
+            <!-- Info -->
             <div class = "row">
+                <div class = "col justified">
+                    <button class = "btn btn-info" data-toggle = "modal" data-target = "#modalInfo">
+                        <i class = "material-icons">info</i>
+                        Info
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Branch selection -->
+            <div class = "row justified">
                 <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
                     <div class = "card">
                         <div class = "card-header card-header-primary">
                             <h4 id = "branch-header" class = "card-title"></h4>
                         </div>
                         <div class = "card-body">
-                            <div style = "display: flex;">
-                                <div class = "dropdown">
-                                    <button class = "btn btn-primary dropdown-toggle" data-toggle = "dropdown">
-                                        <i class = "material-icons">store</i>
-                                        Select Branch
-                                    </button>
-                                    <div class = "dropdown-menu">
-                                        @foreach ($branches as $branch)
-                                            <a id = "branch-{{ $branch->id }}-link" class = "dropdown-item branch-item" href = "#" onclick = "selectBranch({{ $branch->id }}, '{{ $branch->name }}')">Branch {{ $branch->id }}: {{ $branch->name }}</a>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                &nbsp;
-                                <button class = "btn btn-info" data-toggle = "modal" data-target = "#modalInfo">
-                                    <i class = "material-icons">info</i>
-                                    Info
+                            <div class = "dropdown">
+                                <button class = "btn btn-primary dropdown-toggle" data-toggle = "dropdown">
+                                    <i class = "material-icons">store</i>
+                                    Select Branch
                                 </button>
+                                <div class = "dropdown-menu">
+                                    @foreach ($branches as $branch)
+                                        <a id = "branch-{{ $branch->id }}-link" class = "dropdown-item branch-item" href = "#" onclick = "selectBranch({{ $branch->id }}, '{{ $branch->name }}')">Branch {{ $branch->id }}: {{ $branch->name }}</a>
+                                    @endforeach
+                                </div>
                             </div>
                             <hr/>
                             <h6 id = "branch-id"></h6>
@@ -53,7 +56,7 @@
             @foreach ($branches as $branch)
                 <div class = "branch-container hidden" id = "branch-{{ $branch->id }}-container">
                     
-                    <!-- Table - Apparels -->
+                    <!-- Table: Apparels -->
                     <div class = "row">
                         <div class = "col">
                             <div class = "card">
@@ -117,7 +120,7 @@
                     
                     <div class = "row">
                         
-                        <!-- Table - Accessories -->
+                        <!-- Table: Accessories -->
                         <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
                             <div class = "card">
                                 <div class = "card-header card-header-primary">
@@ -167,7 +170,7 @@
                             </div>
                         </div>
                         
-                        <!-- Table - Materials -->
+                        <!-- Table: Materials -->
                         <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
                             <div class = "card">
                                 <div class = "card-header card-header-primary">
@@ -281,17 +284,17 @@
                                     <p>Select a branch to view each of their tables.</p>
                                     <h6>Apparel / Accessory Quantity Range Indicators:</h6>
                                     <p>
-                                        0-{{ $minmax_apparels['low'] }}: Critical low supply.<br/>
-                                        {{ $minmax_apparels['low'] }}-{{ $minmax_apparels['mid'] }}: Low supply.<br/>
-                                        {{ $minmax_apparels['mid'] }}-{{ $minmax_apparels['opt'] }}: Normal.<br/>
-                                        {{ $minmax_apparels['opt'] }}+ : Oversupply.
+                                        0-{{ $minmax_apparels['low'] }}: Critical low supply (marked red).<br/>
+                                        {{ $minmax_apparels['low'] }}-{{ $minmax_apparels['mid'] }}: Low supply (marked yellow).<br/>
+                                        {{ $minmax_apparels['mid'] }}-{{ $minmax_apparels['opt'] }}: Optimal.<br/>
+                                        {{ $minmax_apparels['opt'] }}+ : Oversupply (marked green).
                                     </p>
                                     <h6>Material Quantity Range Indicators:</h6>
                                     <p>
-                                        0-{{ $minmax_materials['low'] }}: Critical low supply.<br/>
-                                        {{ $minmax_materials['low'] }}-{{ $minmax_materials['mid'] }}: Low supply.<br/>
-                                        {{ $minmax_materials['mid'] }}-{{ $minmax_materials['opt'] }}: Normal.<br/>
-                                        {{ $minmax_materials['opt'] }}+ : Oversupply.
+                                        0-{{ $minmax_materials['low'] }}: Critical low supply (marked red).<br/>
+                                        {{ $minmax_materials['low'] }}-{{ $minmax_materials['mid'] }}: Low supply (marked yellow).<br/>
+                                        {{ $minmax_materials['mid'] }}-{{ $minmax_materials['opt'] }}: Optimal.<br/>
+                                        {{ $minmax_materials['opt'] }}+ : Oversupply (marked green).
                                     </p>
                                 </div>
                             </div>

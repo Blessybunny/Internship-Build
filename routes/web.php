@@ -10,6 +10,9 @@ use App\BranchMaterial;
 
 use Illuminate\Support\Facades\Route;
 
+//GLOBAL VARIABLES
+    $order_due_threshold = 7;
+
 //GENERAL
     Route::get('/', function () {
         //Get relevant databases
@@ -171,28 +174,13 @@ use Illuminate\Support\Facades\Route;
 
 //PREDICTIVE ANALYTICS - Dashboard (WIP)
     Route::get('/dashboard', function () {
-        //Apparel and material level indicators
-        $minmax_apparels = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
-        $minmax_materials = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
+        //Date now
+        $date_now = Carbon\Carbon::now();
         
         //Get relevant databases
-        $apparels = Apparel::all();
-        $materials = Material::all();
-        $branches = Branch::all();
-        $branch_apparels = BranchApparel::all();
-        $branch_materials = BranchMaterial::all();
-        
-        //Get relevant databases
-        $orders = Order::all();
-        
-        //Get latest orders (wip)
-        $latest_orders = ([]);
-        
-        //Get oldest orders (wip)
-        $oldest_orders = ([]);
         
         //Return
-        return view('analytics.dashboard');
+        return view('analytics.dashboard', compact('date_now'));
     });
 
 //PREDICTIVE ANALYTICS - Inventory
@@ -202,11 +190,11 @@ use Illuminate\Support\Facades\Route;
         $minmax_materials = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
         
         //Get relevant databases
-        $apparels = Apparel::all();
-        $materials = Material::all();
-        $branches = Branch::all();
-        $branch_apparels = BranchApparel::all();
-        $branch_materials = BranchMaterial::all();
+        $apparels = Apparel::get();
+        $materials = Material::get();
+        $branches = Branch::get();
+        $branch_apparels = BranchApparel::get();
+        $branch_materials = BranchMaterial::get();
         
         //Return
         return view('analytics.inventory', compact('apparels', 'materials', 'branches', 'branch_apparels', 'branch_materials', 'minmax_apparels', 'minmax_materials'));
@@ -215,20 +203,24 @@ use Illuminate\Support\Facades\Route;
 //PREDICTIVE ANALYTICS - Orders
     Route::get('/dashboard/order-logs', function () {
         //Get relevant databases
-        $orders = Order::all();
+        $orders = Order::get();
+        $apparels = Apparel::get();
+        $branches = Branch::get();
         
         //Due maximum days
-        $due = 7;
+        $order_due_threshold = 7;
         
         //Return
-        return view('analytics.order-logs', compact('orders', 'due'));
+        return view('analytics.order-logs', compact('orders', 'apparels', 'branches', 'order_due_threshold'));
     });
     Route::get('/dashboard/order-history', function () {
         //Get relevant databases
         $orders = Order::orderBy('updated_at', 'DESC')->get();
+        $apparels = Apparel::get();
+        $branches = Branch::get();
         
         //Return
-        return view('analytics.order-history', compact('orders'));
+        return view('analytics.order-history', compact('orders', 'apparels', 'branches'));
     });
     /*
         WIP

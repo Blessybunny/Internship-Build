@@ -14,7 +14,7 @@
     <div class = "content dashboard">
         <div class = "container-fluid">
             
-            <!-- Table - Order history -->
+            <!-- Table: Order history -->
             <div class = "row">
                 <div class = "col">
                     <div class = "card">
@@ -27,7 +27,7 @@
                                 <table class = "table table-shopping">
                                     <thead class = "text-primary">
                                         <tr>
-                                            <th>Order ID</th>
+                                            <th>ID</th>
                                             <th>Status</th>
                                             <th>Order Date</th>
                                             <th>Last Status</th>
@@ -35,38 +35,37 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($orders as $order)
-                                            @if ($order->status === "delivered" or $order->status === "cancelled")
-                                                @php
-                                                    $apparel = DB::table('apparels')->find($order->apparel_id);
-                                                    $branch = DB::table('branches')->find($order->branch_id)->name ?? '';
-                                                @endphp
+                                            @if ($order->status === 'delivered' or $order->status === 'cancelled')
                                                 <tr onclick = "popModal(
                                                                '{{ $order->id }}',
-                                                               '{{ $order->email }}',
+                                                               '{{ $order->created_at->format('F j, Y') }} at {{ $order->created_at->format('h:i A') }}',
+                                                               '{{ $order->updated_at->format('F j, Y') }} at {{ $order->updated_at->format('h:i A') }}',
+                                                               '{{ $order->status }}',
+                                                               
+                                                               '{{ $apparels->find($order->apparel_id)->name }}',
+                                                               '{{ $order->apparel_quantity }}',
+                                                               '{{ $order->apparel_size }}',
+                                                               '{{ $apparels->find($order->apparel_id)->price }}',
+                                                               
                                                                '{{ $order->delivery_method }}',
-                                                               '{{ $branch }}',
                                                                '{{ $order->payment_method }}',
+                                                               
+                                                               '{{ $order->email }}',
                                                                '{{ $order->name }}',
                                                                '{{ $order->address }}',
                                                                '{{ $order->postal_code }}',
                                                                '{{ $order->city }}',
                                                                '{{ $order->region }}',
                                                                '{{ $order->country }}',
-                                                               '{{ $apparel->name }}',
-                                                               '{{ $apparel->price }}',
-                                                               '{{ $order->apparel_quantity }}',
-                                                               '{{ $order->apparel_size }}',
-                                                               '{{ asset($apparel->img_url) }}',
-                                                               '{{ $order->status }}',
-                                                               '{{ $order->created_at->format('l jS \\of F Y h:i:s A') }}',
-                                                               '{{ $order->updated_at->format('l jS \\of F Y h:i:s A') }}')"
+                                                               
+                                                               '{{ $branches->find($order->branch_id)->name ?? null }}')"
                                                         data-toggle = "modal"
-                                                        data-target = "#orderModal"
+                                                        data-target = "#modalOrder"
                                                         class = "order-history">
-                                                    <td># {{ $order->id }}</td>
+                                                    <td>{{ $order->id }}</td>
                                                     <td class = "capitalize">{{ $order->status }}</td>
-                                                    <td>{{ $order->created_at->format('l jS \\of F Y h:i:s A') }}</td>
-                                                    <td>{{ $order->updated_at->format('l jS \\of F Y h:i:s A') }}</td>
+                                                    <td>{{ $order->created_at->format('F j, Y') }} at {{ $order->created_at->format('h:i A') }}</td>
+                                                    <td>{{ $order->updated_at->format('F j, Y') }} at {{ $order->updated_at->format('h:i A') }}</td>
                                                 </tr>
                                             @endif
                                         @endforeach
@@ -78,9 +77,9 @@
                 </div>
             </div>
             
-            <!-- Modal pop-up -->
-            <div class = "modal fade" id = "orderModal">
-                <div class = "modal-dialog modal-dialog-centered modal-lg">
+            <!-- Modal: Order -->
+            <div class = "modal fade" id = "modalOrder">
+                <div class = "modal-dialog modal-dialog-centered">
                     <div class = "modal-content">
                         <div class = "modal-header">
                             <h4 id = "order-id" class = "modal-title"></h4>
@@ -90,9 +89,7 @@
                         </div>
                         <div class = "modal-body">
                             <div class = "row">
-                                <div class = "col-12">
-                                    <img id = "modal-apparel-image"/>
-                                    <p>Order details:</p>
+                                <div class = "col">
                                     <table id = "order-info"></table>
                                 </div>
                             </div>
@@ -107,93 +104,87 @@
                 window.onload = () => document.getElementById(`table-history-header`).innerHTML = `Order History | ${document.getElementsByClassName(`order-history`).length} Records`;
                 
                 //Modals
-                let popModal = (id, email, deliveryMethod, branch, paymentMethod, name, address, postalCode, city, region, country, apparelName, apparelPrice, apparelQuantity, apparelSize, imgUrl, status, dateOrdered, dateLast) => {
-                    //Print apparel name and image
-                    document.getElementById(`order-id`).innerHTML = `Order ID #${id}`;
-                    document.getElementById(`modal-apparel-image`).src = imgUrl;
-                    
+                let popModal = (order_id, order_created_at, order_updated_at, order_status, apparel_name, apparel_quantity, apparel_size, apparel_price, order_delivery_method, order_payment_method, order_email, order_name, order_address, order_postal_code, order_city, order_region, order_country, order_branch) => {
                     //Order details
+                    document.getElementById(`order-id`).innerHTML = `Order #${order_id}`;
                     document.getElementById(`order-info`).innerHTML = `
                         <tbody>
                             <tr>
-                                <td>Order Date</td>
-                                <td>${dateOrdered}</td>
+                                <td class = "bold">Order Date:</td>
+                                <td>${order_created_at}</td>
                             </tr>
                             <tr>
-                                <td>Last Status</td>
-                                <td>${dateLast}</td>
+                                <td class = "bold">Last Status:</td>
+                                <td>${order_updated_at}</td>
                             </tr>
                             <tr>
-                                <td>Status</td>
-                                <td class = "capitalize">${status}</td>
+                                <td class = "bold">Status:</td>
+                                <td class = "capitalize">${order_status}</td>
                             </tr>
                             <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
+                                <td colspan = "2">&nbsp;</td>
                             </tr>
                             <tr>
-                                <td>Apparel Name</td>
-                                <td>${apparelName}</td>
+                                <td class = "bold">Apparel Name:</td>
+                                <td>${apparel_name}</td>
                             </tr>
                             <tr>
-                                <td>Quantity</td>
-                                <td>${apparelQuantity}</td>
+                                <td class = "bold">Quantity:</td>
+                                <td>${apparel_quantity}</td>
                             </tr>
-                            <tr>
-                                <td>Total Price</td>
-                                <td>PHP ${(apparelPrice * apparelQuantity).toFixed(2)}</td>
-                            </tr>
-                            ${apparelSize ? `<tr>
-                                <td>Size</td>
-                                <td class = "uppercase">${apparelSize}</td>
+                            ${apparel_size ? `<tr>
+                                <td class = "bold">Size:</td>
+                                <td class = "uppercase">${apparel_size}</td>
                             </tr>` : ``}
                             <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
+                                <td class = "bold">Total Price:</td>
+                                <td>PHP ${(apparel_price * apparel_quantity).toFixed(2)}</td>
                             </tr>
                             <tr>
-                                <td>Email</td>
-                                <td>${email}</td>
+                                <td colspan = "2">&nbsp;</td>
                             </tr>
                             <tr>
-                                <td>Delivery Method</td>
-                                <td class = "capitalize">${deliveryMethod}</td>
+                                <td class = "bold">Delivery Method:</td>
+                                <td class = "capitalize">${order_delivery_method}</td>
                             </tr>
-                            ${paymentMethod ? `<tr>
-                                <td>Payment Method</td>
-                                <td>${paymentMethod}</td>
+                            ${order_payment_method ? `<tr>
+                                <td class = "bold">Payment Method:</td>
+                                <td>${order_payment_method}</td>
                             </tr>`: ``}
                             <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
+                                <td colspan = "2">&nbsp;</td>
                             </tr>
-                            ${name ? `<tr>
-                                <td>Name</td>
-                                <td>${name}</td>
+                            <tr>
+                                <td class = "bold">Email:</td>
+                                <td>${order_email}</td>
+                            </tr>
+                            ${order_name ? `<tr>
+                                <td class = "bold">Name:</td>
+                                <td>${order_name}</td>
                             </tr>`: ``}
-                            ${address ? `<tr>
-                                <td>Address</td>
-                                <td>${address}</td>
+                            ${order_address ? `<tr>
+                                <td class = "bold">Address:</td>
+                                <td>${order_address}</td>
                             </tr>`: ``}
-                            ${postalCode ? `<tr>
-                                <td>Postal Code</td>
-                                <td>${postalCode}</td>
+                            ${order_postal_code ? `<tr>
+                                <td class = "bold">Postal Code:</td>
+                                <td>${order_postal_code}</td>
                             </tr>`: ``}
-                            ${city ? `<tr>
-                                <td>City</td>
-                                <td>${city}</td>
+                            ${order_city ? `<tr>
+                                <td class = "bold">City:</td>
+                                <td>${order_city}</td>
                             </tr>`: ``}
-                            ${region ? `<tr>
-                                <td>Region</td>
-                                <td>${region}</td>
+                            ${order_region ? `<tr>
+                                <td class = "bold">Region:</td>
+                                <td>${order_region}</td>
                             </tr>`: ``}
-                            ${country ? `<tr>
-                                <td>Country</td>
-                                <td>${country}</td>
+                            ${order_country ? `<tr>
+                                <td class = "bold">Country:</td>
+                                <td>${order_country}</td>
                             </tr>`: ``}
-                            ${branch ? `<tr>
-                                <td>Branch Pick-up</td>
-                                <td>${branch}</td>
+                            ${order_branch ? `<tr>
+                                <td class = "bold">Branch:</td>
+                                <td>${order_branch}</td>
                             </tr>`: ``}
                         </tbody>
                     `;

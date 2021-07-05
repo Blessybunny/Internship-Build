@@ -14,10 +14,19 @@
     <div class = "content dashboard">
         <div class = "container-fluid">
             
-            <!-- Tables -->
+            <!-- Info -->
+            <div class = "row">
+                <div class = "col justified">
+                    <button class = "btn btn-info" data-toggle = "modal" data-target = "#modalInfo">
+                        <i class = "material-icons">info</i>
+                        Info
+                    </button>
+                </div>
+            </div>
+            
             <div class = "row">
                 
-                <!-- Pending orders -->
+                <!-- Table: Pending orders -->
                 <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
                     <div class = "card">
                         <div class = "card-header card-header-primary">
@@ -36,39 +45,38 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($orders as $order)
-                                            @if ($order->status === "pending")
-                                                @php
-                                                    $apparel = DB::table('apparels')->where('id', $order->apparel_id)->first();
-                                                    $branch = DB::table('branches')->where('id', $order->branch_id)->first()->name ?? '';
-                                                    $overdue = (strtotime($order->created_at) > strtotime('-'.$due.' days')) ? 'No' : 'Yes';
-                                                @endphp
+                                            @if ($order->status === 'pending')
+                                                @php $overdue = (strtotime($order->created_at) > strtotime('-'.$order_due_threshold.' days')) ? 'No' : 'Yes' @endphp
                                                 <tr onclick = "popModal(
                                                                '{{ $order->id }}',
-                                                               '{{ $order->email }}',
+                                                               '{{ $order->created_at->format('F j, Y') }} at {{ $order->created_at->format('h:i A') }}',
+                                                               '{{ $order->status }}',
+                                                               '{{ $overdue }}',
+                                                               
+                                                               '{{ $apparels->find($order->apparel_id)->name }}',
+                                                               '{{ $order->apparel_quantity }}',
+                                                               '{{ $order->apparel_size }}',
+                                                               '{{ $apparels->find($order->apparel_id)->price }}',
+                                                               
                                                                '{{ $order->delivery_method }}',
-                                                               '{{ $branch }}',
                                                                '{{ $order->payment_method }}',
+                                                               
+                                                               '{{ $order->email }}',
                                                                '{{ $order->name }}',
                                                                '{{ $order->address }}',
                                                                '{{ $order->postal_code }}',
                                                                '{{ $order->city }}',
                                                                '{{ $order->region }}',
                                                                '{{ $order->country }}',
-                                                               '{{ $apparel->name }}',
-                                                               '{{ $apparel->price }}',
-                                                               '{{ $order->apparel_quantity }}',
-                                                               '{{ $order->apparel_size }}',
-                                                               '{{ asset($apparel->img_url) }}',
-                                                               '{{ $order->status }}',
-                                                               '{{ $order->created_at->format('l jS \\of F Y h:i:s A') }}',
-                                                               '{{ $overdue }}')"
+                                                               
+                                                               '{{ DB::table('branches')->where('id', $order->branch_id)->first()->name ?? null }}')"
                                                         data-toggle = "modal"
-                                                        data-target = "#orderModal"
+                                                        data-target = "#modalOrder"
                                                         data-status-target = "{{ url('/dashboard/order-logs', ['id' => $order->id]) }}"
                                                         id = "row-order-{{ $order->id }}"
                                                         class = "order-pending @if ($overdue === 'Yes') red @endif">
                                                     <td># {{ $order->id }}</td>
-                                                    <td>{{ $order->created_at->format('l jS \\of F Y h:i:s A') }}</td>
+                                                    <td>{{ $order->created_at->format('F j, Y') }} at {{ $order->created_at->format('h:i A') }}</td>
                                                     <td class = "text-center">{{ $overdue }}</td>
                                                 </tr>
                                             @endif
@@ -80,7 +88,7 @@
                     </div>
                 </div>
                 
-                <!-- Outgoing orders -->
+                <!-- Table: Outgoing orders -->
                 <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
                     <div class = "card">
                         <div class = "card-header card-header-primary">
@@ -99,40 +107,40 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($orders as $order)
-                                            @if ($order->status === "outgoing")
-                                                @php
-                                                    $apparel = DB::table('apparels')->where('id', $order->apparel_id)->first();
-                                                    $branch = DB::table('branches')->where('id', $order->branch_id)->first()->name ?? '';
-                                                    $overdue = (strtotime($order->created_at) > strtotime('-'.$due.' days')) ? 'No' : 'Yes';
-                                                @endphp
+                                            @if ($order->status === 'outgoing')
+                                                @php $overdue = (strtotime($order->created_at) > strtotime('-'.$order_due_threshold.' days')) ? 'No' : 'Yes' @endphp
                                                 <tr onclick = "popModal(
                                                                '{{ $order->id }}',
-                                                               '{{ $order->email }}',
+                                                               '{{ $order->created_at->format('F j, Y') }} at {{ $order->created_at->format('h:i A') }}',
+                                                               '{{ $order->status }}',
+                                                               '{{ $overdue }}',
+                                                               
+                                                               '{{ $apparels->find($order->apparel_id)->name }}',
+                                                               '{{ $order->apparel_quantity }}',
+                                                               '{{ $order->apparel_size }}',
+                                                               '{{ $apparels->find($order->apparel_id)->price }}',
+                                                               
                                                                '{{ $order->delivery_method }}',
-                                                               '{{ $branch }}',
                                                                '{{ $order->payment_method }}',
+                                                               
+                                                               '{{ $order->email }}',
                                                                '{{ $order->name }}',
                                                                '{{ $order->address }}',
                                                                '{{ $order->postal_code }}',
                                                                '{{ $order->city }}',
                                                                '{{ $order->region }}',
                                                                '{{ $order->country }}',
-                                                               '{{ $apparel->name }}',
-                                                               '{{ $apparel->price }}',
-                                                               '{{ $order->apparel_quantity }}',
-                                                               '{{ $order->apparel_size }}',
-                                                               '{{ asset($apparel->img_url) }}',
-                                                               '{{ $order->status }}',
-                                                               '{{ $order->created_at->format('l jS \\of F Y h:i:s A') }}',
-                                                               '{{ $overdue }}')"
+                                                               
+                                                               '{{ DB::table('branches')->where('id', $order->branch_id)->first()->name ?? null }}')"
                                                         data-toggle = "modal"
-                                                        data-target = "#orderModal"
+                                                        data-target = "#modalOrder"
                                                         data-status-target = "{{ url('/dashboard/order-logs', ['id' => $order->id]) }}"
                                                         id = "row-order-{{ $order->id }}"
                                                         class = "order-pending @if ($overdue === 'Yes') red @endif">
                                                     <td># {{ $order->id }}</td>
-                                                    <td>{{ $order->created_at->format('l jS \\of F Y h:i:s A') }}</td>
+                                                    <td>{{ $order->created_at->format('F j, Y') }} at {{ $order->created_at->format('h:i A') }}</td>
                                                     <td class = "text-center">{{ $overdue }}</td>
+                                                </tr>
                                             @endif
                                         @endforeach
                                     </tbody>
@@ -144,9 +152,9 @@
                 
             </div>
             
-            <!-- Modal pop-up -->
-            <div class = "modal fade" id = "orderModal">
-                <div class = "modal-dialog modal-dialog-centered modal-lg">
+            <!-- Modal: Order -->
+            <div class = "modal fade" id = "modalOrder">
+                <div class = "modal-dialog modal-dialog-centered">
                     <div class = "modal-content">
                         <div class = "modal-header">
                             <h4 id = "order-id" class = "modal-title"></h4>
@@ -156,40 +164,56 @@
                         </div>
                         <div class = "modal-body">
                             <div class = "row">
-                                <div class = "col-12">
-                                    <img id = "modal-apparel-image"/>
-                                    <p>Order details:</p>
+                                <div class = "col">
                                     <table id = "order-info"></table>
                                     <hr/>
-                                    <p>Order options:</p>
-                                    <div style = "display: flex;">
-                                        <form id = "form-btn-pending" method = "POST">
-                                            @csrf
-                                            <button onclick = "return confirm('Are you sure to mark this order pending?')" type = "submit" class = "btn btn-sm btn-info" title = "Select this option if there's no outgoing delivery for it.">
-                                                <i class = "material-icons">pending_actions</i> Mark as "Pending"
-                                            </button>
-                                        </form>
-                                        <form id = "form-btn-outgoing" method = "POST">
-                                            @csrf
-                                            <button onclick = "return confirm('Are you sure to mark this order outgoing?')" type = "submit" class = "btn btn-sm btn-info" title = "Select this option if the delivery is en route.">
-                                                <i class = "material-icons">local_shipping</i> Mark as "Outgoing"
-                                            </button>
-                                        </form>
-                                    </div>
-                                    <div style = "display: flex;">
-                                        <form id = "form-btn-delivered" method = "POST">
-                                            @csrf
-                                            <button onclick = "return confirm('Are you sure to mark this order delivered?')" type = "submit" class = "btn btn-sm btn-success" title = "Select this option if the delivery is completed.">
-                                                <i class = "material-icons">check_circle</i> Mark as "Delivered"
-                                            </button>
-                                        </form>
-                                        <form id = "form-btn-cancel" method = "POST">
-                                            @csrf
-                                            <button onclick = "return confirm('Are you sure to cancel this order?')" type = "submit" class = "btn btn-sm btn-danger" title = "Select this option at your own risk.">
-                                                <i class = "material-icons">close</i> Cancel Order
-                                            </button>
-                                        </form>
-                                    </div>
+                                    <p class = "bold text-center">Order options:</p>
+                                    <form id = "form-btn-pending" method = "POST">
+                                        @csrf
+                                        <button onclick = "return confirm('Are you sure to mark this order pending?')" type = "submit" class = "btn btn-sm btn-info" title = "Select this option if there's no outgoing delivery for it.">
+                                            <i class = "material-icons">pending_actions</i> Mark as "Pending"
+                                        </button>
+                                    </form>
+                                    <form id = "form-btn-outgoing" method = "POST">
+                                        @csrf
+                                        <button onclick = "return confirm('Are you sure to mark this order outgoing?')" type = "submit" class = "btn btn-sm btn-info" title = "Select this option if the delivery is en route.">
+                                            <i class = "material-icons">local_shipping</i> Mark as "Outgoing"
+                                        </button>
+                                    </form>
+                                    <form id = "form-btn-delivered" method = "POST">
+                                        @csrf
+                                        <button onclick = "return confirm('Are you sure to mark this order delivered?')" type = "submit" class = "btn btn-sm btn-success" title = "Select this option if the delivery is completed.">
+                                            <i class = "material-icons">check_circle</i> Mark as "Delivered"
+                                        </button>
+                                    </form>
+                                    <form id = "form-btn-cancel" method = "POST">
+                                        @csrf
+                                        <button onclick = "return confirm('Are you sure to cancel this order?')" type = "submit" class = "btn btn-sm btn-danger" title = "Select this option at your own risk.">
+                                            <i class = "material-icons">close</i> Cancel Order
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal: Info -->
+            <div class = "modal fade" id = "modalInfo">
+                <div class = "modal-dialog modal-dialog-centered">
+                    <div class = "modal-content">
+                        <div class = "modal-header">
+                            <h4 class = "modal-title">Info</h4>
+                            <button type = "button" class = "close" data-dismiss = "modal" aria-label = "Close">
+                                <span aria-hidden = "true">&times;</span>
+                            </button>
+                        </div>
+                        <div class = "modal-body">
+                            <div class = "row">
+                                <div class = "col-12">
+                                    <h6>Overdue Orders:</h6>
+                                    <p>Overdue orders are marked red.</p>
                                 </div>
                             </div>
                         </div>
@@ -201,104 +225,98 @@
             <script>
                 //Order count
                 window.onload = () => {
-                    document.getElementById(`table-pending-header`).innerHTML = `Pending Orders | ${document.getElementsByClassName(`order-pending`).length} Orders`;
-                    document.getElementById(`table-outgoing-header`).innerHTML = `Outgoing Orders | ${document.getElementsByClassName(`order-outgoing`).length} Orders`;
+                    document.getElementById(`table-pending-header`).innerHTML = `Pending Orders | ${document.getElementsByClassName(`order-pending`).length} Records`;
+                    document.getElementById(`table-outgoing-header`).innerHTML = `Outgoing Orders | ${document.getElementsByClassName(`order-outgoing`).length} Records`;
                 };
                 
                 //Modals
-                let popModal = (id, email, deliveryMethod, branch, paymentMethod, name, address, postalCode, city, region, country, apparelName, apparelPrice, apparelQuantity, apparelSize, imgUrl, status, dateOrdered, overdue) => {
-                    //Print apparel name and image
-                    document.getElementById(`order-id`).innerHTML = `Order ID #${id}`;
-                    document.getElementById(`modal-apparel-image`).src = imgUrl;
-
-                    //Buttons
-                    document.getElementById(`form-btn-pending`).action = document.getElementById(`row-order-${id}`).getAttribute('data-status-target') + `/pending`;
-                    document.getElementById(`form-btn-outgoing`).action = document.getElementById(`row-order-${id}`).getAttribute('data-status-target') + `/outgoing`;
-                    document.getElementById(`form-btn-delivered`).action = document.getElementById(`row-order-${id}`).getAttribute('data-status-target') + `/delivered`;
-                    document.getElementById(`form-btn-cancel`).action = document.getElementById(`row-order-${id}`).getAttribute('data-status-target') + `/cancel`;
+                let popModal = (order_id, order_created_at, order_status, order_overdue, apparel_name, apparel_quantity, apparel_size, apparel_price, order_delivery_method, order_payment_method, order_email, order_name, order_address, order_postal_code, order_city, order_region, order_country, order_branch) => {
+                    //Button actions
+                    document.getElementById(`form-btn-pending`).action = document.getElementById(`row-order-${order_id}`).getAttribute('data-status-target') + `/pending`;
+                    document.getElementById(`form-btn-outgoing`).action = document.getElementById(`row-order-${order_id}`).getAttribute('data-status-target') + `/outgoing`;
+                    document.getElementById(`form-btn-delivered`).action = document.getElementById(`row-order-${order_id}`).getAttribute('data-status-target') + `/delivered`;
+                    document.getElementById(`form-btn-cancel`).action = document.getElementById(`row-order-${order_id}`).getAttribute('data-status-target') + `/cancel`;
                     
                     //Order details
+                    document.getElementById(`order-id`).innerHTML = `Order ID #${order_id}`;
                     document.getElementById(`order-info`).innerHTML = `
                         <tbody>
                             <tr>
-                                <td>Order Date</td>
-                                <td>${dateOrdered}</td>
+                                <td class = "bold">Order Date:</td>
+                                <td>${order_created_at}</td>
                             </tr>
                             <tr>
-                                <td>Status</td>
-                                <td class = "capitalize">${status}</td>
+                                <td class = "bold">Status:</td>
+                                <td class = "capitalize">${order_status}</td>
                             </tr>
                             <tr>
-                                <td>Overdue</td>
-                                <td class = "capitalize">${overdue}</td>
+                                <td class = "bold">Overdue:</td>
+                                <td class = "capitalize">${order_overdue}</td>
                             </tr>
                             <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
+                                <td colspan = "2">&nbsp;</td>
                             </tr>
                             <tr>
-                                <td>Apparel Name</td>
-                                <td>${apparelName}</td>
+                                <td class = "bold">Apparel Name:</td>
+                                <td>${apparel_name}</td>
                             </tr>
                             <tr>
-                                <td>Quantity</td>
-                                <td>${apparelQuantity}</td>
+                                <td class = "bold">Quantity:</td>
+                                <td>${apparel_quantity}</td>
                             </tr>
-                            <tr>
-                                <td>Total Price</td>
-                                <td>PHP ${(apparelPrice * apparelQuantity).toFixed(2)}</td>
-                            </tr>
-                            ${apparelSize ? `<tr>
-                                <td>Size</td>
-                                <td class = "uppercase">${apparelSize}</td>
+                            ${apparel_size ? `<tr>
+                                <td class = "bold">Size:</td>
+                                <td class = "uppercase">${apparel_size}</td>
                             </tr>` : ``}
                             <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
+                                <td class = "bold">Total Price:</td>
+                                <td>PHP ${(apparel_price * apparel_quantity).toFixed(2)}</td>
                             </tr>
                             <tr>
-                                <td>Email</td>
-                                <td>${email}</td>
+                                <td colspan = "2">&nbsp;</td>
                             </tr>
                             <tr>
-                                <td>Delivery Method</td>
-                                <td class = "capitalize">${deliveryMethod}</td>
+                                <td class = "bold">Delivery Method:</td>
+                                <td class = "capitalize">${order_delivery_method}</td>
                             </tr>
-                            ${paymentMethod ? `<tr>
-                                <td>Payment Method</td>
-                                <td>${paymentMethod}</td>
+                            ${order_payment_method ? `<tr>
+                                <td class = "bold">Payment Method:</td>
+                                <td>${order_payment_method}</td>
                             </tr>`: ``}
                             <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
+                                <td colspan = "2">&nbsp;</td>
                             </tr>
-                            ${name ? `<tr>
-                                <td>Name</td>
-                                <td>${name}</td>
+                            <tr>
+                                <td class = "bold">Email:</td>
+                                <td>${order_email}</td>
+                            </tr>
+                            ${order_name ? `<tr>
+                                <td class = "bold">Name:</td>
+                                <td>${order_name}</td>
                             </tr>`: ``}
-                            ${address ? `<tr>
-                                <td>Address</td>
-                                <td>${address}</td>
+                            ${order_address ? `<tr>
+                                <td class = "bold">Address:</td>
+                                <td>${order_address}</td>
                             </tr>`: ``}
-                            ${postalCode ? `<tr>
-                                <td>Postal Code</td>
-                                <td>${postalCode}</td>
+                            ${order_postal_code ? `<tr>
+                                <td class = "bold">Postal Code:</td>
+                                <td>${order_postal_code}</td>
                             </tr>`: ``}
-                            ${city ? `<tr>
-                                <td>City</td>
-                                <td>${city}</td>
+                            ${order_city ? `<tr>
+                                <td class = "bold">City:</td>
+                                <td>${order_city}</td>
                             </tr>`: ``}
-                            ${region ? `<tr>
-                                <td>Region</td>
-                                <td>${region}</td>
+                            ${order_region ? `<tr>
+                                <td class = "bold">Region:</td>
+                                <td>${order_region}</td>
                             </tr>`: ``}
-                            ${country ? `<tr>
-                                <td>Country</td>
-                                <td>${country}</td>
+                            ${order_country ? `<tr>
+                                <td class = "bold">Country:</td>
+                                <td>${order_country}</td>
                             </tr>`: ``}
-                            ${branch ? `<tr>
-                                <td>Branch Pick-up</td>
-                                <td>${branch}</td>
+                            ${order_branch ? `<tr>
+                                <td class = "bold">Branch:</td>
+                                <td>${order_branch}</td>
                             </tr>`: ``}
                         </tbody>
                     `;
