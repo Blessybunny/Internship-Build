@@ -41,6 +41,9 @@
     .red {
         color: red;
     }
+    .black {
+        color: #000;
+    }
     .visible {
         display: block;
         opacity: 1;
@@ -57,24 +60,14 @@
     .uppercase {
         text-transform: uppercase;
     }
-        .justify {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-.justified {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-.bold {
-    font-weight: bold !important;
-}
+    .bold {
+        font-weight: bold !important;
+    }
 
 /* TABLES */
     .table {
         /* Main */
-        &.table-shopping {
+        &.table-shopping.table-record {
             tbody tr:hover {
                 background-color: rgba(0, 0, 0, .1);
             }
@@ -226,10 +219,9 @@
         }
         
         .modal-body {
-            table {width: 100%;}
             tbody td:nth-child(1) {
                 vertical-align: text-top;
-                width: 150px;
+                padding-right: 30px;
             }
             form {
                 margin: 0;
@@ -238,6 +230,19 @@
                 display: block;
                 width: 100%;
             }
+            img {
+                float: right;
+                margin: 0 0 15px 0;
+                width: 30%;
+            }
+            hr {
+                clear: both;
+                display: block;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
         }
         
         .dropdown-menu {
@@ -245,12 +250,6 @@
         }
         .dropdown-item:hover {
             background-color: @color-theme;
-        }
-        
-        /* Elements */
-        ul {
-            list-style-type: none;
-            padding: 0;
         }
     }
    
@@ -370,19 +369,6 @@
             margin: auto;
             width: 100%;
         }
-        
-        /* Classes*/
-        .table td {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        
-        
-/*unchecked*/
-        
-        /*input::placeholder {
-            color: #495057;
-        }*/
         td h3 {
             margin: 5px;
             text-align: center;
@@ -391,11 +377,10 @@
             text-align: center;
         }
         
-        .visible {
-            display: block;
-        }
-        .hidden {
-            display: none;
+        /* Classes*/
+        .table td {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
         
         /* Screen */

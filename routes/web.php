@@ -172,15 +172,26 @@ use Illuminate\Support\Facades\Route;
 //OTHER
     Route::get('/changelog', function () {return view('changelog');});
 
-//PREDICTIVE ANALYTICS - Dashboard (WIP)
+//PREDICTIVE ANALYTICS - Dashboard
     Route::get('/dashboard', function () {
-        //Date now
-        $date_now = Carbon\Carbon::now();
+        //Apparel and material level indicators
+        $minmax_apparels = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
+        $minmax_materials = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
+        
+        //Due maximum days
+        $order_due_threshold = 7;
         
         //Get relevant databases
+        $apparels = Apparel::get();
+        $materials = Material::get();
+        $orders = Order::get()->take(10);
+        $sales = Order::whereBetween('updated_at', [Carbon\Carbon::now()->startOfMonth(), Carbon\Carbon::now()->endOfMonth()])->where('status', '=', 'delivered')->get()->take(10);
+        $branches = Branch::get();
+        $branch_apparels = BranchApparel::get();
+        $branch_materials = BranchMaterial::get();
         
         //Return
-        return view('analytics.dashboard', compact('date_now'));
+        return view('analytics.dashboard', compact('apparels', 'materials', 'orders', 'sales', 'branches', 'branch_apparels', 'branch_materials', 'minmax_apparels', 'minmax_materials', 'order_due_threshold'));
     });
 
 //PREDICTIVE ANALYTICS - Inventory

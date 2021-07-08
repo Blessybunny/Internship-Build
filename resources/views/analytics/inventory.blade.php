@@ -30,6 +30,7 @@
                     <div class = "card">
                         <div class = "card-header card-header-primary">
                             <h4 id = "branch-header" class = "card-title"></h4>
+                            <p class = "card-category">Branches across multiple regions.</p>
                         </div>
                         <div class = "card-body">
                             <div class = "dropdown">
@@ -62,10 +63,11 @@
                             <div class = "card">
                                 <div class = "card-header card-header-primary">
                                     <h4 class = "card-title apparel-header"></h4>
+                                    <p class = "card-category">Clothes and the like.</p>
                                 </div>
                                 <div class = "card-body">
                                     <div class = "table-responsive">
-                                        <table class = "table table-shopping">
+                                        <table class = "table table-shopping table-record">
                                             <thead class = "text-primary">
                                                 <tr>
                                                     <th>Apparel Name</th>
@@ -85,11 +87,12 @@
                                                             @if ($branch_apparel->apparel_id === $apparel->id)
                                                                 @if ($apparel->type === "shirt")
                                                                     <tr onclick = "modalApparel(
-                                                                                   '{{ $apparel->id }}',
                                                                                    '{{ $apparel->name }}',
-                                                                                   '{{ $apparel->type }}',
-                                                                                   {{ $apparel->price }},
                                                                                    '{{ asset($apparel->img_url) }}',
+                                                                                   
+                                                                                   '{{ $apparel->type }}',
+                                                                                   
+                                                                                   {{ $apparel->price }},
                                                                                    {{ $branch_apparel->quantity_universal }},
                                                                                    [{{ $branch_apparel->quantity_xs }}, {{ $branch_apparel->quantity_sm }}, {{ $branch_apparel->quantity_md }}, {{ $branch_apparel->quantity_lg }}, {{ $branch_apparel->quantity_xl }}],
                                                                                    '{{ $branch_apparel->quantity_sold }}')"
@@ -125,10 +128,11 @@
                             <div class = "card">
                                 <div class = "card-header card-header-primary">
                                     <h4 class = "card-title accessory-header"></h4>
+                                    <p class = "card-category">Headpieaces and the like.</p>
                                 </div>
                                 <div class = "card-body">
                                     <div class = "table-responsive">
-                                        <table class = "table table-shopping">
+                                        <table class = "table table-shopping table-record">
                                             <thead class = "text-primary">
                                                 <tr>
                                                     <th>Apparel Name</th>
@@ -143,11 +147,12 @@
                                                             @if ($branch_apparel->apparel_id === $apparel->id)
                                                                 @if ($apparel->type === "accessory")
                                                                     <tr onclick = "modalApparel(
-                                                                                   '{{ $apparel->id }}',
                                                                                    '{{ $apparel->name }}',
-                                                                                   '{{ $apparel->type }}',
-                                                                                   {{ $apparel->price }},
                                                                                    '{{ asset($apparel->img_url) }}',
+                                                                                   
+                                                                                   '{{ $apparel->type }}',
+                                                                                   
+                                                                                   {{ $apparel->price }},
                                                                                    {{ $branch_apparel->quantity_universal }},
                                                                                    [{{ $branch_apparel->quantity_xs }}, {{ $branch_apparel->quantity_sm }}, {{ $branch_apparel->quantity_md }}, {{ $branch_apparel->quantity_lg }}, {{ $branch_apparel->quantity_xl }}],
                                                                                    '{{ $branch_apparel->quantity_sold }}')"
@@ -175,10 +180,11 @@
                             <div class = "card">
                                 <div class = "card-header card-header-primary">
                                     <h4 class = "card-title material-header"></h4>
+                                    <p class = "card-category">Production and warehouse materials.</p>
                                 </div>
                                 <div class = "card-body">
                                     <div class = "table-responsive">
-                                        <table class = "table table-shopping">
+                                        <table class = "table table-shopping table-record">
                                             <thead class = "text-primary">
                                                 <tr>
                                                     <th>Material Name</th>
@@ -232,10 +238,9 @@
                             <div class = "row">
                                 <div class = "col-12">
                                     <img id = "modal-apparel-image"/>
-                                    <p>Product details:</p>
                                     <table id = "modal-apparel-info"></table>
-                                    <br/>
-                                    <p>Conflicts: </p>
+                                    <hr/>
+                                    <p class = "bold text-center">Conflicts:</p>
                                     <ul id = "modal-apparel-conflicts"></ul>
                                 </div>
                             </div>
@@ -258,7 +263,8 @@
                             <div class = "row">
                                 <div class = "col-12">
                                     <p id = "modal-material-details"></p>
-                                    <p>Conflicts: </p>
+                                    <hr/>
+                                    <p class = "bold text-center">Conflicts:</p>
                                     <ul id = "modal-material-conflicts"></ul>
                                 </div>
                             </div>
@@ -339,68 +345,71 @@
                 };
                 
                 //Modal: Apparel and accessory
-                const modalApparel = (id, name, type, price, imgUrl, stockUniversal, stocks, sold) => {
-                    //Print apparel name and image
-                    document.getElementById(`modal-apparel-name`).innerHTML = `${name}`;
-                    document.getElementById(`modal-apparel-image`).src = imgUrl;
-
+                const modalApparel = (apparel_name, apparel_img_url, apparel_type, apparel_price, apparel_stock_universal, apparel_stocks, apparel_sold) => {
                     //Variables
                     let info = document.getElementById(`modal-apparel-info`),
                         conflicts = document.getElementById(`modal-apparel-conflicts`);
                     conflicts.innerHTML = ``;
 
+                    //General details
+                    document.getElementById(`modal-apparel-name`).innerHTML = `${apparel_name}`;
+                    document.getElementById(`modal-apparel-image`).src = `${apparel_img_url}`;
+
                     //Shirt details
-                    if (type === `shirt`) {
+                    if (apparel_type === `shirt`) {
                         info.innerHTML = `
                             <tbody>
                                 <tr>
-                                    <td>Price</td>
-                                    <td>PHP ${price.toFixed(2)}</td>
+                                    <td class = "bold">Price:</td>
+                                    <td>PHP ${apparel_price.toFixed(2)}</td>
                                 </tr>
                                 <tr>
-                                    <td>Qty. (XS)</td>
-                                    <td>${stocks[0]}</td>
+                                    <td class = "bold">Qty. (XS):</td>
+                                    <td>${apparel_stocks[0]}</td>
                                 </tr>
                                 <tr>
-                                    <td>Qty. (SM)</td>
-                                    <td>${stocks[1]}</td>
+                                    <td class = "bold">Qty. (SM):</td>
+                                    <td>${apparel_stocks[1]}</td>
                                 </tr>
                                 <tr>
-                                    <td>Qty. (MD)</td>
-                                    <td>${stocks[2]}</td>
+                                    <td class = "bold">Qty. (MD):</td>
+                                    <td>${apparel_stocks[2]}</td>
                                 </tr>
                                 <tr>
-                                    <td>Qty. (LG)</td>
-                                    <td>${stocks[3]}</td>
+                                    <td class = "bold">Qty. (LG):</td>
+                                    <td>${apparel_stocks[3]}</td>
                                 </tr>
                                 <tr>
-                                    <td>Qty. (XL)</td>
-                                    <td>${stocks[4]}</td>
+                                    <td class = "bold">Qty. (XL):</td>
+                                    <td>${apparel_stocks[4]}</td>
                                 </tr>
                                 <tr>
-                                    <td>Total Qty.</td>
-                                    <td>${stocks[0] + stocks[1] + stocks[2] + stocks[3] + stocks[4]}</td>
+                                    <td class = "bold">Total Qty.:</td>
+                                    <td>${apparel_stocks[0] + apparel_stocks[1] + apparel_stocks[2] + apparel_stocks[3] + apparel_stocks[4]}</td>
                                 </tr>
                                 <tr>
-                                    <td>Total Price</td>
-                                    <td>PHP ${((stocks[0] + stocks[1] + stocks[2] + stocks[3] + stocks[4]) * price).toFixed(2)}</td>
+                                    <td class = "bold">Total Price:</td>
+                                    <td>PHP ${((apparel_stocks[0] + apparel_stocks[1] + apparel_stocks[2] + apparel_stocks[3] + apparel_stocks[4]) * apparel_price).toFixed(2)}</td>
                                 </tr>
                                 <tr>
-                                    <td>Total Sold</td>
-                                    <td>${sold}</td>
+                                    <td class = "bold">Total Sold:</td>
+                                    <td>${apparel_sold}</td>
                                 </tr>
                             </tbody>
                         `;
                         let sizes = [`extra small`, `small`, 'medium', `large`, `extra large`];
-                        for (let i = 0, ii = stocks.length; i < ii; i++) {
+                        for (let i = 0, ii = apparel_stocks.length; i < ii; i++) {
                             let list = document.createElement(`li`);
-                            if (stocks[i] >= {{ $minmax_apparels['opt'] }}) list.innerHTML = `Stocks of ${sizes[i]} sizes are beyond maximum. Consider halting production.`;
-                            else if (stocks[i] >= {{ $minmax_apparels['mid'] }} && stocks[i] <= {{ $minmax_apparels['opt'] }}) {}
-                            else if (stocks[i] >= {{ $minmax_apparels['low'] }} && stocks[i] <= {{ $minmax_apparels['mid'] }}) {
+                            if (apparel_stocks[i] >= {{ $minmax_apparels['opt'] }}) {
+                                list.className = `green`;
+                                list.innerHTML = `Stocks of ${sizes[i]} sizes are beyond maximum. Consider halting production.`;
+                            }
+                            else if (apparel_stocks[i] >= {{ $minmax_apparels['mid'] }} && apparel_stocks[i] <= {{ $minmax_apparels['opt'] }}) {}
+                            else if (apparel_stocks[i] >= {{ $minmax_apparels['low'] }} && apparel_stocks[i] <= {{ $minmax_apparels['mid'] }}) {
                                 list.className = `orange`;
                                 list.innerHTML = `Stocks of ${sizes[i]} sizes are low.`;
                             }
-                            else if (stocks[i] <= {{ $minmax_apparels['low'] }}) {
+                            else if (apparel_stocks[i] <= {{ $minmax_apparels['low'] }}) {
                                 list.className = `red`;
                                 list.innerHTML = `Stocks of ${sizes[i]} sizes are critically low.`;
                             }
@@ -409,35 +418,38 @@
                     }
 
                     //Accessory details
-                    else if (type === `accessory`) {
+                    else if (apparel_type === `accessory`) {
                         info.innerHTML = `
                             <tbody>
                                 <tr>
-                                    <td>Price</td>
-                                    <td>PHP ${price.toFixed(2)}</td>
+                                    <td class = "bold">Price:</td>
+                                    <td>PHP ${apparel_price.toFixed(2)}</td>
                                 </tr>
                                 <tr>
-                                    <td>Total Qty.</td>
-                                    <td>${stockUniversal}</td>
+                                    <td class = "bold">Total Qty.:</td>
+                                    <td>${apparel_stock_universal}</td>
                                 </tr>
                                 <tr>
-                                    <td>Total Price</td>
-                                    <td>PHP ${(stockUniversal * price).toFixed(2)}</td>
+                                    <td class = "bold">Total Price:</td>
+                                    <td>PHP ${(apparel_stock_universal * apparel_price).toFixed(2)}</td>
                                 </tr>
                                 <tr>
-                                    <td>Total Sold</td>
-                                    <td>${sold}</td>
+                                    <td class = "bold">Total Sold:</td>
+                                    <td>${apparel_sold}</td>
                                 </tr>
                             </tbody>
                         `;
                         let list = document.createElement(`li`);
-                        if (stockUniversal >= {{ $minmax_apparels['opt'] }}) list.innerHTML = `Stocks are beyond maximum. Consider halting production.`;
-                        else if (stockUniversal >= {{ $minmax_apparels['mid'] }} && stockUniversal <= {{ $minmax_apparels['opt'] }}) {}
-                        else if (stockUniversal >= {{ $minmax_apparels['low'] }} && stockUniversal <= {{ $minmax_apparels['mid'] }}) {
+                        if (apparel_stock_universal >= {{ $minmax_apparels['opt'] }}) {
+                            list.className = `green`;
+                            list.innerHTML = `Stocks are beyond maximum. Consider halting production.`;
+                        }
+                        else if (apparel_stock_universal >= {{ $minmax_apparels['mid'] }} && apparel_stock_universal <= {{ $minmax_apparels['opt'] }}) {}
+                        else if (apparel_stock_universal >= {{ $minmax_apparels['low'] }} && apparel_stock_universal <= {{ $minmax_apparels['mid'] }}) {
                             list.className = `orange`;
                             list.innerHTML = `Stocks are low.`;
                         }
-                        else if (stockUniversal <= {{ $minmax_apparels['low'] }}) {
+                        else if (apparel_stock_universal <= {{ $minmax_apparels['low'] }}) {
                             list.className = `red`;
                             list.innerHTML = `Stocks are critically low.`;
                         }
@@ -446,24 +458,29 @@
                 };
                 
                 //Modal: Material
-                const modalMaterial = (name, unit, quantity) => {
-                    //Print material name and stock
-                    document.getElementById(`modal-material-id`).innerHTML = `${name}`;
-                    document.getElementById(`modal-material-details`).innerHTML = `Quantity: ${quantity} ${unit}(s)`;
-
+                const modalMaterial = (material_name, material_unit, material_quantity) => {
+                    //Variables
+                    let list = document.createElement(`li`),
+                        conflicts = document.getElementById(`modal-material-conflicts`);
+                    conflicts.innerHTML = ``;
+                    
                     //Material details
-                    let list = document.createElement(`li`);
-                    if (quantity >= {{ $minmax_materials['opt'] }}) list.innerHTML = `Stocks are beyond maximum. Consider halting supply deliveries.`;
-                    else if (quantity >= {{ $minmax_materials['mid'] }} && quantity <= {{ $minmax_materials['opt'] }}) {}
-                    else if (quantity >= {{ $minmax_materials['low'] }} && quantity <= {{ $minmax_materials['mid'] }}) {
+                    document.getElementById(`modal-material-id`).innerHTML = `${material_name}`;
+                    document.getElementById(`modal-material-details`).innerHTML = `Quantity: ${material_quantity} ${material_unit}(s)`;
+                    if (material_quantity >= {{ $minmax_materials['opt'] }}) {
+                        list.className = `green`;
+                        list.innerHTML = `Stocks are beyond maximum. Consider halting supply deliveries.`;
+                    }
+                    else if (material_quantity >= {{ $minmax_materials['mid'] }} && material_quantity <= {{ $minmax_materials['opt'] }}) {}
+                    else if (material_quantity >= {{ $minmax_materials['low'] }} && material_quantity <= {{ $minmax_materials['mid'] }}) {
                         list.className = `orange`;
                         list.innerHTML = `Stocks are low.`;
                     }
-                    else if (quantity <= {{ $minmax_materials['low'] }}) {
+                    else if (material_quantity <= {{ $minmax_materials['low'] }}) {
                         list.className = `red`;
                         list.innerHTML = `Stocks are critically low.`;
                     }
-                    document.getElementById(`modal-material-conflicts`).appendChild(list);
+                    conflicts.appendChild(list);
                 };
             </script>
             

@@ -35,10 +35,10 @@
                         </div>
                         <div class = "card-body">
                             <div class = "table-responsive">
-                                <table class = "table table-shopping">
+                                <table class = "table table-shopping table-record">
                                     <thead class = "text-primary">
                                         <tr>
-                                            <th>Order ID</th>
+                                            <th>ID</th>
                                             <th>Order Date</th>
                                             <th class = "text-center">Overdue</th>
                                         </tr>
@@ -75,7 +75,7 @@
                                                         data-status-target = "{{ url('/dashboard/order-logs', ['id' => $order->id]) }}"
                                                         id = "row-order-{{ $order->id }}"
                                                         class = "order-pending @if ($overdue === 'Yes') red @endif">
-                                                    <td># {{ $order->id }}</td>
+                                                    <td>{{ $order->id }}</td>
                                                     <td>{{ $order->created_at->format('F j, Y') }} at {{ $order->created_at->format('h:i A') }}</td>
                                                     <td class = "text-center">{{ $overdue }}</td>
                                                 </tr>
@@ -97,10 +97,10 @@
                         </div>
                         <div class = "card-body">
                             <div class = "table-responsive">
-                                <table class = "table table-shopping">
+                                <table class = "table table-shopping table-record">
                                     <thead class = "text-primary">
                                         <tr>
-                                            <th>Order ID</th>
+                                            <th>ID</th>
                                             <th>Order Date</th>
                                             <th class = "text-center">Overdue</th>
                                         </tr>
@@ -136,8 +136,8 @@
                                                         data-target = "#modalOrder"
                                                         data-status-target = "{{ url('/dashboard/order-logs', ['id' => $order->id]) }}"
                                                         id = "row-order-{{ $order->id }}"
-                                                        class = "order-pending @if ($overdue === 'Yes') red @endif">
-                                                    <td># {{ $order->id }}</td>
+                                                        class = "order-outgoing @if ($overdue === 'Yes') red @endif">
+                                                    <td>{{ $order->id }}</td>
                                                     <td>{{ $order->created_at->format('F j, Y') }} at {{ $order->created_at->format('h:i A') }}</td>
                                                     <td class = "text-center">{{ $overdue }}</td>
                                                 </tr>

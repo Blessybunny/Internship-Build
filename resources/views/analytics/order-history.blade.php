@@ -24,7 +24,7 @@
                         </div>
                         <div class = "card-body">
                             <div class = "table-responsive">
-                                <table class = "table table-shopping">
+                                <table class = "table table-shopping table-record">
                                     <thead class = "text-primary">
                                         <tr>
                                             <th>ID</th>
