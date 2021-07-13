@@ -310,8 +310,7 @@ class DatabaseSeeder extends Seeder {
                     'quantity_sm' => rand(0, $maximum),
                     'quantity_md' => rand(0, $maximum),
                     'quantity_lg' => rand(0, $maximum),
-                    'quantity_xl' => rand(0, $maximum),
-                    'quantity_sold' => rand(0, $maximum)
+                    'quantity_xl' => rand(0, $maximum)
                 ]);
             }
             //Materials

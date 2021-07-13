@@ -16,7 +16,7 @@
             
             <!-- Info -->
             <div class = "row">
-                <div class = "col justified">
+                <div class = "col justify">
                     <button class = "btn btn-info" data-toggle = "modal" data-target = "#modalInfo">
                         <i class = "material-icons">info</i>
                         Info
@@ -69,6 +69,7 @@
                                                                '{{ $order->region }}',
                                                                '{{ $order->country }}',
                                                                
+                                                               {{ $order->branch_id }},
                                                                '{{ DB::table('branches')->where('id', $order->branch_id)->first()->name ?? null }}')"
                                                         data-toggle = "modal"
                                                         data-target = "#modalOrder"
@@ -131,6 +132,7 @@
                                                                '{{ $order->region }}',
                                                                '{{ $order->country }}',
                                                                
+                                                               {{ $order->branch_id }},
                                                                '{{ DB::table('branches')->where('id', $order->branch_id)->first()->name ?? null }}')"
                                                         data-toggle = "modal"
                                                         data-target = "#modalOrder"
@@ -152,9 +154,9 @@
                 
             </div>
             
-            <!-- Modal: Order -->
+            <!-- Modal: Orders -->
             <div class = "modal fade" id = "modalOrder">
-                <div class = "modal-dialog modal-dialog-centered">
+                <div class = "modal-dialog modal-dialog-centered modal-lg">
                     <div class = "modal-content">
                         <div class = "modal-header">
                             <h4 id = "order-id" class = "modal-title"></h4>
@@ -164,10 +166,11 @@
                         </div>
                         <div class = "modal-body">
                             <div class = "row">
-                                <div class = "col">
+                                <div class = "col-6">
                                     <table id = "order-info"></table>
-                                    <hr/>
-                                    <p class = "bold text-center">Order options:</p>
+                                </div>
+                                <div class = "col-6">
+                                    <p class = "bold">Order options:</p>
                                     <form id = "form-btn-pending" method = "POST">
                                         @csrf
                                         <button onclick = "return confirm('Are you sure to mark this order pending?')" type = "submit" class = "btn btn-sm btn-info" title = "Select this option if there's no outgoing delivery for it.">
@@ -176,6 +179,20 @@
                                     </form>
                                     <form id = "form-btn-outgoing" method = "POST">
                                         @csrf
+                                        <div id = "form-branches">
+                                            <p class = "bold">Selected Outgoing Branch:</p>
+                                            @foreach ($branches as $branch)
+                                                <div class = "form-check form-check-radio">
+                                                    <label class = "form-check-label">
+                                                        <input class = "form-check-input input-branches" name = "branch-id" type = "radio" value = "{{ $branch->id }}" />
+                                                        <p>Branch {{ $branch->id }}: {{ $branch->name }}</p>
+                                                        <span class = "circle">
+                                                            <span class = "check"></span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                         <button onclick = "return confirm('Are you sure to mark this order outgoing?')" type = "submit" class = "btn btn-sm btn-info" title = "Select this option if the delivery is en route.">
                                             <i class = "material-icons">local_shipping</i> Mark as "Outgoing"
                                         </button>
@@ -213,7 +230,7 @@
                             <div class = "row">
                                 <div class = "col-12">
                                     <h6>Overdue Orders:</h6>
-                                    <p>Overdue orders are marked red.</p>
+                                    <p>Week overdue orders are marked red.</p>
                                 </div>
                             </div>
                         </div>
@@ -230,12 +247,41 @@
                 };
                 
                 //Modals
-                let popModal = (order_id, order_created_at, order_status, order_overdue, apparel_name, apparel_quantity, apparel_size, apparel_price, order_delivery_method, order_payment_method, order_email, order_name, order_address, order_postal_code, order_city, order_region, order_country, order_branch) => {
-                    //Button actions
-                    document.getElementById(`form-btn-pending`).action = document.getElementById(`row-order-${order_id}`).getAttribute('data-status-target') + `/pending`;
-                    document.getElementById(`form-btn-outgoing`).action = document.getElementById(`row-order-${order_id}`).getAttribute('data-status-target') + `/outgoing`;
-                    document.getElementById(`form-btn-delivered`).action = document.getElementById(`row-order-${order_id}`).getAttribute('data-status-target') + `/delivered`;
+                let popModal = (order_id, order_created_at, order_status, order_overdue, apparel_name, apparel_quantity, apparel_size, apparel_price, order_delivery_method, order_payment_method, order_email, order_name, order_address, order_postal_code, order_city, order_region, order_country, order_branch_id, order_branch_name) => {
+                    //Button actions and visibility
+                    let btnPending = document.getElementById(`form-btn-pending`),
+                        btnOutgoing = document.getElementById(`form-btn-outgoing`),
+                        btnDelivered = document.getElementById(`form-btn-delivered`);
+                    
+                    btnPending.action = document.getElementById(`row-order-${order_id}`).getAttribute('data-status-target') + `/pending`;
+                    btnOutgoing.action = document.getElementById(`row-order-${order_id}`).getAttribute('data-status-target') + `/outgoing`;
+                    btnDelivered.action = document.getElementById(`row-order-${order_id}`).getAttribute('data-status-target') + `/delivered`;
+                     
+                    if (order_status === `pending`) {
+                        btnPending.style.display = `none`;
+                        btnDelivered.style.display = `none`;
+                        btnOutgoing.style.display = `block`;
+                    }
+                    if (order_status === `outgoing`) {
+                        btnPending.style.display = `block`;
+                        btnDelivered.style.display = `block`;
+                        btnOutgoing.style.display = `none`;
+                    }
+                    
                     document.getElementById(`form-btn-cancel`).action = document.getElementById(`row-order-${order_id}`).getAttribute('data-status-target') + `/cancel`;
+                   
+                    //Branch selection for shipping
+                    let formBranches = document.getElementById(`form-branches`),
+                        branches = document.getElementsByName(`branch-id`);
+                    if (order_delivery_method === `ship`) {
+                        formBranches.style.display = `block`;
+                        for (let i = 0, ii = branches.length; i < ii; i++) branches[i].required = true;
+                        branches[order_branch_id - 1].checked = true;
+                    }
+                    else {
+                        formBranches.style.display = `none`;
+                        for (let i = 0, ii = branches.length; i < ii; i++) branches[i].required = false;
+                    }
                     
                     //Order details
                     document.getElementById(`order-id`).innerHTML = `Order ID #${order_id}`;
@@ -314,9 +360,9 @@
                                 <td class = "bold">Country:</td>
                                 <td>${order_country}</td>
                             </tr>`: ``}
-                            ${order_branch ? `<tr>
+                            ${order_branch_name ? `<tr>
                                 <td class = "bold">Branch:</td>
-                                <td>${order_branch}</td>
+                                <td>${order_branch_name}</td>
                             </tr>`: ``}
                         </tbody>
                     `;

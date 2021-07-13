@@ -16,7 +16,7 @@
             
             <!-- Info -->
             <div class = "row">
-                <div class = "col justified">
+                <div class = "col justify">
                     <button class = "btn btn-info" data-toggle = "modal" data-target = "#modalInfo">
                         <i class = "material-icons">info</i>
                         Info
@@ -94,8 +94,7 @@
                                                                                    
                                                                                    {{ $apparel->price }},
                                                                                    {{ $branch_apparel->quantity_universal }},
-                                                                                   [{{ $branch_apparel->quantity_xs }}, {{ $branch_apparel->quantity_sm }}, {{ $branch_apparel->quantity_md }}, {{ $branch_apparel->quantity_lg }}, {{ $branch_apparel->quantity_xl }}],
-                                                                                   '{{ $branch_apparel->quantity_sold }}')"
+                                                                                   [{{ $branch_apparel->quantity_xs }}, {{ $branch_apparel->quantity_sm }}, {{ $branch_apparel->quantity_md }}, {{ $branch_apparel->quantity_lg }}, {{ $branch_apparel->quantity_xl }}])"
                                                                             data-toggle = "modal"
                                                                             data-target = "#modalApparel"
                                                                             class = "apparel-{{ $branch->id }}">
@@ -154,8 +153,7 @@
                                                                                    
                                                                                    {{ $apparel->price }},
                                                                                    {{ $branch_apparel->quantity_universal }},
-                                                                                   [{{ $branch_apparel->quantity_xs }}, {{ $branch_apparel->quantity_sm }}, {{ $branch_apparel->quantity_md }}, {{ $branch_apparel->quantity_lg }}, {{ $branch_apparel->quantity_xl }}],
-                                                                                   '{{ $branch_apparel->quantity_sold }}')"
+                                                                                   [{{ $branch_apparel->quantity_xs }}, {{ $branch_apparel->quantity_sm }}, {{ $branch_apparel->quantity_md }}, {{ $branch_apparel->quantity_lg }}, {{ $branch_apparel->quantity_xl }}])"
                                                                             data-toggle = "modal"
                                                                             data-target = "#modalApparel"
                                                                             class = "accessory-{{ $branch->id }}">
@@ -345,7 +343,7 @@
                 };
                 
                 //Modal: Apparel and accessory
-                const modalApparel = (apparel_name, apparel_img_url, apparel_type, apparel_price, apparel_stock_universal, apparel_stocks, apparel_sold) => {
+                const modalApparel = (apparel_name, apparel_img_url, apparel_type, apparel_price, apparel_stock_universal, apparel_stocks) => {
                     //Variables
                     let info = document.getElementById(`modal-apparel-info`),
                         conflicts = document.getElementById(`modal-apparel-conflicts`);
@@ -391,10 +389,6 @@
                                     <td class = "bold">Total Price:</td>
                                     <td>PHP ${((apparel_stocks[0] + apparel_stocks[1] + apparel_stocks[2] + apparel_stocks[3] + apparel_stocks[4]) * apparel_price).toFixed(2)}</td>
                                 </tr>
-                                <tr>
-                                    <td class = "bold">Total Sold:</td>
-                                    <td>${apparel_sold}</td>
-                                </tr>
                             </tbody>
                         `;
                         let sizes = [`extra small`, `small`, 'medium', `large`, `extra large`];
@@ -432,10 +426,6 @@
                                 <tr>
                                     <td class = "bold">Total Price:</td>
                                     <td>PHP ${(apparel_stock_universal * apparel_price).toFixed(2)}</td>
-                                </tr>
-                                <tr>
-                                    <td class = "bold">Total Sold:</td>
-                                    <td>${apparel_sold}</td>
                                 </tr>
                             </tbody>
                         `;

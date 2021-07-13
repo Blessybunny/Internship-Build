@@ -42,7 +42,7 @@
                             <div class = "col">
                                 <hr/>
                                 <ul>
-                                    <h5>Only big and significant changes are recorded.</h5>
+                                    <p>Only big and significant changes are recorded.</p>
                                 </ul>
                                 <br/>
                                 <ul>
@@ -98,14 +98,6 @@
                         <div class = "row">
                             <div class = "col">
                                 <hr/>
-                                <ul>
-                                    <h5>Back-end (IMPORTANT)</h5>
-                                    <li>Fix apparel (single) page, apparel section.</li>
-                                </ul>
-                                <ul>
-                                    <h5>Front-end</h5>
-                                    <li>Add comas to currencies.</li>
-                                </ul>
                             </div>
                         </div>
                     </div>

@@ -17,7 +17,6 @@ class CreateBranchApparelsTable extends Migration {
             $table->integer('quantity_md')->default(0);
             $table->integer('quantity_lg')->default(0);
             $table->integer('quantity_xl')->default(0);
-            $table->integer('quantity_sold')->default(0);
             
             $table->timestamps();
         });

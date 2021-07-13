@@ -233,21 +233,18 @@ use Illuminate\Support\Facades\Route;
         //Return
         return view('analytics.order-history', compact('orders', 'apparels', 'branches'));
     });
-    /*
-        WIP
-        Suggestion:
-        Select from the branch with the highest stock, as a starting point.
 
-        Status:
-        Leave this until supervisors give the best suggestions.
-    */
+//wip
     Route::post('/dashboard/order-logs/{id}/{status}', function ($id, $status) {
         //Basic status change
         if ($status === 'pending') {
             $update = Order::where('id', $id)->update(['status' => 'pending']);
         }
         else if ($status === 'outgoing') {
-            $update = Order::where('id', $id)->update(['status' => 'outgoing']);
+            $update = Order::where('id', $id)->update([
+                'status' => 'outgoing',
+                'branch_id' => request()->input('branch-id')
+            ]);
         }
         else if ($status === 'cancel') {
             $update = Order::where('id', $id)->update(['status' => 'cancelled']);
