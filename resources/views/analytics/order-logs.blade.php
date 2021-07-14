@@ -276,7 +276,10 @@
                     if (order_delivery_method === `ship`) {
                         formBranches.style.display = `block`;
                         for (let i = 0, ii = branches.length; i < ii; i++) branches[i].required = true;
-                        branches[order_branch_id - 1].checked = true;
+                        try {
+                            branches[order_branch_id - 1].checked = true;
+                        }
+                        catch (e) {}
                     }
                     else {
                         formBranches.style.display = `none`;

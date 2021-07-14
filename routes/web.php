@@ -16,13 +16,12 @@ use Illuminate\Support\Facades\Route;
 //GENERAL
     Route::get('/', function () {
         //Get relevant databases
-        $apparels = Apparel::all();
-        $branch_apparels = BranchApparel::all();
+        $apparels = Apparel::get()->take(8);
+        $branch_apparels = BranchApparel::get();
         
-        //Get total sold and total stock quantity for each top 8 most sold apparel from every branch
-        $featured_apparels = ([]);
+        //Placeholder: Supposed featured apparels, but they're just the first 8 on the database
+        $all_apparels = ([]);
         foreach ($apparels as $apparel) {
-            $sold = 0;
             $quantity_universal = 0;
             $quantity_xs = 0;
             $quantity_sm = 0;
@@ -31,7 +30,6 @@ use Illuminate\Support\Facades\Route;
             $quantity_xl = 0;
             foreach ($branch_apparels as $branch_apparel) {
                 if ($apparel->id === $branch_apparel->apparel_id) {
-                    $sold += $branch_apparel->quantity_sold;
                     $quantity_universal += $branch_apparel->quantity_universal;
                     $quantity_xs += $branch_apparel->quantity_xs;
                     $quantity_sm += $branch_apparel->quantity_sm;
@@ -40,28 +38,25 @@ use Illuminate\Support\Facades\Route;
                     $quantity_xl += $branch_apparel->quantity_xl;
                 }
             }
-            array_push ($featured_apparels, [
+            array_push ($all_apparels, [
                 'id' => $apparel->id,
                 'quantity_universal' => $quantity_universal,
                 'quantity_xs' => $quantity_xs,
                 'quantity_sm' => $quantity_sm,
                 'quantity_md' => $quantity_md,
                 'quantity_lg' => $quantity_lg,
-                'quantity_xl' => $quantity_xl,
-                'sold' => $sold
+                'quantity_xl' => $quantity_xl
             ]);
         }
-        $featured_apparels = collect($featured_apparels)->sortBy('sold')->reverse()->toArray();
-        $featured_apparels = array_slice($featured_apparels, 0, 8);
         
         //Return
-        return view('home', compact('apparels', 'featured_apparels'));
+        return view('home', compact('apparels', 'all_apparels'));
     });
     Route::get('/apparels', function () {
         //Get relevant databases
-        $apparels = Apparel::all();
-        $categories = Category::all();
-        $branch_apparels = BranchApparel::all();
+        $apparels = Apparel::get();
+        $categories = Category::get();
+        $branch_apparels = BranchApparel::get();
         
         //Get total stock quantity for each apparel from every branch
         $all_apparels = ([]);
@@ -101,8 +96,8 @@ use Illuminate\Support\Facades\Route;
     Route::get('/apparels/view/{id}', function ($id) {
         //Get relevant databases
         $apparel = Apparel::findOrFail($id);
-        $branches = Branch::all();
-        $branch_apparels = BranchApparel::all();
+        $branches = Branch::get();
+        $branch_apparels = BranchApparel::get();
         
         //Get total stock quantity from every branch
         $quantity_universal = 0;
@@ -172,131 +167,176 @@ use Illuminate\Support\Facades\Route;
 //OTHER
     Route::get('/changelog', function () {return view('changelog');});
 
-//PREDICTIVE ANALYTICS - Dashboard
-    Route::get('/dashboard', function () {
-        //Apparel and material level indicators
-        $minmax_apparels = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
-        $minmax_materials = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
+//ADMINISTRATIVE SCOPE
+    Route::get('/login', function () {return view('analytics.login');})->name('login');
+    Route::post('/login', function () {
+        //Validate
+        request()->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
         
-        //Due maximum days
-        $order_due_threshold = 7;
+        //Authenticate
+        if (Auth::attempt([
+            'email' => request()->email,
+            'password' => request()->password,
+        ]))
+            
+        //Success
+        {return redirect('/dashboard');}
         
-        //Get relevant databases
-        $apparels = Apparel::get();
-        $materials = Material::get();
-        $orders = Order::get()->take(10);
-        $sales = Order::whereBetween('updated_at', [Carbon\Carbon::now()->startOfMonth(), Carbon\Carbon::now()->endOfMonth()])->where('status', '=', 'delivered')->get()->take(10);
-        $branches = Branch::get();
-        $branch_apparels = BranchApparel::get();
-        $branch_materials = BranchMaterial::get();
-        
-        //Return
-        return view('analytics.dashboard', compact('apparels', 'materials', 'orders', 'sales', 'branches', 'branch_apparels', 'branch_materials', 'minmax_apparels', 'minmax_materials', 'order_due_threshold'));
+        //Fail
+        return back()->withErrors(['credentials' => 'Incorrect email or password.']);
     });
+    Route::middleware(['auth'])->group(function () {
+        //LOGOUT
+        Route::get('/logout', function () {
+            Auth::logout();
+            return redirect('/login');
+        });
+        
+        //PREDICTIVE ANALYTICS - Dashboard
+            Route::get('/dashboard', function () {
+                //Apparel and material level indicators
+                $minmax_apparels = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
+                $minmax_materials = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
 
-//PREDICTIVE ANALYTICS - Inventory
-    Route::get('/dashboard/inventory', function () {
-        //Apparel and material level indicators
-        $minmax_apparels = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
-        $minmax_materials = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
-        
-        //Get relevant databases
-        $apparels = Apparel::get();
-        $materials = Material::get();
-        $branches = Branch::get();
-        $branch_apparels = BranchApparel::get();
-        $branch_materials = BranchMaterial::get();
-        
-        //Return
-        return view('analytics.inventory', compact('apparels', 'materials', 'branches', 'branch_apparels', 'branch_materials', 'minmax_apparels', 'minmax_materials'));
-    });
+                //Due maximum days
+                $order_due_threshold = 7;
 
-//PREDICTIVE ANALYTICS - Orders
-    Route::get('/dashboard/order-logs', function () {
-        //Get relevant databases
-        $orders = Order::get();
-        $apparels = Apparel::get();
-        $branches = Branch::get();
-        
-        //Due maximum days
-        $order_due_threshold = 7;
-        
-        //Return
-        return view('analytics.order-logs', compact('orders', 'apparels', 'branches', 'order_due_threshold'));
-    });
-    Route::get('/dashboard/order-history', function () {
-        //Get relevant databases
-        $orders = Order::orderBy('updated_at', 'DESC')->get();
-        $apparels = Apparel::get();
-        $branches = Branch::get();
-        
-        //Return
-        return view('analytics.order-history', compact('orders', 'apparels', 'branches'));
-    });
+                //Get relevant databases
+                $apparels = Apparel::get();
+                $materials = Material::get();
+                $orders = Order::get()->take(10);
+                $branches = Branch::get();
+                $branch_apparels = BranchApparel::get();
+                $branch_materials = BranchMaterial::get();
 
-//wip
-    Route::post('/dashboard/order-logs/{id}/{status}', function ($id, $status) {
-        //Basic status change
-        if ($status === 'pending') {
-            $update = Order::where('id', $id)->update(['status' => 'pending']);
-        }
-        else if ($status === 'outgoing') {
-            $update = Order::where('id', $id)->update([
-                'status' => 'outgoing',
-                'branch_id' => request()->input('branch-id')
-            ]);
-        }
-        else if ($status === 'cancel') {
-            $update = Order::where('id', $id)->update(['status' => 'cancelled']);
-        }
-        
-        //Delivered (BROKEN)
-        else if ($status === 'delivered') {
-            /*
-            
-            
-            
-            
-            
-            //Increment sales
-            $order = Order::where('id', $id)->first();
-            
-            $apparel = Apparel::where('id', Order::where('id', $id)->first()->apparel_id)->first();
-            $apparel->sold += $order->apparel_quantity;
-            $apparel->save();
-            
-            //Decrement stock if accessory
-            if ($order->apparel_size === null) {
-                $apparel->stock_universal -= $order->apparel_quantity;
-                $apparel->save();
-            }
-            
-            //Decrement stock if shirt
-            else if ($order->apparel_size === 'xs') {
-                $apparel->stock_xs -= $order->apparel_quantity;
-                $apparel->save();
-            }
-            else if ($order->apparel_size === 'sm') {
-                $apparel->stock_sm -= $order->apparel_quantity;
-                $apparel->save();
-            }
-            else if ($order->apparel_size === 'md') {
-                $apparel->stock_md -= $order->apparel_quantity;
-                $apparel->save();
-            }
-            else if ($order->apparel_size === 'lg') {
-                $apparel->stock_lg -= $order->apparel_quantity;
-                $apparel->save();
-            }
-            else if ($order->apparel_size === 'xl') {
-                $apparel->stock_xl -= $order->apparel_quantity;
-                $apparel->save();
-            }*/
-            
-            //Update state
-            $update = Order::where('id', $id)->update(['status' => 'delivered']);
-        }
-        
-        //Return to same page
-        return redirect('/dashboard/order-logs');
+                $sales_week = Order::whereBetween('updated_at', [Carbon\Carbon::now()->startOfWeek(), Carbon\Carbon::now()->endOfWeek()])->where('status', '=', 'delivered')->get()->take(10);
+                $sales_month = Order::whereBetween('updated_at', [Carbon\Carbon::now()->startOfMonth(), Carbon\Carbon::now()->endOfMonth()])->where('status', '=', 'delivered')->get()->take(10);
+                $sales_year = Order::whereBetween('updated_at', [Carbon\Carbon::now()->startOfYear(), Carbon\Carbon::now()->endOfYear()])->where('status', '=', 'delivered')->get()->take(10);
+
+                //Return
+                return view('analytics.dashboard', compact(
+                    'apparels',
+                    'materials',
+                    'orders',
+                    'branches',
+                    'branch_apparels',
+                    'branch_materials',
+                    'minmax_apparels',
+                    'minmax_materials',
+                    'order_due_threshold',
+                    'sales_week',
+                    'sales_month',
+                    'sales_year'
+                ));
+            });
+
+        //PREDICTIVE ANALYTICS - Inventory
+            Route::get('/dashboard/inventory', function () {
+                //Apparel and material level indicators
+                $minmax_apparels = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
+                $minmax_materials = array('low' => 250, 'mid' => 500, 'opt' => 1000); //0-250, 250-500, 500-1000, 1000+
+
+                //Get relevant databases
+                $apparels = Apparel::get();
+                $materials = Material::get();
+                $branches = Branch::get();
+                $branch_apparels = BranchApparel::get();
+                $branch_materials = BranchMaterial::get();
+
+                //Return
+                return view('analytics.inventory', compact('apparels', 'materials', 'branches', 'branch_apparels', 'branch_materials', 'minmax_apparels', 'minmax_materials'));
+            });
+
+        //PREDICTIVE ANALYTICS - Orders
+            Route::get('/dashboard/order-logs', function () {
+                //Get relevant databases
+                $orders = Order::get();
+                $apparels = Apparel::get();
+                $branches = Branch::get();
+
+                //Due maximum days
+                $order_due_threshold = 7;
+
+                //Return
+                return view('analytics.order-logs', compact('orders', 'apparels', 'branches', 'order_due_threshold'));
+            });
+            Route::get('/dashboard/order-history', function () {
+                //Get relevant databases
+                $orders = Order::orderBy('updated_at', 'DESC')->get();
+                $apparels = Apparel::get();
+                $branches = Branch::get();
+
+                //Return
+                return view('analytics.order-history', compact('orders', 'apparels', 'branches'));
+            });
+            Route::post('/dashboard/order-logs/{id}/{status}', function ($id, $status) {
+                //Basic status change
+                if ($status === 'pending') {
+                    $update = Order::where('id', $id)->update(['status' => 'pending']);
+                }
+                else if ($status === 'outgoing') {
+                    $new_branch_id = request()->input('branch-id');
+                    if ($new_branch_id !== null) {
+                        $update = Order::where('id', $id)->update([
+                            'status' => 'outgoing',
+                            'branch_id' => request()->input('branch-id')
+                        ]);
+                    }
+                    else {
+                        $update = Order::where('id', $id)->update([
+                            'status' => 'outgoing'
+                        ]);
+                    }
+                }
+                else if ($status === 'cancel') {
+                    $update = Order::where('id', $id)->update(['status' => 'cancelled']);
+                }
+
+                //Delivered
+                else if ($status === 'delivered') {
+                    //Get apparel from its branch
+                    $order = Order::where('id', $id)->first();
+                    $apparel = BranchApparel::where([
+                        ['branch_id', '=', $order->branch_id],
+                        ['apparel_id', '=', $order->apparel_id]
+                    ])->first();
+
+                    //Decrement stock if accessory
+                    if ($order->apparel_size === null) {
+                        $apparel->quantity_universal -= $order->apparel_quantity;
+                        $apparel->save();
+                    }
+
+                    //Decrement stock if shirt
+                    else if ($order->apparel_size === 'xs') {
+                        $apparel->quantity_xs -= $order->apparel_quantity;
+                        $apparel->save();
+                    }
+                    else if ($order->apparel_size === 'sm') {
+                        $apparel->quantity_sm -= $order->apparel_quantity;
+                        $apparel->save();
+                    }
+                    else if ($order->apparel_size === 'md') {
+                        $apparel->quantity_md -= $order->apparel_quantity;
+                        $apparel->save();
+                    }
+                    else if ($order->apparel_size === 'lg') {
+                        $apparel->stock_lg -= $order->apparel_quantity;
+                        $apparel->save();
+                    }
+                    else if ($order->apparel_size === 'xl') {
+                        $apparel->stock_xl -= $order->apparel_quantity;
+                        $apparel->save();
+                    }
+
+                    //Update state
+                    $update = Order::where('id', $id)->update(['status' => 'delivered']);
+                }
+
+                //Return to same page
+                return redirect('/dashboard/order-logs');
+            });
     });

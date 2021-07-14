@@ -63,6 +63,12 @@
                                 <p>Order History</p>
                             </a>
                         </li>
+                        <li class = "nav-item">
+                            <a class = "nav-link" href = "{{ url('/logout') }}">
+                                <i class = "material-icons">door_front</i>
+                                <p>Log Out</p>
+                            </a>
+                        </li>
                         <li class = "nav-item active-pro">
                             <a class = "nav-link" href = "{{ url('/changelog') }}">
                                 <i class = "material-icons">list_alt</i>

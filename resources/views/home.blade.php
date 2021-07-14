@@ -35,25 +35,32 @@
             </div>
             <div class = "row">
                 @foreach ($apparels as $apparel)
-                    @foreach ($featured_apparels as $featured)
-                        @if ($featured['id'] === $apparel->id)
-                            <div class = "apparel-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                                <a href = "{{ url('/apparels/view', ['id' => $apparel->id]) }}">
-                                    <img src = "{{ asset($apparel->img_url) }}"/>
-                                    <h4>{{ $apparel->name }}, {{ $apparel->id }}</h4>
-                                    <h6>From PHP {{ $apparel->price }}</h6>
-                                    @if ($apparel->type === "shirt")
-                                        @if ($featured['quantity_xs'] === 0 and $featured['quantity_sm'] === 0 and $featured['quantity_md'] === 0 and $featured['quantity_lg'] === 0 and $featured['quantity_xl'] === 0)
+                    @foreach ($all_apparels as $single_apparel)
+                        @if ($single_apparel['id'] === $apparel->id)
+                            @if ($apparel->type === 'shirt')
+                                <div class = "apparel-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                                    <a href = "{{ url('/apparels/view', ['id' => $apparel->id]) }}">
+                                        <img src = "{{ asset($apparel->img_url) }}"/>
+                                        <h4>{{ $apparel->name }}</h4>
+                                        <h6>From PHP {{ $apparel->price }}</h6>
+                                        @if ($single_apparel['quantity_xs'] === 0 and $single_apparel['quantity_sm'] === 0 and $single_apparel['quantity_md'] === 0 and $single_apparel['quantity_lg'] === 0 and $single_apparel['quantity_xl'] === 0)
                                             <h6 class = "sold-out">Sold Out</h6>
                                         @endif
-                                    @endif
-                                    @if ($apparel->type === "accessory")
-                                        @if ($featured['quantity_universal'] === 0)
+                                    </a>
+                                </div>
+                            @endif
+                            @if ($apparel->type === 'accessory')
+                                <div class = "apparel-card col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                                    <a href = "{{ url('/apparels/view', ['id' => $apparel->id]) }}">
+                                        <img src = "{{ asset($apparel->img_url) }}"/>
+                                        <h4>{{ $apparel->name }}</h4>
+                                        <h6>From PHP {{ $apparel->price }}</h6>
+                                        @if ($single_apparel['quantity_universal'] === 0)
                                             <h6 class = "sold-out">Sold Out</h6>
                                         @endif
-                                    @endif
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
+                            @endif
                         @endif
                     @endforeach
                 @endforeach

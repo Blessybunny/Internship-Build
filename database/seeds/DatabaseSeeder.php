@@ -6,11 +6,19 @@ use App\Material;
 use App\Branch;
 use App\BranchApparel;
 use App\BranchMaterial;
+use App\User;
 
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder {
     public function run () {
+        //Administrator account
+        User::create([
+            'username' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('admin123')
+        ]);
+        
         //Variables
         $maximum = 1500;
         

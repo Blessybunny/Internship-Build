@@ -14,11 +14,112 @@
     <div class = "content dashboard">
         <div class = "container-fluid">
             
-            <!-- General Status -->
+            <!-- General Report List -->
+            <div class = "row">
+                <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class = "card">
+                        <div class = "card-header card-header-info">
+                            <h4 class = "card-title">General Report</h4>
+                            <p class = "card-category">Every important details.</p>
+                        </div>
+                        <div class = "card-body">
+                            <ul>
+                                <li>
+                                    There are {{ DB::table('orders')->whereBetween('created_at', [Carbon\Carbon::now()->startOfWeek(), Carbon\Carbon::now()->endOfWeek()])->where('status', '=', 'delivered')->get()->count() }} delivered
+                                    and {{ DB::table('orders')->whereBetween('created_at', [Carbon\Carbon::now()->startOfWeek(), Carbon\Carbon::now()->endOfWeek()])->where('status', '=', 'cancelled')->get()->count() }} cancelled orders this week.
+                                </li>
+                                <li>
+                                    There are {{ DB::table('orders')->where('status', '=', 'pending')->get()->count() + DB::table('orders')->where('status', '=', 'outgoing')->get()->count() }} pending and undelivered orders this week.
+                                </li>
+                                <li>
+                                    @php $conflict_count = 0 @endphp
+                                    @foreach ($branches as $branch)
+                                        @foreach ($branch_apparels as $branch_apparel)
+                                            @if ($branch_apparel->branch_id === $branch->id)
+                                                @foreach ($apparels as $apparel)
+                                                    @if ($branch_apparel->apparel_id === $apparel->id)
+                                                        @if ($apparel->type === "shirt")
+                                                            @php
+                                                                if ($branch_apparel->quantity_xs >= $minmax_apparels['opt']) {$conflict_count++;}
+                                                                else if ($branch_apparel->quantity_xs >= $minmax_apparels['mid'] and $branch_apparel->quantity_xs <= $minmax_apparels['opt']) {}
+                                                                else if ($branch_apparel->quantity_xs <= $minmax_apparels['mid'] and $branch_apparel->quantity_xs >= $minmax_apparels['low']) {$conflict_count++;}
+                                                                else if ($branch_apparel->quantity_xs <= $minmax_apparels['low']) {$conflict_count++;}
+
+                                                                if ($branch_apparel->quantity_sm >= $minmax_apparels['opt']) {$conflict_count++;}
+                                                                else if ($branch_apparel->quantity_sm >= $minmax_apparels['mid'] and $branch_apparel->quantity_sm <= $minmax_apparels['opt']) {}
+                                                                else if ($branch_apparel->quantity_sm <= $minmax_apparels['mid'] and $branch_apparel->quantity_sm >= $minmax_apparels['low']) {$conflict_count++;}
+                                                                else if ($branch_apparel->quantity_sm <= $minmax_apparels['low']) {$conflict_count++;}
+
+                                                                if ($branch_apparel->quantity_md >= $minmax_apparels['opt']) {$conflict_count++;}
+                                                                else if ($branch_apparel->quantity_md >= $minmax_apparels['mid'] and $branch_apparel->quantity_md <= $minmax_apparels['opt']) {}
+                                                                else if ($branch_apparel->quantity_md <= $minmax_apparels['mid'] and $branch_apparel->quantity_md >= $minmax_apparels['low']) {$conflict_count++;}
+                                                                else if ($branch_apparel->quantity_md <= $minmax_apparels['low']) {$conflict_count++;}
+
+                                                                if ($branch_apparel->quantity_lg >= $minmax_apparels['opt']) {$conflict_count++;}
+                                                                else if ($branch_apparel->quantity_lg >= $minmax_apparels['mid'] and $branch_apparel->quantity_lg <= $minmax_apparels['opt']) {}
+                                                                else if ($branch_apparel->quantity_lg <= $minmax_apparels['mid'] and $branch_apparel->quantity_lg >= $minmax_apparels['low']) {$conflict_count++;}
+                                                                else if ($branch_apparel->quantity_lg <= $minmax_apparels['low']) {$conflict_count++;}
+
+                                                                if ($branch_apparel->quantity_xl >= $minmax_apparels['opt']) {$conflict_count++;}
+                                                                else if ($branch_apparel->quantity_xl >= $minmax_apparels['mid'] and $branch_apparel->quantity_xl <= $minmax_apparels['opt']) {}
+                                                                else if ($branch_apparel->quantity_xl <= $minmax_apparels['mid'] and $branch_apparel->quantity_xl >= $minmax_apparels['low']) {$conflict_count++;}
+                                                                else if ($branch_apparel->quantity_xl <= $minmax_apparels['low']) {$conflict_count++;}
+                                                            @endphp
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @endforeach
+                                                                                                                         
+                                        @foreach ($branch_apparels as $branch_apparel)
+                                            @if ($branch_apparel->branch_id === $branch->id)
+                                                @foreach ($apparels as $apparel)
+                                                    @if ($branch_apparel->apparel_id === $apparel->id)
+                                                        @if ($apparel->type === "accessory")
+                                                            @php
+                                                                if ($branch_apparel->quantity_universal >= $minmax_apparels['opt']) {$conflict_count++;}
+                                                                else if ($branch_apparel->quantity_universal >= $minmax_apparels['mid'] and $branch_apparel->quantity_universal <= $minmax_apparels['opt']) {}
+                                                                else if ($branch_apparel->quantity_universal <= $minmax_apparels['mid'] and $branch_apparel->quantity_universal >= $minmax_apparels['low']) {$conflict_count++;}
+                                                                else if ($branch_apparel->quantity_universal <= $minmax_apparels['low']) {$conflict_count++;}
+                                                            @endphp
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @endforeach
+                                                                                                                                
+                                        @foreach ($branch_materials as $branch_material)
+                                            @if ($branch_material->branch_id === $branch->id)
+                                                @foreach ($materials as $material)
+                                                    @if ($branch_material->material_id === $material->id)
+                                                        @php
+                                                            if ($branch_material->quantity >= $minmax_materials['opt']) {$conflict_count++;}
+                                                            else if ($branch_material->quantity >= $minmax_materials['mid'] and $branch_material->quantity <= $minmax_materials['opt']) {}
+                                                            else if ($branch_material->quantity <= $minmax_materials['mid'] and $branch_material->quantity >= $minmax_materials['low']) {$conflict_count++;}
+                                                            else if ($branch_material->quantity <= $minmax_materials['low']) {$conflict_count++;}
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                    There are a total of {{ $conflict_count }} conflicts found on the inventory system for every branch.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <hr/>
+            <hr/>
+            <br/>
+
+            <!-- Statistics Tables -->
             <div class = "row">
                 
                 <!-- Order Statistics -->
-                <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
+                <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
                     <div class = "card">
                         <div class = "card-header card-header-primary">
                             <h4 class = "card-title">Order Statistics</h4>
@@ -30,7 +131,7 @@
                                     <tbody>
                                         <tr>
                                             <td class = "bold">Total orders created:</td>
-                                            <td>{{ DB::table('orders')->count()}}</td>
+                                            <td>{{ DB::table('orders')->count() }}</td>
                                         </tr>
                                         <tr>
                                             <td class = "bold">Total orders delivered:</td>
@@ -64,13 +165,13 @@
                                 </table>
                             </div>
                             <a href = "{{ url('/dashboard/order-logs') }}">
-                                <button class = "btn btn-info" data-toggle = "modal" data-target = "#modalInfo" style = "display: block; width: 100%;">
+                                <button class = "btn btn-primary" data-toggle = "modal" data-target = "#modalInfo" style = "display: block; width: 100%;">
                                     <i class = "material-icons">local_shipping</i>
                                     View Order Logs
                                 </button>
                             </a>
                             <a href = "{{ url('/dashboard/order-history') }}">
-                                <button class = "btn btn-info" data-toggle = "modal" data-target = "#modalInfo" style = "display: block; width: 100%;">
+                                <button class = "btn btn-primary" data-toggle = "modal" data-target = "#modalInfo" style = "display: block; width: 100%;">
                                     <i class = "material-icons">history</i>
                                     View Order History
                                 </button>
@@ -80,7 +181,7 @@
                 </div>
                 
                 <!-- Inventory Conflicts -->
-                <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
+                <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
                     <div class = "card">
                         <div class = "card-header card-header-primary">
                             <h4 class = "card-title">Inventory Conflicts</h4>
@@ -183,40 +284,11 @@
                                 </table>
                             </div>
                             <a href = "{{ url('/dashboard/inventory') }}">
-                                <button class = "btn btn-info" data-toggle = "modal" data-target = "#modalInfo" style = "display: block; width: 100%;">
+                                <button class = "btn btn-primary" data-toggle = "modal" data-target = "#modalInfo" style = "display: block; width: 100%;">
                                     <i class = "material-icons">inventory</i>
                                     View Inventory
                                 </button>
                             </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Sales of the Month -->
-                <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
-                    <div class = "card">
-                        <div class = "card-header card-header-primary">
-                            <h4 class = "card-title">Sales of the Month</h4>
-                        </div>
-                        <div class = "card-body">
-                            <div class = "table-responsive">
-                                <table class = "table table-shopping">
-                                    <thead class = "text-primary">
-                                        <tr>
-                                            <th>Product Name</th>
-                                            <th class = "text-center">Amount</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($sales as $sale)
-                                            <tr>
-                                                <td>{{ DB::table('apparels')->find($sale->apparel_id)->name }}</td>
-                                                <td class = "text-center">{{ $sale->apparel_quantity }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -285,6 +357,131 @@
                         </div>
                     </div>
                 </div>
+            </div>
+                                                    
+            <!-- Sales -->
+            <div class = "row">
+                
+                <!-- Sales of the Week -->
+                <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
+                    <div class = "card">
+                        <div class = "card-header card-header-primary">
+                            <h4 class = "card-title">Sales of the Week</h4>
+                        </div>
+                        <div class = "card-body">
+                            <div class = "table-responsive">
+                                <table class = "table table-shopping">
+                                    <thead class = "text-primary">
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th class = "text-center">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($apparels as $apparel)
+                                            
+                                            @php $sales = 0 @endphp
+                                        
+                                            @foreach ($sales_week as $sale)
+                                                @if ($sale->apparel_id === $apparel->id)
+                                                    @php $sales += $sale->apparel_quantity @endphp
+                                                @endif
+                                            @endforeach
+                                            
+                                            @if ($sales !== 0)
+                                                <tr>
+                                                    <td>{{ $apparel->name }}</td>
+                                                    <td class = "text-center">{{ $sales }}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sales of the Month -->
+                <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
+                    <div class = "card">
+                        <div class = "card-header card-header-primary">
+                            <h4 class = "card-title">Sales of the Month</h4>
+                        </div>
+                        <div class = "card-body">
+                            <div class = "table-responsive">
+                                <table class = "table table-shopping">
+                                    <thead class = "text-primary">
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th class = "text-center">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($apparels as $apparel)
+                                            
+                                            @php $sales = 0 @endphp
+                                        
+                                            @foreach ($sales_month as $sale)
+                                                @if ($sale->apparel_id === $apparel->id)
+                                                    @php $sales += $sale->apparel_quantity @endphp
+                                                @endif
+                                            @endforeach
+                                            
+                                            @if ($sales !== 0)
+                                                <tr>
+                                                    <td>{{ $apparel->name }}</td>
+                                                    <td class = "text-center">{{ $sales }}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sales of the Year -->
+                <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
+                    <div class = "card">
+                        <div class = "card-header card-header-primary">
+                            <h4 class = "card-title">Sales of the Year</h4>
+                        </div>
+                        <div class = "card-body">
+                            <div class = "table-responsive">
+                                <table class = "table table-shopping">
+                                    <thead class = "text-primary">
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <th class = "text-center">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($apparels as $apparel)
+                                            
+                                            @php $sales = 0 @endphp
+                                        
+                                            @foreach ($sales_year as $sale)
+                                                @if ($sale->apparel_id === $apparel->id)
+                                                    @php $sales += $sale->apparel_quantity @endphp
+                                                @endif
+                                            @endforeach
+                                            
+                                            @if ($sales !== 0)
+                                                <tr>
+                                                    <td>{{ $apparel->name }}</td>
+                                                    <td class = "text-center">{{ $sales }}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
                                                     
             <!-- Modal: Order -->
