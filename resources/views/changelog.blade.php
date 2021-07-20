@@ -46,6 +46,10 @@
                                 </ul>
                                 <br/>
                                 <ul>
+                                    <h5>July 15</h5>
+                                    <li>Implemented login feature for the "dashboard" page.</li>
+                                </ul>
+                                <ul>
                                     <h5>June 28</h5>
                                     <li>Back-end rework.</li>
                                 </ul>
@@ -70,7 +74,7 @@
                                 <ul>
                                     <h5>June 7</h5>
                                     <li>Implemented <a href = "https://www.creative-tim.com/product/material-dashboard">Material Dashboard</a> template.</li>
-                                    <li>Added "statistics" page.</li>
+                                    <li>Added "dashboard" page.</li>
                                 </ul>
                                 <ul>
                                     <h5>May 30</h5>

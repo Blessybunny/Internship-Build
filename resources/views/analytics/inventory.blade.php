@@ -342,6 +342,13 @@
                     document.getElementById(`branch-${id}-container`).className = `branch-container visible`;
                 };
                 
+                //Number separators
+                const thousands_separators = (num) => {
+                    var num_parts = num.toString().split(".");
+                    num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    return num_parts.join(".");
+                }
+                
                 //Modal: Apparel and accessory
                 const modalApparel = (apparel_name, apparel_img_url, apparel_type, apparel_price, apparel_stock_universal, apparel_stocks) => {
                     //Variables
@@ -387,7 +394,7 @@
                                 </tr>
                                 <tr>
                                     <td class = "bold">Total Price:</td>
-                                    <td>PHP ${((apparel_stocks[0] + apparel_stocks[1] + apparel_stocks[2] + apparel_stocks[3] + apparel_stocks[4]) * apparel_price).toFixed(2)}</td>
+                                    <td>PHP ${thousands_separators(((apparel_stocks[0] + apparel_stocks[1] + apparel_stocks[2] + apparel_stocks[3] + apparel_stocks[4]) * apparel_price).toFixed(2))}</td>
                                 </tr>
                             </tbody>
                         `;
@@ -417,7 +424,7 @@
                             <tbody>
                                 <tr>
                                     <td class = "bold">Price:</td>
-                                    <td>PHP ${apparel_price.toFixed(2)}</td>
+                                    <td>PHP ${apparel_price}</td>
                                 </tr>
                                 <tr>
                                     <td class = "bold">Total Qty.:</td>
@@ -425,7 +432,7 @@
                                 </tr>
                                 <tr>
                                     <td class = "bold">Total Price:</td>
-                                    <td>PHP ${(apparel_stock_universal * apparel_price).toFixed(2)}</td>
+                                    <td>PHP ${thousands_separators((apparel_stock_universal * apparel_price).toFixed(2))}</td>
                                 </tr>
                             </tbody>
                         `;

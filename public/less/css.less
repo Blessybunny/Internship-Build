@@ -212,12 +212,18 @@
         }
         
         .card,
-        .card-header {
+        .card-header,
+        .card-stats, 
+        .card-icon {
             border-radius: 0 !important;
         }
         .card-header-primary {
             background: linear-gradient(@color-theme, @color-theme) !important;
             box-shadow: 0 4px 20px 0px rgb(#000, 14%), 0 7px 10px -5px rgb(@color-theme, 40%) !important;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: center;
         }
         .text-primary {
             color: @color-theme !important;
@@ -256,6 +262,10 @@
         }
         .dropdown-item:hover {
             background-color: @color-theme;
+        }
+        
+        .stats a {
+            color: @color-theme !important;
         }
     }
    

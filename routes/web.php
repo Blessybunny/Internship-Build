@@ -16,41 +16,11 @@ use Illuminate\Support\Facades\Route;
 //GENERAL
     Route::get('/', function () {
         //Get relevant databases
-        $apparels = Apparel::get()->take(8);
+        $apparels = Apparel::orderBy('created_at', 'DESC')->get()->take(8);
         $branch_apparels = BranchApparel::get();
         
-        //Placeholder: Supposed featured apparels, but they're just the first 8 on the database
-        $all_apparels = ([]);
-        foreach ($apparels as $apparel) {
-            $quantity_universal = 0;
-            $quantity_xs = 0;
-            $quantity_sm = 0;
-            $quantity_md = 0;
-            $quantity_lg = 0;
-            $quantity_xl = 0;
-            foreach ($branch_apparels as $branch_apparel) {
-                if ($apparel->id === $branch_apparel->apparel_id) {
-                    $quantity_universal += $branch_apparel->quantity_universal;
-                    $quantity_xs += $branch_apparel->quantity_xs;
-                    $quantity_sm += $branch_apparel->quantity_sm;
-                    $quantity_md += $branch_apparel->quantity_md;
-                    $quantity_lg += $branch_apparel->quantity_lg;
-                    $quantity_xl += $branch_apparel->quantity_xl;
-                }
-            }
-            array_push ($all_apparels, [
-                'id' => $apparel->id,
-                'quantity_universal' => $quantity_universal,
-                'quantity_xs' => $quantity_xs,
-                'quantity_sm' => $quantity_sm,
-                'quantity_md' => $quantity_md,
-                'quantity_lg' => $quantity_lg,
-                'quantity_xl' => $quantity_xl
-            ]);
-        }
-        
         //Return
-        return view('home', compact('apparels', 'all_apparels'));
+        return view('home', compact('apparels', 'branch_apparels'));
     });
     Route::get('/apparels', function () {
         //Get relevant databases
@@ -58,38 +28,8 @@ use Illuminate\Support\Facades\Route;
         $categories = Category::get();
         $branch_apparels = BranchApparel::get();
         
-        //Get total stock quantity for each apparel from every branch
-        $all_apparels = ([]);
-        foreach ($apparels as $apparel) {
-            $quantity_universal = 0;
-            $quantity_xs = 0;
-            $quantity_sm = 0;
-            $quantity_md = 0;
-            $quantity_lg = 0;
-            $quantity_xl = 0;
-            foreach ($branch_apparels as $branch_apparel) {
-                if ($apparel->id === $branch_apparel->apparel_id) {
-                    $quantity_universal += $branch_apparel->quantity_universal;
-                    $quantity_xs += $branch_apparel->quantity_xs;
-                    $quantity_sm += $branch_apparel->quantity_sm;
-                    $quantity_md += $branch_apparel->quantity_md;
-                    $quantity_lg += $branch_apparel->quantity_lg;
-                    $quantity_xl += $branch_apparel->quantity_xl;
-                }
-            }
-            array_push ($all_apparels, [
-                'id' => $apparel->id,
-                'quantity_universal' => $quantity_universal,
-                'quantity_xs' => $quantity_xs,
-                'quantity_sm' => $quantity_sm,
-                'quantity_md' => $quantity_md,
-                'quantity_lg' => $quantity_lg,
-                'quantity_xl' => $quantity_xl
-            ]);
-        }
-        
         //Return
-        return view('apparels', compact('apparels', 'categories', 'all_apparels'));
+        return view('apparels', compact('apparels', 'categories', 'branch_apparels'));
     });
 
 //APPAREL
@@ -207,29 +147,112 @@ use Illuminate\Support\Facades\Route;
                 //Get relevant databases
                 $apparels = Apparel::get();
                 $materials = Material::get();
-                $orders = Order::get()->take(10);
+                $orders = Order::get();
                 $branches = Branch::get();
                 $branch_apparels = BranchApparel::get();
                 $branch_materials = BranchMaterial::get();
 
-                $sales_week = Order::whereBetween('updated_at', [Carbon\Carbon::now()->startOfWeek(), Carbon\Carbon::now()->endOfWeek()])->where('status', '=', 'delivered')->get()->take(10);
-                $sales_month = Order::whereBetween('updated_at', [Carbon\Carbon::now()->startOfMonth(), Carbon\Carbon::now()->endOfMonth()])->where('status', '=', 'delivered')->get()->take(10);
-                $sales_year = Order::whereBetween('updated_at', [Carbon\Carbon::now()->startOfYear(), Carbon\Carbon::now()->endOfYear()])->where('status', '=', 'delivered')->get()->take(10);
+                $cancels_week = $orders->whereBetween('updated_at', [Carbon\Carbon::now()->startOfWeek(), Carbon\Carbon::now()->endOfWeek()])->where('status', '=', 'cancelled');
+                $cancels_month = $orders->whereBetween('updated_at', [Carbon\Carbon::now()->startOfMonth(), Carbon\Carbon::now()->endOfMonth()])->where('status', '=', 'cancelled');
+                $cancels_year = $orders->whereBetween('updated_at', [Carbon\Carbon::now()->startOfYear(), Carbon\Carbon::now()->endOfYear()])->where('status', '=', 'cancelled');
+                $cancels_all = $orders->where('status', '=', 'cancelled');
+                
+                $sales_week = $orders->whereBetween('updated_at', [Carbon\Carbon::now()->startOfWeek(), Carbon\Carbon::now()->endOfWeek()])->where('status', '=', 'delivered');
+                $sales_month = $orders->whereBetween('updated_at', [Carbon\Carbon::now()->startOfMonth(), Carbon\Carbon::now()->endOfMonth()])->where('status', '=', 'delivered');
+                $sales_year = $orders->whereBetween('updated_at', [Carbon\Carbon::now()->startOfYear(), Carbon\Carbon::now()->endOfYear()])->where('status', '=', 'delivered');
+                $sales_all = $orders->where('status', '=', 'delivered');
 
+                $revenue_month_count = 0;
+                foreach ($apparels as $apparel) {
+                    foreach ($sales_month as $sale) {
+                        if ($sale->apparel_id === $apparel->id) {
+                            $revenue_month_count += $sale->apparel_quantity * $apparel->price;
+                        }
+                    }
+                }
+                
+                $conflict_count = 0;
+                foreach ($branches as $branch) {
+                    foreach ($branch_apparels as $branch_apparel) {
+                        if ($branch_apparel->branch_id === $branch->id) {
+                            foreach ($apparels as $apparel) {
+                                if ($branch_apparel->apparel_id === $apparel->id) {
+                                    if ($apparel->type === "shirt") {
+                                        if ($branch_apparel->quantity_xs >= $minmax_apparels['opt']) {$conflict_count++;}
+                                        else if ($branch_apparel->quantity_xs >= $minmax_apparels['mid'] and $branch_apparel->quantity_xs <= $minmax_apparels['opt']) {}
+                                        else if ($branch_apparel->quantity_xs <= $minmax_apparels['mid'] and $branch_apparel->quantity_xs >= $minmax_apparels['low']) {$conflict_count++;}
+                                        else if ($branch_apparel->quantity_xs <= $minmax_apparels['low']) {$conflict_count++;}
+
+                                        if ($branch_apparel->quantity_sm >= $minmax_apparels['opt']) {$conflict_count++;}
+                                        else if ($branch_apparel->quantity_sm >= $minmax_apparels['mid'] and $branch_apparel->quantity_sm <= $minmax_apparels['opt']) {}
+                                        else if ($branch_apparel->quantity_sm <= $minmax_apparels['mid'] and $branch_apparel->quantity_sm >= $minmax_apparels['low']) {$conflict_count++;}
+                                        else if ($branch_apparel->quantity_sm <= $minmax_apparels['low']) {$conflict_count++;}
+
+                                        if ($branch_apparel->quantity_md >= $minmax_apparels['opt']) {$conflict_count++;}
+                                        else if ($branch_apparel->quantity_md >= $minmax_apparels['mid'] and $branch_apparel->quantity_md <= $minmax_apparels['opt']) {}
+                                        else if ($branch_apparel->quantity_md <= $minmax_apparels['mid'] and $branch_apparel->quantity_md >= $minmax_apparels['low']) {$conflict_count++;}
+                                        else if ($branch_apparel->quantity_md <= $minmax_apparels['low']) {$conflict_count++;}
+
+                                        if ($branch_apparel->quantity_lg >= $minmax_apparels['opt']) {$conflict_count++;}
+                                        else if ($branch_apparel->quantity_lg >= $minmax_apparels['mid'] and $branch_apparel->quantity_lg <= $minmax_apparels['opt']) {}
+                                        else if ($branch_apparel->quantity_lg <= $minmax_apparels['mid'] and $branch_apparel->quantity_lg >= $minmax_apparels['low']) {$conflict_count++;}
+                                        else if ($branch_apparel->quantity_lg <= $minmax_apparels['low']) {$conflict_count++;}
+
+                                        if ($branch_apparel->quantity_xl >= $minmax_apparels['opt']) {$conflict_count++;}
+                                        else if ($branch_apparel->quantity_xl >= $minmax_apparels['mid'] and $branch_apparel->quantity_xl <= $minmax_apparels['opt']) {}
+                                        else if ($branch_apparel->quantity_xl <= $minmax_apparels['mid'] and $branch_apparel->quantity_xl >= $minmax_apparels['low']) {$conflict_count++;}
+                                        else if ($branch_apparel->quantity_xl <= $minmax_apparels['low']) {$conflict_count++;}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    foreach ($branch_apparels as $branch_apparel) {
+                        if ($branch_apparel->branch_id === $branch->id) {
+                            foreach ($apparels as $apparel) {
+                                if ($branch_apparel->apparel_id === $apparel->id) {
+                                    if ($apparel->type === "accessory") {
+                                        if ($branch_apparel->quantity_universal >= $minmax_apparels['opt']) {$conflict_count++;}
+                                        else if ($branch_apparel->quantity_universal >= $minmax_apparels['mid'] and $branch_apparel->quantity_universal <= $minmax_apparels['opt']) {}
+                                        else if ($branch_apparel->quantity_universal <= $minmax_apparels['mid'] and $branch_apparel->quantity_universal >= $minmax_apparels['low']) {$conflict_count++;}
+                                        else if ($branch_apparel->quantity_universal <= $minmax_apparels['low']) {$conflict_count++;}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    foreach ($branch_materials as $branch_material) {
+                        if ($branch_material->branch_id === $branch->id) {
+                            foreach ($materials as $material) {
+                                if ($branch_material->material_id === $material->id) {
+                                    if ($branch_material->quantity >= $minmax_materials['opt']) {$conflict_count++;}
+                                    else if ($branch_material->quantity >= $minmax_materials['mid'] and $branch_material->quantity <= $minmax_materials['opt']) {}
+                                    else if ($branch_material->quantity <= $minmax_materials['mid'] and $branch_material->quantity >= $minmax_materials['low']) {$conflict_count++;}
+                                    else if ($branch_material->quantity <= $minmax_materials['low']) {$conflict_count++;}
+                                }
+                            }
+                        }
+                    }
+                }
+                
                 //Return
                 return view('analytics.dashboard', compact(
                     'apparels',
-                    'materials',
                     'orders',
-                    'branches',
-                    'branch_apparels',
-                    'branch_materials',
-                    'minmax_apparels',
-                    'minmax_materials',
                     'order_due_threshold',
+                    
+                    'revenue_month_count',
+                    'conflict_count',
+                    
+                    'cancels_week',
+                    'cancels_month',
+                    'cancels_year',
+                    'cancels_all',
+                    
                     'sales_week',
                     'sales_month',
-                    'sales_year'
+                    'sales_year',
+                    'sales_all'
                 ));
             });
 
